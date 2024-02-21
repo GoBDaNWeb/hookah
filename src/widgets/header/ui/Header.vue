@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-
+import { RouterLink } from "vue-router";
 import { LogoIcon } from "@/shared/icons";
 import { TelegramIcon } from "@/shared/icons";
 import { WhatsappIcon } from "@/shared/icons";
@@ -19,36 +19,31 @@ const controlNavbar = () => {
 };
 
 window.addEventListener("scroll", controlNavbar);
+
+const links = [
+  { url: "/", title: "Кальян на дом" },
+  { url: "/catering", title: "кейтеринг" },
+  { url: "/delivery", title: "Доставка комплектующих" },
+  { url: "/manual", title: "Инструкция" },
+  { url: "/partners", title: "партнёрам" },
+  { url: "/contacts", title: "Контакты" },
+];
 </script>
 
 <template>
   <header :class="{ active: active }">
     <div class="container">
       <div class="header-inner">
-        <div class="logo">
+        <RouterLink to="/" class="logo">
           <LogoIcon />
-        </div>
+        </RouterLink>
         <nav>
-          <ul>
-            <li>
-              <a href="#">Кальян на дом</a>
-            </li>
-            <li>
-              <a href="#">кейтеринг</a>
-            </li>
-            <li>
-              <a href="#">Доставка комплектующих</a>
-            </li>
-            <li>
-              <a href="#">Инструкция</a>
-            </li>
-            <li>
-              <a href="#">партнёрам</a>
-            </li>
-            <li>
-              <a href="#">Контакты</a>
-            </li>
-          </ul>
+          <RouterLink
+            :to="link.url"
+            v-for="(link, index) in links"
+            :key="index"
+            >{{ link.title }}</RouterLink
+          >
         </nav>
         <div class="info">
           <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
@@ -68,69 +63,72 @@ window.addEventListener("scroll", controlNavbar);
   </header>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+header.active {
+  background: var(--white-color);
+  border-bottom: 1px solid var(--text-color);
+
+  .header-inner {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .logo {
+      width: 65px;
+      height: 65px;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
 header {
   position: fixed;
   left: 0;
   right: 0;
   z-index: 100;
   transition: var(--trs-300);
-}
-header.active {
-  background: var(--white-color);
-}
-header.active .logo {
-  width: 65px;
-  height: 65px;
-}
-header.active .header-inner {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  transition: var(--trs-300);
-}
-.header-inner .logo svg {
-  width: 100%;
-  height: 100%;
-}
-.header-inner .logo {
-  transition: var(--trs-300);
-  width: 85px;
-  height: 85px;
-}
-
-.header-inner ul {
-  list-style: none;
-}
-
-.header-inner nav ul li::marker {
-  display: none;
-}
-.header-inner nav ul {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-}
-.header-inner nav ul li a:hover {
-  color: var(--hover-color);
-}
-.header-inner nav ul li a {
-  color: #45403d;
-  transition: var(--trs-300);
-}
-.info {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-.socials {
-  display: flex;
-  gap: 5px;
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    transition: var(--trs-300);
+    .logo {
+      transition: var(--trs-300);
+      width: 85px;
+      height: 85px;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    nav {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      a {
+        color: #45403d;
+        transition: var(--trs-300);
+        text-transform: uppercase;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 15px;
+        &:hover {
+          color: var(--hover-color);
+        }
+      }
+    }
+    .info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      .socials {
+        display: flex;
+        gap: 5px;
+      }
+    }
+  }
 }
 </style>

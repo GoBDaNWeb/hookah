@@ -1,30 +1,23 @@
 <script setup>
+import { watch } from "vue";
+import { RouterView, onBeforeRouteLeave } from "vue-router";
+import { Layout } from "@/widgets/layout";
 import { Header } from "@/widgets/header";
-import { Hero } from "@/widgets/hero";
-import { About } from "@/widgets/about";
-import { Features } from "@/widgets/features";
-import { Cost } from "@/widgets/cost";
-import { Stamps } from "@/widgets/stamps";
-import { Delivery } from "@/widgets/delivery";
-import { Gallery } from "@/widgets/gallery";
-import { Faq } from "@/widgets/faq";
-import { Contacts } from "@/widgets/contacts";
+import { Footer } from "@/widgets/footer";
+import { useRoute } from "vue-router";
+const router = useRoute();
+watch(router, () => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+  });
+});
 </script>
 
 <template>
   <Header />
-
-  <main>
-    <Hero />
-    <About />
-    <Features />
-    <Cost />
-    <Stamps />
-    <Delivery />
-    <Gallery />
-    <Faq />
-    <Contacts />
-  </main>
+  <RouterView />
+  <Footer />
 </template>
 
 <style scoped></style>

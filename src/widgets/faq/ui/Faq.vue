@@ -58,6 +58,8 @@ function handleAccordion(selectedIndex) {
       index === selectedIndex ? !questions[index].isExpanded : false;
   });
 }
+
+defineProps(["img", "hasInfo"]);
 </script>
 
 <template>
@@ -94,17 +96,17 @@ function handleAccordion(selectedIndex) {
           <div class="right">
             <div class="image-wrapper">
               <div class="image-wrapper-inner">
-                <img src="@/shared/assets/images/hookah-white.jpg" alt="" />
+                <img :src="img" alt="hookah" />
                 <img
                   class="coals"
                   src="@/shared/assets/images/coals-reverse.png"
-                  alt=""
+                  alt="coals"
                 />
               </div>
             </div>
           </div>
         </div>
-        <div class="faq-about">
+        <div class="faq-about" v-if="hasInfo">
           <div class="left">
             <h5>
               Наслаждайтесь насыщенным дымом у себя дома, заказывая кальян у
@@ -135,151 +137,161 @@ function handleAccordion(selectedIndex) {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .faq {
   background: var(--white-color);
   padding-top: 130px;
   padding-bottom: 130px;
-}
-.faq-inner h3 {
-  font-weight: 400;
-  font-size: 64px;
-  line-height: 54px;
-  color: var(--text-color);
-  text-transform: uppercase;
-}
-.faq-content {
-  margin-top: 50px;
-  display: flex;
-  gap: 20px;
-}
-.faq-content .left {
-  width: 50%;
-}
-.faq-content .right {
-  width: 50%;
-}
-.faq-content .right .image-wrapper {
-  width: 100%;
-  height: 100%;
-  padding: 20px 20px 60px 20px;
-  background: var(--bg-color);
-  position: relative;
-  height: 700px;
-}
-.faq-content .right .image-wrapper:after {
-  content: "";
-  position: absolute;
-  background: var(--text-color);
-  width: 20px;
-  height: 20px;
-  border-radius: 999px;
-  bottom: 20px;
-  right: 20px;
-}
-.faq-content .right .image-wrapper .image-wrapper-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-.faq-content .right .image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.faq-content .right .image-wrapper .coals {
-  position: absolute;
-  width: 360px;
-  height: 280px;
-  top: 90px;
-  right: 0;
-  overflow: contain;
-}
-.faq-content .left .accordion.active button p {
-  color: var(--hover-color);
-}
-.faq-content .left .accordion button span svg {
-  stroke: var(--text-color);
-  transition: var(--trs-300);
-}
-.faq-content .left .accordion.active button span svg {
-  transform: rotate(45deg);
-  stroke: var(--hover-color);
-}
-.faq-content .left .accordion {
-  border-bottom: 1px solid var(--text-color);
-  padding-bottom: 20px;
-  padding-top: 20px;
-}
-.faq-content .left .accordion button {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-}
-.faq-content .left .accordion button p {
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 26px;
-  color: var(--text-color);
-  text-align: left;
-  transition: var(--trs-300);
-}
-.faq-content .left .accordion .collapse p {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--text-color);
-  padding-top: 20px;
-  padding-left: 80px;
-}
-.faq-content .right {
-  width: 50%;
-}
-.faq-about {
-  display: flex;
-  margin-top: 130px;
-  border-top: 1px solid var(--text-color);
-}
-.faq-about .left {
-  width: 50%;
-  padding-top: 100px;
-  padding-right: 150px;
-}
-.faq-about .left h5 {
-  position: relative;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 35px;
-  color: var(--text-color);
-}
-.faq-about .left h5:before {
-  content: "";
-  position: absolute;
-  background: var(--text-color);
-  border-radius: 999px;
-  width: 20px;
-  height: 20px;
-  top: -50px;
-  left: 0;
-}
-.faq-about .right {
-  width: 50%;
-  padding-top: 100px;
-  position: relative;
-}
-.faq-about .right p {
-  font-weight: 400;
-  color: var(--text-color);
-  font-size: 16px;
-  line-height: 24px;
-}
-.faq-about .right:before {
-  content: "";
-  position: absolute;
-  height: 50px;
-  width: 1px;
-  background: var(--text-color);
-  top: 0;
-  left: 0;
+  .faq-inner {
+    h3 {
+      font-weight: 400;
+      font-size: 64px;
+      line-height: 54px;
+      color: var(--text-color);
+      text-transform: uppercase;
+    }
+    .faq-content {
+      margin-top: 50px;
+      display: flex;
+      gap: 20px;
+      .left {
+        width: 50%;
+        .accordion.active {
+          button {
+            p {
+              color: var(--hover-color);
+            }
+            span {
+              svg {
+                transform: rotate(45deg);
+                stroke: var(--hover-color);
+              }
+            }
+          }
+        }
+        .accordion {
+          border-bottom: 1px solid var(--text-color);
+          padding-bottom: 20px;
+          padding-top: 20px;
+          button {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            p {
+              font-weight: 400;
+              font-size: 24px;
+              line-height: 26px;
+              color: var(--text-color);
+              text-align: left;
+              transition: var(--trs-300);
+            }
+            span {
+              svg {
+                stroke: var(--text-color);
+                transition: var(--trs-300);
+              }
+            }
+          }
+          .collapse {
+            p {
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 24px;
+              color: var(--text-color);
+              padding-top: 20px;
+              padding-left: 80px;
+            }
+          }
+        }
+      }
+      .right {
+        width: 50%;
+        .image-wrapper {
+          width: 100%;
+          height: 100%;
+          padding: 20px 20px 60px 20px;
+          background: var(--bg-color);
+          position: relative;
+          height: 700px;
+          &:after {
+            content: "";
+            position: absolute;
+            background: var(--text-color);
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            bottom: 20px;
+            right: 20px;
+          }
+          .image-wrapper-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+          }
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .coals {
+            position: absolute;
+            width: 360px;
+            height: 280px;
+            top: 90px;
+            right: 0;
+            overflow: contain;
+          }
+        }
+      }
+    }
+    .faq-about {
+      display: flex;
+      margin-top: 130px;
+      border-top: 1px solid var(--text-color);
+      .left {
+        width: 50%;
+        padding-top: 100px;
+        padding-right: 120px;
+        h5 {
+          position: relative;
+          font-weight: 400;
+          font-size: 32px;
+          line-height: 35px;
+          color: var(--text-color);
+          text-transform: uppercase;
+          &:before {
+            content: "";
+            position: absolute;
+            background: var(--text-color);
+            border-radius: 999px;
+            width: 20px;
+            height: 20px;
+            top: -50px;
+            left: 0;
+          }
+        }
+      }
+      .right {
+        width: 50%;
+        padding-top: 100px;
+        position: relative;
+        &:before {
+          content: "";
+          position: absolute;
+          height: 50px;
+          width: 1px;
+          background: var(--text-color);
+          top: 0;
+          left: 0;
+        }
+        p {
+          font-weight: 400;
+          color: var(--text-color);
+          font-size: 16px;
+          line-height: 24px;
+        }
+      }
+    }
+  }
 }
 </style>

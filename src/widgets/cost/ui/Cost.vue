@@ -95,175 +95,177 @@ const costList = [
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .cost {
   background: var(--white-color);
   padding-top: 130px;
-}
-.cost-inner h3 {
-  font-weight: 400;
-  font-size: 64px;
-  line-height: 54px;
-  color: var(--text-color);
-  position: relative;
-  padding-left: 70px;
-  text-transform: uppercase;
-}
-.cost-inner h3:before {
-  position: absolute;
-  content: "";
-  width: 45px;
-  height: 45px;
-  background: var(--text-color);
-  border-radius: 999px;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-.cost-content {
-  padding-top: 50px;
-  display: flex;
-  gap: 20px;
-  padding-bottom: 130px;
-}
-.cost-content .left {
-  border-top: 1px solid var(--text-color);
-  padding-top: 50px;
-  width: 50%;
-}
-.cost-content .left .cost-list {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding-bottom: 50px;
-  border-bottom: 1px solid var(--text-color);
-}
-.cost-content .left .about {
-  display: flex;
-  gap: 50px;
-  padding-top: 72px;
-}
-.cost-content .left .about-item {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-.cost-content .left .about-item button {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 14px;
-  color: var(--text-color);
-}
-.cost-content .left .about-item h6 {
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 26px;
-  color: var(--text-color);
-  position: relative;
-  padding-left: 35px;
-  text-transform: uppercase;
-}
-.cost-content .left .about-item h6:before {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 999px;
-  background: var(--text-color);
-  left: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-.cost-content .left .about-item h6 span {
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 26px;
-  color: var(--text-color);
-}
-.cost-content .left .about-item p {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
-  color: var(--text-color);
-}
-.cost-content .left .about-item p span {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 20px;
-  color: var(--text-color);
-}
-.cost-content .left .cost-item {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  position: relative;
-  padding-left: 38px;
-}
-.cost-content .left .cost-item:before {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 999px;
-  border: 1px solid var(--text-color);
-  left: 0;
-  top: 4px;
-}
-.cost-content .left .cost-item .main {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-}
-.cost-content .left .cost-item .main h5 {
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 24px;
-  color: var(--text-color);
-  white-space: nowrap;
-  text-transform: uppercase;
-}
-.cost-content .left .cost-item .additional {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 10px;
-}
-.cost-content .left .cost-item .additional h6 {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20px;
-  color: var(--text-color);
-}
-.cost-content .left .cost-item .additional .total {
-  font-weight: 400px;
-  font-size: 16px;
-  line-height: 20px;
-  color: var(--text-color);
-}
-.cost-content .left .cost-item .main .line {
-  width: 100%;
-  height: 1px;
-  background: var(--bg-color);
-}
-.cost-content .left .cost-item .main .total {
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 24px;
-  color: var(--text-color);
-  white-space: nowrap;
-}
-.cost-content .right {
-  width: 50%;
-}
-.cost-content .right .image-wrapper {
-  width: 100%;
-  height: 100%;
-}
-.cost-content .right .image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  .cost-inner {
+    h3 {
+      font-weight: 400;
+      font-size: 64px;
+      line-height: 54px;
+      color: var(--text-color);
+      position: relative;
+      padding-left: 70px;
+      text-transform: uppercase;
+      &:before {
+        position: absolute;
+        content: "";
+        width: 45px;
+        height: 45px;
+        background: var(--text-color);
+        border-radius: 999px;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+    }
+    .cost-content {
+      padding-top: 50px;
+      display: flex;
+      gap: 20px;
+      padding-bottom: 130px;
+      .left {
+        border-top: 1px solid var(--text-color);
+        padding-top: 50px;
+        width: 50%;
+        .cost-list {
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+          padding-bottom: 50px;
+          border-bottom: 1px solid var(--text-color);
+          .cost-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            padding-left: 38px;
+            &:before {
+              content: "";
+              position: absolute;
+              width: 20px;
+              height: 20px;
+              border-radius: 999px;
+              border: 1px solid var(--text-color);
+              left: 0;
+              top: 4px;
+            }
+            .main {
+              display: flex;
+              align-items: baseline;
+              gap: 10px;
+              h5 {
+                font-weight: 400;
+                font-size: 24px;
+                line-height: 24px;
+                color: var(--text-color);
+                white-space: nowrap;
+                text-transform: uppercase;
+              }
+              .line {
+                width: 100%;
+                height: 1px;
+                background: var(--bg-color);
+              }
+              .total {
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 24px;
+                color: var(--text-color);
+                white-space: nowrap;
+              }
+            }
+            .additional {
+              display: flex;
+              align-items: baseline;
+              justify-content: space-between;
+              gap: 10px;
+              h6 {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 20px;
+                color: var(--text-color);
+                .total {
+                  font-weight: 400px;
+                  font-size: 16px;
+                  line-height: 20px;
+                  color: var(--text-color);
+                }
+              }
+            }
+          }
+        }
+        .about {
+          display: flex;
+          gap: 50px;
+          padding-top: 72px;
+          .about-item {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            h6 {
+              font-weight: 400;
+              font-size: 24px;
+              line-height: 26px;
+              color: var(--text-color);
+              position: relative;
+              padding-left: 35px;
+              text-transform: uppercase;
+              span {
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 26px;
+                color: var(--text-color);
+              }
+              &:before {
+                content: "";
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                border-radius: 999px;
+                background: var(--text-color);
+                left: 0;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+              }
+            }
+            p {
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 20px;
+              color: var(--text-color);
+              span {
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 20px;
+                color: var(--text-color);
+              }
+            }
+            button {
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 14px;
+              color: var(--text-color);
+            }
+          }
+        }
+      }
+      .right {
+        width: 50%;
+        .image-wrapper {
+          width: 100%;
+          height: 100%;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

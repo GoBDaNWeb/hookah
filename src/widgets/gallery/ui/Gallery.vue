@@ -95,77 +95,80 @@ const rightGallery = [
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .gallery {
   background: var(--white-color);
-}
-.gallery-inner {
-  padding-top: 30px;
-  border-top: 1px solid var(--text-color);
-}
-.gallery-inner h3 {
-  font-weight: 400;
-  font-size: 64px;
-  line-height: 54px;
-  color: var(--text-color);
-  position: relative;
-  padding-left: 70px;
-  text-transform: uppercase;
-}
-.gallery-inner h3:before {
-  content: "";
-  position: absolute;
-  background: var(--text-color);
-  width: 45px;
-  height: 45px;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-.gallery-content {
-  margin-top: 50px;
-  display: flex;
-  gap: 20px;
-}
-.gallery-content img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.gallery-content .left,
-.gallery-content .right {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  width: 50%;
-}
-
-.gallery-content .left a:nth-child(1),
-.gallery-content .left a:nth-child(2),
-.gallery-content .left a:nth-child(3),
-.gallery-content .left a:nth-child(4) {
-  flex: 1 1 48%;
-  width: 335px;
-  height: 335px;
-}
-.gallery-content .left a:nth-child(5) {
-  flex: 1 1 100%;
-  width: 690px;
-  height: 690px;
-}
-.gallery-content .right a:nth-child(2),
-.gallery-content .right a:nth-child(3),
-.gallery-content .right a:nth-child(4),
-.gallery-content .right a:nth-child(5) {
-  flex: 1 1 48.5%;
-  width: 335px;
-  height: 335px;
-}
-.gallery-content .right a:nth-child(1) {
-  flex: 1 1 100%;
-  width: 690px;
-  height: 690px;
+  .gallery-inner {
+    padding-top: 30px;
+    border-top: 1px solid var(--text-color);
+    h3 {
+      font-weight: 400;
+      font-size: 64px;
+      line-height: 54px;
+      color: var(--text-color);
+      position: relative;
+      padding-left: 70px;
+      text-transform: uppercase;
+      &:before {
+        content: "";
+        position: absolute;
+        background: var(--text-color);
+        width: 45px;
+        height: 45px;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+    }
+    .gallery-content {
+      margin-top: 50px;
+      display: flex;
+      gap: 20px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .left {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        width: 50%;
+        a:nth-child(1),
+        a:nth-child(2),
+        a:nth-child(3),
+        a:nth-child(4) {
+          flex: 1 1 48%;
+          width: 335px;
+          height: 335px;
+        }
+        a:nth-child(5) {
+          flex: 1 1 100%;
+          width: 690px;
+          height: 690px;
+        }
+      }
+      .right {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        width: 50%;
+        a:nth-child(2),
+        a:nth-child(3),
+        a:nth-child(4),
+        a:nth-child(5) {
+          flex: 1 1 48.5%;
+          width: 335px;
+          height: 335px;
+        }
+        a:nth-child(1) {
+          flex: 1 1 100%;
+          width: 690px;
+          height: 690px;
+        }
+      }
+    }
+  }
 }
 </style>

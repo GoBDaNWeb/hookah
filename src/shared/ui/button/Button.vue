@@ -26,7 +26,6 @@ button.outline {
 }
 button.social {
   background: var(--white-color);
-  border: 1px solid var(--text-color);
   border-radius: 9999px;
   width: 35px;
   height: 35px;

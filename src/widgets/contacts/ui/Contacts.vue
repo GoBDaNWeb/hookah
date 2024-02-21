@@ -6,6 +6,7 @@ import { ParadigmaIcon } from "@/shared/icons";
 import { WhatsappIcon } from "@/shared/icons";
 import { TheMask } from "vue-the-mask";
 export default {
+  props: ["tabs", "title", "img", "list", "subTitle", "subTitleForm", "badge"],
   setup() {
     const { useField, handleSubmit } = useForm({
       defaultValues: {},
@@ -40,16 +41,22 @@ export default {
     <div class="container">
       <div class="contacts-inner">
         <div class="left">
-          <div class="top">
+          <div class="top" v-if="tabs">
             <ul>
-              <li>на дом</li>
-              <li>в офис</li>
-              <li>на дачу</li>
-              <li>в лофт</li>
+              <li v-for="tab in tabs" :key="tab">{{ tab }}</li>
             </ul>
           </div>
+          <span v-if="badge" class="badge">{{ badge }}</span>
+
           <div class="center">
-            <h3>Закажите кальян</h3>
+            <h3>{{ title }}</h3>
+            <h5 v-if="subTitle">{{ subTitle }}</h5>
+            <ul v-if="list">
+              <li v-for="item in list" :key="item">{{ item }}</li>
+            </ul>
+            <h5 class="sub-title-form" v-if="subTitleForm">
+              {{ subTitleForm }}
+            </h5>
             <form @submit="onSubmit">
               <input
                 placeholder="имя"
@@ -85,7 +92,12 @@ export default {
         </div>
         <div class="right">
           <div class="image-wrapper">
-            <img src="@/shared/assets/images/gallery/5.jpg" alt="" />
+            <img v-if="img" :src="img" alt="photo" />
+            <img
+              v-else
+              src="@/shared/assets/images/gallery/5.jpg"
+              alt="photo"
+            />
           </div>
         </div>
       </div>
@@ -119,179 +131,240 @@ export default {
   </div>
 </template>
 
-<style scoped>
-.contacts-inner {
-  display: flex;
-  padding-bottom: 50px;
-  gap: 50px;
-}
-.contacts-inner .left {
-  width: 50%;
-  padding-top: 50px;
-}
+<style lang="scss" scoped>
+.contacts {
+  .contacts-inner {
+    display: flex;
+    padding-bottom: 50px;
+    gap: 50px;
+    .left {
+      width: 50%;
+      padding-top: 50px;
+      .top {
+        padding-bottom: 85px;
+        ul {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid var(--text-color);
 
-.contacts-info .left {
-  padding-top: 100px;
-  padding-left: 30px;
-  position: relative;
-}
-.contacts-info .left:before {
-  content: "";
-  position: absolute;
-  height: 50px;
-  width: 1px;
-  background: var(--text-color);
+          padding-bottom: 15px;
+          li {
+            position: relative;
+            padding-left: 36px;
+            font-weight: 400;
+            font-size: 24px;
+            letter-spacing: -7%;
+            color: var(--text-color);
+            text-transform: uppercase;
+            white-space: nowrap;
+            &:before {
+              content: "";
+              position: absolute;
+              width: 20px;
+              height: 20px;
+              border-radius: 999px;
+              background: var(--text-color);
+              left: 0;
+              top: 0;
+              bottom: 0;
+              margin: auto;
+            }
+          }
+        }
+      }
+      .badge {
+        font-weight: 400;
+        font-size: 24px;
+        text-transform: uppercase;
+        line-height: 26px;
+        color: var(--text-color);
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 65px;
+        display: block;
+        margin-top: 20px;
+        &:before {
+          content: "";
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          background: var(--text-color);
+          border-radius: 999px;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          left: 0;
+        }
+      }
+      .center {
+        padding-left: 35px;
+        padding-top: 15px;
 
-  left: 0;
-  top: 0;
-}
-.contacts-info .right:before {
-  content: "";
-  position: absolute;
-  height: 50px;
-  width: 1px;
-  background: var(--text-color);
+        h3 {
+          font-weight: 400;
+          font-size: 80px;
+          line-height: 68px;
+          color: var(--text-color);
+          text-transform: uppercase;
+        }
+        h5 {
+          font-weight: 400;
+          font-size: 32px;
+          line-height: 35px;
+          color: var(--text-color);
+          margin-top: 50px;
+          margin-bottom: 30px;
+          text-transform: uppercase;
+        }
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          li {
+            font-weight: 400;
+            font-size: 20px;
+            color: var(--text-color);
+            line-height: 20px;
+            position: relative;
+            padding-left: 33px;
 
-  left: -200px;
-  top: 0;
-}
-.contacts-info .right {
-  padding-top: 100px;
-  padding-right: 30px;
-  position: relative;
-}
-.contacts-info .left ul {
-  display: flex;
-  gap: 15px;
-  text-transform: uppercase;
-  color: var(--text-color);
-}
-.contacts-info {
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid var(--text-color);
-  margin-top: 50px;
-}
-.contacts-info .left ul li:last-child {
-  padding-left: 5px;
-}
-.contacts-info .right ul {
-  display: flex;
-  gap: 105px;
-  align-items: center;
-}
-.contacts-info .right ul {
-  text-transform: uppercase;
-}
-.contacts-info .right ul {
-  display: flex;
-  gap: 105px;
-  align-items: center;
-  font-weight: 400;
-  font-size: 14px;
-  color: var(--text-color);
-}
-.contacts-info .right ul li:first-child {
-  display: flex;
-  flex-direction: column;
-}
-.contacts-info .right ul li a {
-  display: flex;
-  gap: 13px;
-  align-items: center;
-}
+            &:before {
+              content: "";
+              position: absolute;
+              width: 10px;
+              height: 10px;
+              background: var(--text-color);
+              border-radius: 999px;
+              top: 0;
+              bottom: 0;
+              margin: auto;
+              left: 0;
+            }
+          }
+        }
+        form {
+          margin-top: 60px;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 30px;
+          p {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 15px;
+            color: var(--text-color);
+            text-transform: uppercase;
+            a {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      .bottom {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        padding-left: 35px;
+        margin-top: 100px;
+        a {
+          font-weight: 500;
+          font-size: 30px;
+          line-height: 30px;
+          color: var(--text-color);
+          letter-spacing: -2px;
+        }
+        .socials {
+          display: flex;
+          gap: 10px;
+          button {
+            width: 60px;
+            height: 60px;
+          }
+        }
+      }
+    }
+    .right {
+      width: 50%;
+      padding-top: 20px;
+      .image-wrapper {
+        width: 100%;
+        height: 100%;
+        max-height: 615px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+  .contacts-info {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--text-color);
+    margin-top: 50px;
+    padding-bottom: 50px;
+    .left {
+      padding-top: 100px;
+      padding-left: 30px;
+      position: relative;
+      &:before {
+        content: "";
+        position: absolute;
+        height: 50px;
+        width: 1px;
+        background: var(--text-color);
 
-.contacts-inner .left .top {
-  padding-bottom: 15px;
-  border-bottom: 1px solid var(--text-color);
-}
-.contacts-inner .left .top ul {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.contacts-inner .left .top li:before {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 999px;
-  background: var(--text-color);
-  left: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-.contacts-inner .left .top li {
-  position: relative;
-  padding-left: 36px;
-  font-weight: 400;
-  font-size: 24px;
-  letter-spacing: -7%;
-  color: var(--text-color);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.contacts-inner .left .center {
-  padding-top: 80px;
-  padding-left: 35px;
-}
-.contacts-inner .left .center h3 {
-  font-weight: 400;
-  font-size: 80px;
-  line-height: 68px;
-  color: var(--text-color);
-  text-transform: uppercase;
-}
-.contacts-inner .left .center form {
-  margin-top: 60px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-}
-.contacts-inner .left .center form p {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 15px;
-  color: var(--text-color);
-  text-transform: uppercase;
-}
-.contacts-inner .left .center form p a {
-  text-decoration: underline;
-}
-.contacts-inner .left .bottom {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  padding-left: 35px;
-  margin-top: 100px;
-}
-.contacts-inner .left .bottom a {
-  font-weight: 500;
-  font-size: 30px;
-  line-height: 30px;
-  color: var(--text-color);
-  letter-spacing: -2px;
-}
-.contacts-inner .left .bottom .socials {
-  display: flex;
-  gap: 10px;
-}
-.contacts-inner .left .bottom .socials button {
-  width: 60px;
-  height: 60px;
-}
-.contacts-inner .right {
-  width: 50%;
-  padding-top: 20px;
-}
-.contacts-inner .right .image-wrapper {
-  width: 100%;
-  height: 100%;
-}
-.contacts-inner .right .image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+        left: 0;
+        top: 0;
+      }
+      ul {
+        display: flex;
+        gap: 15px;
+        text-transform: uppercase;
+        color: var(--text-color);
+        li {
+          &:last-child {
+            padding-left: 5px;
+          }
+        }
+      }
+    }
+    .right {
+      padding-top: 100px;
+      padding-right: 30px;
+      position: relative;
+      &:before {
+        content: "";
+        position: absolute;
+        height: 50px;
+        width: 1px;
+        background: var(--text-color);
+
+        left: -200px;
+        top: 0;
+      }
+      ul {
+        display: flex;
+        gap: 105px;
+        align-items: center;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 14px;
+        color: var(--text-color);
+        li {
+          a {
+            display: flex;
+            gap: 13px;
+            align-items: center;
+          }
+          &:first-child {
+            display: flex;
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
 }
 </style>
