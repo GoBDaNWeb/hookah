@@ -48,6 +48,8 @@ defineProps(["imgs"]);
 </template>
 
 <style lang="scss">
+@import "@/shared/styles/vars";
+
 .manual-swiper {
   .swiper {
     height: 100%;
@@ -56,6 +58,20 @@ defineProps(["imgs"]);
     display: flex;
     align-items: center;
     gap: 50px;
+    @media (max-width: $tab) {
+      gap: 20px;
+      justify-content: space-between;
+    }
+    button {
+      @media (max-width: $tab-sm) {
+        width: 20px;
+        height: 20px;
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
     .pagination {
       display: flex;
       gap: 10px;
@@ -71,6 +87,10 @@ defineProps(["imgs"]);
         border-radius: 999px;
         transition: var(--trs-300);
         cursor: pointer;
+        @media (max-width: $tab-sm) {
+          width: 12px;
+          height: 12px;
+        }
       }
     }
   }
@@ -78,11 +98,12 @@ defineProps(["imgs"]);
 </style>
 
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 .swiper-wrapper {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  height: calc(20vw * 1.5);
   background: var(--white-color);
   padding: 20px;
   width: 100%;

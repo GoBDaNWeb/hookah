@@ -20,10 +20,7 @@ defineProps(["stampsList", "howWorkList"]);
             <p>Подберём вкус и крепость по Вашему индивидуальному желанию!</p>
           </div>
           <div class="right">
-            <h5>
-              наш табак не горчит и дает <br />
-              вкусный, насыщенный дым
-            </h5>
+            <h5>наш табак не горчит и дает вкусный, насыщенный дым</h5>
           </div>
         </div>
         <StampsSwiper :stampsList="stampsList" />
@@ -52,9 +49,15 @@ defineProps(["stampsList", "howWorkList"]);
 </template>
 
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 .stamps {
   padding-top: 130px;
   padding-bottom: 130px;
+  @media (max-width: $tab) {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
   .stamps-inner {
     display: flex;
     flex-direction: column;
@@ -65,11 +68,19 @@ defineProps(["stampsList", "howWorkList"]);
       line-height: 54px;
       color: var(--text-color);
       text-transform: uppercase;
+      @media (max-width: $tab) {
+        font-size: 35px;
+        line-height: 29px;
+      }
     }
     .description {
       display: flex;
       justify-content: space-between;
       gap: 80px;
+      @media (max-width: $tab) {
+        flex-direction: column;
+        gap: 40px;
+      }
       .left {
         width: 50%;
         display: flex;
@@ -77,11 +88,18 @@ defineProps(["stampsList", "howWorkList"]);
         gap: 25px;
         padding-left: 35px;
         border-left: 1px solid var(--text-color);
+        @media (max-width: $tab) {
+          width: 100%;
+          gap: 15px;
+        }
       }
       .right {
         width: 50%;
         border-left: 1px solid var(--text-color);
         padding-left: 30px;
+        @media (max-width: $tab) {
+          width: 100%;
+        }
       }
       h5 {
         font-weight: 400;
@@ -89,6 +107,10 @@ defineProps(["stampsList", "howWorkList"]);
         line-height: 36px;
         color: var(--text-color);
         text-transform: uppercase;
+        @media (max-width: $tab) {
+          font-size: 24px;
+          line-height: 26px;
+        }
       }
       p {
         font-weight: 400;
@@ -101,10 +123,17 @@ defineProps(["stampsList", "howWorkList"]);
       margin-top: 70px;
       padding-top: 30px;
       border-top: 1px solid var(--text-color);
+      @media (max-width: $tab) {
+        margin-top: 0;
+      }
       h3 {
         position: relative;
         padding-left: 70px;
         text-transform: uppercase;
+        @media (max-width: $tab) {
+          padding-left: 44px;
+        }
+
         &:before {
           content: "";
           position: absolute;
@@ -115,6 +144,11 @@ defineProps(["stampsList", "howWorkList"]);
           top: 0;
           bottom: 0;
           margin: auto;
+          @media (max-width: $tab) {
+            width: 30px;
+            height: 30px;
+            bottom: auto;
+          }
         }
       }
       .how-work__list {
@@ -123,6 +157,16 @@ defineProps(["stampsList", "howWorkList"]);
         align-items: flex-start;
         justify-content: space-between;
         margin-top: 80px;
+        gap: 22px;
+        @media (max-width: $desktop-md-2) {
+          overflow: auto;
+          scrollbar-width: thin;
+          scrollbar-color: rgba(218, 235, 245, 0) rgba(218, 235, 245, 0);
+          height: 100%;
+          &::-webkit-scrollbar {
+            height: 0px;
+          }
+        }
         .how-work__item {
           display: flex;
           flex-direction: column;
@@ -131,6 +175,11 @@ defineProps(["stampsList", "howWorkList"]);
           padding-left: 30px;
           position: relative;
           height: 100%;
+          width: 335px;
+          @media (max-width: $tab) {
+            gap: 20px;
+            width: 263px;
+          }
           &:before {
             content: "";
             position: absolute;
@@ -147,6 +196,16 @@ defineProps(["stampsList", "howWorkList"]);
             color: var(--text-color);
             display: flex;
             gap: 16px;
+            @media (max-width: $tab) {
+              font-size: 55px;
+              line-height: 46px;
+            }
+            span {
+              width: 100%;
+              svg {
+                width: 100%;
+              }
+            }
           }
           p {
             max-width: 257px;

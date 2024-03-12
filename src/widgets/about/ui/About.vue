@@ -20,6 +20,7 @@ defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
           <div class="image-wrapper">
             <img :src="img" alt="hookah" />
           </div>
+          <h3>{{ listTitle }}</h3>
         </div>
         <div class="right">
           <h3>{{ listTitle }}</h3>
@@ -43,6 +44,8 @@ defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
 </template>
 
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 .about {
   position: relative;
   .coals {
@@ -53,10 +56,20 @@ defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
     left: 0;
     transform: rotate(10deg);
     z-index: 2;
+    @media (max-width: $tab) {
+      bottom: auto;
+      top: 18%;
+    }
+    @media (max-width: $pre-mob) {
+      width: 168px;
+      height: 108px;
+    }
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      @media (max-width: $tab-sm) {
+      }
     }
   }
   .about-inner {
@@ -64,11 +77,41 @@ defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
     padding-top: 130px;
     padding-bottom: 95px;
     gap: 25px;
+    @media (max-width: $desktop-sm) {
+      padding-top: 80px;
+    }
+    @media (max-width: $tab) {
+      flex-direction: column;
+      gap: 40px;
+    }
     .left {
       width: 45%;
       position: relative;
+      @media (max-width: $tab) {
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 30px;
+      }
+      h3 {
+        font-weight: 400;
+        font-size: 35px;
+        line-height: 29px;
+        text-transform: uppercase;
+        color: var(--text-color);
+        display: none;
+        margin-bottom: 40px;
+        @media (max-width: $tab) {
+          display: block;
+        }
+      }
       .image-wrapper {
         width: 100%;
+        position: absolute;
+        bottom: 0;
+        @media (max-width: $tab) {
+          position: relative;
+        }
         img {
           width: 100%;
           height: 100%;
@@ -86,18 +129,34 @@ defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
         gap: 25px;
         padding-top: 45px;
         padding-bottom: 50px;
+        z-index: 2;
+        @media (max-width: $tab) {
+          position: relative;
+          max-width: 100%;
+          gap: 15px;
+          padding-top: 27px;
+          padding-bottom: 30px;
+        }
         span {
           font-weight: 400;
           font-size: 36px;
           line-height: 36px;
           color: var(--text-color);
           text-transform: uppercase;
+          @media (max-width: $tab-sm) {
+            font-size: 24px;
+            line-height: 26px;
+          }
         }
         p {
           font-weight: 400;
           font-size: 16px;
           line-height: 20.8px;
           color: var(--text-color);
+          @media (max-width: $tab-sm) {
+            font-size: 16px;
+            line-height: 20px;
+          }
         }
         &:before {
           content: "";
@@ -108,6 +167,10 @@ defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
           border-radius: 999px;
           top: 0;
           left: 0;
+          @media (max-width: $tab-sm) {
+            width: 12px;
+            height: 12px;
+          }
         }
         &:after {
           content: "";
@@ -122,18 +185,28 @@ defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
     }
     .right {
       width: 55%;
+      @media (max-width: $tab) {
+        width: 100%;
+      }
       h3 {
         font-weight: 400;
         font-size: 64px;
         line-height: 54.4px;
         text-transform: uppercase;
         color: var(--text-color);
+        @media (max-width: $tab) {
+          display: none;
+        }
       }
       .order-list.grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         row-gap: 70px;
         column-gap: 26px;
+        @media (max-width: $tab) {
+          grid-template-columns: repeat(1, 1fr);
+          row-gap: 34px;
+        }
       }
       .order-list {
         display: flex;
@@ -143,6 +216,11 @@ defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
         padding-top: 80px;
         margin-top: 50px;
         position: relative;
+        @media (max-width: $tab) {
+          border-top: none;
+          margin-top: 0;
+          padding: 0;
+        }
         &:before {
           content: "";
           position: absolute;
@@ -152,6 +230,9 @@ defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
           top: 0;
           left: 0;
           background: var(--text-color);
+          @media (max-width: $tab) {
+            display: none;
+          }
         }
         &:after {
           content: "";
@@ -164,11 +245,17 @@ defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
           right: 0;
           margin: auto;
           background: var(--text-color);
+          @media (max-width: $tab) {
+            display: none;
+          }
         }
         .order-item {
           display: flex;
           gap: 25px;
           align-items: center;
+          @media (max-width: $tab-sm) {
+            gap: 23px;
+          }
           .image-wrapper {
             min-width: 90px;
             height: 90px;
@@ -183,18 +270,29 @@ defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
             display: flex;
             flex-direction: column;
             gap: 20px;
+            @media (max-width: $tab-sm) {
+              gap: 15px;
+            }
             span {
               font-weight: 400;
               font-size: 24px;
               line-height: 26px;
               color: var(--text-color);
               text-transform: uppercase;
+              @media (max-width: $tab-sm) {
+                font-size: 20px;
+                line-height: 22px;
+              }
             }
             p {
               font-weight: 400;
               font-size: 16px;
               line-height: 20px;
               color: var(--text-color);
+              @media (max-width: $tab-sm) {
+                font-size: 16px;
+                line-height: 20px;
+              }
             }
           }
         }

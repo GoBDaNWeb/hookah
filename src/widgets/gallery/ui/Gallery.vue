@@ -96,6 +96,8 @@ const rightGallery = [
 </template>
 
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 .gallery {
   background: var(--white-color);
   .gallery-inner {
@@ -109,6 +111,11 @@ const rightGallery = [
       position: relative;
       padding-left: 70px;
       text-transform: uppercase;
+      @media (max-width: $tab) {
+        font-size: 35px;
+        line-height: 29px;
+        padding-left: 40px;
+      }
       &:before {
         content: "";
         position: absolute;
@@ -119,34 +126,47 @@ const rightGallery = [
         top: 0;
         bottom: 0;
         margin: auto;
+        @media (max-width: $tab) {
+          width: 30px;
+          height: 30px;
+        }
       }
     }
     .gallery-content {
       margin-top: 50px;
       display: flex;
       gap: 20px;
-      img {
+      @media (max-width: $tab-sm) {
+        flex-direction: column;
+      }
+      .image-wrapper {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
+
       .left {
         display: flex;
         gap: 20px;
         flex-wrap: wrap;
         width: 50%;
+        @media (max-width: $tab-sm) {
+          width: 100%;
+        }
         a:nth-child(1),
         a:nth-child(2),
         a:nth-child(3),
         a:nth-child(4) {
-          flex: 1 1 48%;
-          width: 335px;
-          height: 335px;
+          width: calc(50% - 10px);
+          aspect-ratio: 1;
         }
         a:nth-child(5) {
-          flex: 1 1 100%;
-          width: 690px;
-          height: 690px;
+          width: 100%;
+          aspect-ratio: 1;
         }
       }
       .right {
@@ -154,18 +174,19 @@ const rightGallery = [
         gap: 20px;
         flex-wrap: wrap;
         width: 50%;
+        @media (max-width: $tab-sm) {
+          width: 100%;
+        }
         a:nth-child(2),
         a:nth-child(3),
         a:nth-child(4),
         a:nth-child(5) {
-          flex: 1 1 48.5%;
-          width: 335px;
-          height: 335px;
+          width: calc(50% - 10px);
+          aspect-ratio: 1;
         }
         a:nth-child(1) {
-          flex: 1 1 100%;
-          width: 690px;
-          height: 690px;
+          width: 100%;
+          aspect-ratio: 1;
         }
       }
     }

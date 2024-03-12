@@ -13,7 +13,8 @@ const props = defineProps(["type", "placeholder", "value", "modelValue"]);
   />
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/shared/styles/vars";
 .input:placeholder-shown {
   text-transform: uppercase;
 }
@@ -28,5 +29,9 @@ const props = defineProps(["type", "placeholder", "value", "modelValue"]);
   padding-bottom: 20px;
   border-bottom: 1px solid var(--text-color);
   width: 100%;
+  @media (max-width: $tab) {
+    font-size: 16px;
+    line-height: 16px;
+  }
 }
 </style>

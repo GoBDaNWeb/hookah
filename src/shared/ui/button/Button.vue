@@ -1,9 +1,11 @@
 <script setup>
-const props = defineProps(["title", "variable"]);
+const props = defineProps(["title", "variable", "click", "type"]);
 </script>
 
 <template>
-  <button :class="[variable]"><slot></slot></button>
+  <button :class="[variable]" @click="click">
+    <slot></slot>
+  </button>
 </template>
 
 <style scoped>
@@ -14,6 +16,7 @@ button {
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -7%;
+  color: var(--text-color);
 }
 button.outline:hover {
   color: var(--hover-color);

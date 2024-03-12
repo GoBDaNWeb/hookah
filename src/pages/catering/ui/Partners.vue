@@ -15,6 +15,8 @@ import { partnersList } from "../config";
 </template>
 
 <style lang="scss">
+@import "@/shared/styles/vars";
+
 .partners {
   .partners-inner {
     position: relative;
@@ -24,18 +26,27 @@ import { partnersList } from "../config";
         position: absolute;
         top: -50px;
         right: 0;
+        @media (max-width: $tab) {
+          display: none;
+        }
       }
     }
   }
 }
 </style>
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 .partners {
   background: var(--white-color);
   .partners-inner {
     padding-top: 130px;
     padding-bottom: 135px;
     position: relative;
+    @media (max-width: $tab) {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
     h3 {
       position: relative;
       font-weight: 400;
@@ -44,6 +55,11 @@ import { partnersList } from "../config";
       color: var(--text-color);
       padding-left: 72px;
       text-transform: uppercase;
+      @media (max-width: $tab) {
+        padding-left: 40px;
+        font-size: 35px;
+        line-height: 29px;
+      }
       &:before {
         content: "";
         position: absolute;
@@ -55,6 +71,10 @@ import { partnersList } from "../config";
         left: 0;
         margin: auto;
         border-radius: 999px;
+        @media (max-width: $tab) {
+          width: 30px;
+          height: 30px;
+        }
       }
     }
   }

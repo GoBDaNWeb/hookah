@@ -1,42 +1,13 @@
 <script setup>
+import { reactive } from "vue";
 import { Button } from "@/shared/ui/button";
-const costList = [
-  {
-    id: 1,
-    title: "На глиняной чаше",
-    cost: "1 900 ₽",
-    addTitle: "Доп чаша",
-    addCost: "600 ₽",
-  },
-  {
-    id: 2,
-    title: "На грейпфруте",
-    cost: "1 900 ₽",
-    addTitle: "Доп чаша",
-    addCost: "800 ₽",
-  },
-  {
-    id: 3,
-    title: "На гранате",
-    cost: "2 300 ₽",
-    addTitle: "Доп чаша",
-    addCost: "900 ₽",
-  },
-  {
-    id: 4,
-    title: "На помело",
-    cost: "2 400 ₽",
-    addTitle: "Доп чаша",
-    addCost: "1 200 ₽",
-  },
-  {
-    id: 5,
-    title: "На ананасе",
-    cost: "2 400 ₽",
-    addTitle: "Доп чаша",
-    addCost: "1 400 ₽",
-  },
-];
+import { CostSwiper } from "@/entities/cost-swiper";
+import { costList } from "../config";
+import costImg from "@/shared/assets/images/cost.jpg";
+const currentTab = reactive({ tab: 0 });
+const handleSetTab = (index) => {
+  currentTab.tab = index;
+};
 </script>
 
 <template>
@@ -44,10 +15,34 @@ const costList = [
     <div class="container">
       <div class="cost-inner">
         <h3>Стоимость кальяна в сутки</h3>
+        <div class="cost-about">
+          <div class="cost-about-item">
+            <h5>цены указаны <span> без учета доставки </span></h5>
+          </div>
+          <div class="cost-about-item">
+            <h5>На каждую чашу кладем <span>по 8 кубиков угля</span></h5>
+          </div>
+        </div>
         <div class="cost-content">
           <div class="left">
             <div class="cost-list">
-              <div class="cost-item" v-for="cost in costList" :key="cost.id">
+              <div
+                v-motion
+                :initial="{
+                  x: -100,
+                  opacity: 0,
+                }"
+                :delay="400"
+                :visible-once="{
+                  x: 0,
+                  opacity: 1,
+                }"
+                class="cost-item"
+                :class="currentTab.tab === index ? 'active' : ''"
+                v-for="(cost, index) in costList"
+                :key="cost.id"
+                @click="handleSetTab(index)"
+              >
                 <div class="main">
                   <h5>{{ cost.title }}</h5>
                   <span class="line"></span>
@@ -67,27 +62,20 @@ const costList = [
                 <p>
                   Аренда работает по системе чек-аута в гостинице — кальян
                   находится у вас <span>до 19:00</span> следующего дня.
-                  <br /><br />
                   <span>После 19:00</span> начинается продление. <br /><br />
-                  Стоимость продления <span>700 ₽</span>
-                </p>
-              </div>
-              <div class="about-item">
-                <h6>комплектующие</h6>
-                <p>
-                  На каждую чашу кладем <span>по 8 кубиков угля.</span
-                  ><br /><br />
-                  Табак, уголь и другие комплектующие
-                  <span>оплачиваются отдельно.</span>
+                  Стоимость продления <span>700 ₽</span> — табак уголь и другие
+                  комплектующие вы приобретаете самостоятельно, также из можно
+                  заказать у нас.
                 </p>
                 <Button variable="outline"> стоимость комплектующих </Button>
               </div>
             </div>
           </div>
           <div class="right">
-            <div class="image-wrapper">
-              <img src="@/shared/assets/images/cost.jpg" alt="" />
-            </div>
+            <CostSwiper
+              :imgs="[costImg, costImg, costImg, costImg, costImg]"
+              :currentTab="currentTab.tab"
+            />
           </div>
         </div>
       </div>
@@ -96,9 +84,14 @@ const costList = [
 </template>
 
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 .cost {
   background: var(--white-color);
   padding-top: 130px;
+  @media (max-width: $tab) {
+    padding-top: 80px;
+  }
   .cost-inner {
     h3 {
       font-weight: 400;
@@ -108,6 +101,11 @@ const costList = [
       position: relative;
       padding-left: 70px;
       text-transform: uppercase;
+      @media (max-width: $tab) {
+        font-size: 35px;
+        padding-left: 40px;
+        line-height: 29px;
+      }
       &:before {
         position: absolute;
         content: "";
@@ -119,6 +117,53 @@ const costList = [
         top: 0;
         bottom: 0;
         margin: auto;
+        @media (max-width: $tab) {
+          width: 30px;
+          height: 30px;
+          bottom: auto;
+        }
+      }
+    }
+    .cost-about {
+      display: flex;
+      margin-top: 40px;
+      gap: 20px;
+      @media (max-width: $tab-sm) {
+        flex-direction: column;
+      }
+      .cost-about-item {
+        width: 50%;
+        @media (max-width: $tab-sm) {
+          width: 100%;
+        }
+        h5 {
+          font-weight: 400;
+          font-size: 24px;
+          line-height: 26px;
+          color: var(--text-color);
+          position: relative;
+          padding-left: 27px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          text-transform: uppercase;
+          @media (max-width: $tab) {
+            font-size: 20px;
+            line-height: 22px;
+          }
+          span {
+            font-weight: 600;
+          }
+          &:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 1px;
+            height: 100%;
+            left: 0;
+            bottom: 0;
+            background: var(--text-color);
+          }
+        }
       }
     }
     .cost-content {
@@ -126,22 +171,59 @@ const costList = [
       display: flex;
       gap: 20px;
       padding-bottom: 130px;
+      @media (max-width: $tab) {
+        flex-direction: column-reverse;
+        padding-bottom: 74px;
+      }
       .left {
         border-top: 1px solid var(--text-color);
         padding-top: 50px;
         width: 50%;
+        @media (max-width: $tab) {
+          width: 100%;
+          padding-top: 20px;
+        }
         .cost-list {
           display: flex;
           flex-direction: column;
           gap: 30px;
           padding-bottom: 50px;
           border-bottom: 1px solid var(--text-color);
+          @media (max-width: $tab) {
+            gap: 20px;
+            padding-top: 0;
+            padding-bottom: 20px;
+          }
+          .cost-item.active {
+            &:before {
+              background: var(--hover-color);
+              border-color: var(--hover-color);
+            }
+            .main {
+              h5 {
+                color: var(--hover-color);
+              }
+              .total {
+                color: var(--hover-color);
+              }
+            }
+            .additional {
+              h6,
+              span {
+                color: var(--hover-color);
+              }
+            }
+          }
           .cost-item {
             display: flex;
             flex-direction: column;
             gap: 10px;
             position: relative;
             padding-left: 38px;
+            cursor: pointer;
+            @media (max-width: $tab) {
+              padding-left: 22px;
+            }
             &:before {
               content: "";
               position: absolute;
@@ -150,7 +232,13 @@ const costList = [
               border-radius: 999px;
               border: 1px solid var(--text-color);
               left: 0;
+              transition: var(--trs-300);
               top: 4px;
+              @media (max-width: $tab) {
+                width: 12px;
+                height: 12px;
+                top: 6px;
+              }
             }
             .main {
               display: flex;
@@ -163,6 +251,13 @@ const costList = [
                 color: var(--text-color);
                 white-space: nowrap;
                 text-transform: uppercase;
+                letter-spacing: -1px;
+                transition: var(--trs-300);
+
+                @media (max-width: $tab) {
+                  font-size: 20px;
+                  line-height: 22px;
+                }
               }
               .line {
                 width: 100%;
@@ -175,6 +270,12 @@ const costList = [
                 line-height: 24px;
                 color: var(--text-color);
                 white-space: nowrap;
+                transition: var(--trs-300);
+
+                @media (max-width: $tab) {
+                  font-size: 20px;
+                  line-height: 22px;
+                }
               }
             }
             .additional {
@@ -187,49 +288,57 @@ const costList = [
                 font-weight: 400;
                 line-height: 20px;
                 color: var(--text-color);
-                .total {
-                  font-weight: 400px;
+                transition: var(--trs-300);
+
+                @media (max-width: $tab) {
                   font-size: 16px;
                   line-height: 20px;
-                  color: var(--text-color);
                 }
+              }
+              .total {
+                font-weight: 400px;
+                font-size: 16px;
+                line-height: 20px;
+                transition: var(--trs-300);
+
+                color: var(--text-color);
               }
             }
           }
         }
         .about {
-          display: flex;
-          gap: 50px;
           padding-top: 72px;
+          @media (max-width: $tab) {
+            padding-top: 40px;
+          }
           .about-item {
             display: flex;
             flex-direction: column;
             gap: 25px;
+            max-width: 85%;
+            @media (max-width: $tab) {
+              gap: 20px;
+            }
             h6 {
               font-weight: 400;
               font-size: 24px;
               line-height: 26px;
               color: var(--text-color);
               position: relative;
-              padding-left: 35px;
               text-transform: uppercase;
+              @media (max-width: $tab) {
+                font-size: 20px;
+                line-height: 22px;
+              }
               span {
                 font-weight: 600;
                 font-size: 24px;
                 line-height: 26px;
                 color: var(--text-color);
-              }
-              &:before {
-                content: "";
-                position: absolute;
-                width: 20px;
-                height: 20px;
-                border-radius: 999px;
-                background: var(--text-color);
-                left: 0;
-                top: 0;
-                bottom: 0;
-                margin: auto;
+                @media (max-width: $tab) {
+                  font-size: 20px;
+                  line-height: 22px;
+                }
               }
             }
             p {
@@ -237,6 +346,10 @@ const costList = [
               font-size: 16px;
               line-height: 20px;
               color: var(--text-color);
+              @media (max-width: $tab) {
+                font-size: 16px;
+                line-height: 20px;
+              }
               span {
                 font-weight: 600;
                 font-size: 16px;
@@ -248,16 +361,18 @@ const costList = [
               font-weight: 500;
               font-size: 14px;
               line-height: 14px;
-              color: var(--text-color);
+              max-width: 250px;
             }
           }
         }
       }
       .right {
         width: 50%;
+        @media (max-width: $tab) {
+          width: 100%;
+        }
         .image-wrapper {
           width: 100%;
-          height: 100%;
           img {
             width: 100%;
             height: 100%;

@@ -17,6 +17,8 @@
 </template>
 
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 footer {
   background: var(--text-color);
   padding: 50px 0;
@@ -25,6 +27,12 @@ footer {
     display: flex;
     gap: 100px;
     animation: scroll 35s linear infinite;
+    @media (max-width: $tab) {
+      animation: scroll 15s linear infinite;
+    }
+    @media (max-width: $tab-sm) {
+      animation: scroll 15s linear infinite;
+    }
     .footer-item {
       display: flex;
       gap: 27px;
@@ -37,6 +45,12 @@ footer {
         color: var(--bg-color);
         white-space: nowrap;
         position: relative;
+        @media (max-width: $tab-sm) {
+          font-size: 24px;
+          line-height: 20px;
+          max-width: 200px;
+          white-space: normal;
+        }
         &:before {
           content: "";
           position: absolute;
@@ -48,6 +62,10 @@ footer {
           margin: auto;
           left: -70px;
           border-radius: 999px;
+          @media (max-width: $tab-sm) {
+            width: 40px;
+            height: 40px;
+          }
         }
       }
       span {
@@ -57,6 +75,12 @@ footer {
         text-transform: uppercase;
         color: var(--bg-color);
         white-space: nowrap;
+        @media (max-width: $tab-sm) {
+          white-space: normal;
+          font-size: 15px;
+          line-height: 12px;
+          width: 140px;
+        }
       }
     }
   }

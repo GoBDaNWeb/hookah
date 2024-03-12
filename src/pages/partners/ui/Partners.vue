@@ -34,7 +34,12 @@ import img from "@/shared/assets/images/contacts1.jpg";
 }
 </style>
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 .partners-page {
   padding-top: 150px;
+  @media (max-width: $tab) {
+    padding-top: 100px;
+  }
 }
 </style>

@@ -9,6 +9,7 @@ import Options from "./Options.vue";
 import { Faq } from "@/widgets/faq";
 import { manualList } from "../config";
 import hookahFaqImg from "@/shared/assets/images/hookah-white.jpg";
+import contactsImg from "@/shared/assets/images/gallery/5.jpg";
 </script>
 
 <template>
@@ -50,18 +51,28 @@ import hookahFaqImg from "@/shared/assets/images/hookah-white.jpg";
     <Contacts
       :title="'сделать заказ'"
       :tabs="['на дом', 'в офис', 'на дачу', 'в лофт']"
+      :imgs="[contactsImg, contactsImg, contactsImg, contactsImg]"
     />
   </div>
 </template>
 
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 .manual {
   padding-top: 175px;
+  @media (max-width: $tab) {
+    padding-top: 100px;
+  }
   .manual-inner {
     .info {
       padding-top: 100px;
       padding-bottom: 100px;
       border-top: 1px solid var(--text-color);
+      @media (max-width: $tab) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+      }
       h3 {
         font-weight: 400;
         font-size: 64px;
@@ -71,6 +82,11 @@ import hookahFaqImg from "@/shared/assets/images/hookah-white.jpg";
         padding-left: 70px;
         text-transform: uppercase;
         margin-bottom: 30px;
+        @media (max-width: $tab) {
+          padding-left: 50px;
+          font-size: 30px;
+          line-height: 25px;
+        }
         &:before {
           content: "";
           position: absolute;
@@ -82,6 +98,10 @@ import hookahFaqImg from "@/shared/assets/images/hookah-white.jpg";
           bottom: 0;
           left: 0;
           margin: auto;
+          @media (max-width: $tab) {
+            width: 30px;
+            height: 30px;
+          }
         }
       }
       span {
@@ -90,6 +110,13 @@ import hookahFaqImg from "@/shared/assets/images/hookah-white.jpg";
         font-size: 24px;
         line-height: 26px;
         color: var(--text-color);
+        display: block;
+        text-transform: uppercase;
+        @media (max-width: $tab) {
+          font-size: 20px;
+          line-height: 22px;
+          padding-left: 53px;
+        }
       }
       .contacts {
         display: flex;
@@ -97,6 +124,10 @@ import hookahFaqImg from "@/shared/assets/images/hookah-white.jpg";
         gap: 30px;
         padding-left: 70px;
         margin-top: 50px;
+        @media (max-width: $tab) {
+          padding-left: 0;
+          margin-top: 20px;
+        }
         a {
           font-weight: 600;
           font-size: 24px;
@@ -112,6 +143,10 @@ import hookahFaqImg from "@/shared/assets/images/hookah-white.jpg";
           button {
             width: 60px;
             height: 60px;
+            @media (max-width: $tab) {
+              width: 50px;
+              height: 50px;
+            }
           }
         }
       }

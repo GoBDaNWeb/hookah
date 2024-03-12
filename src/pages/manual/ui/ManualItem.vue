@@ -24,6 +24,8 @@ defineProps(["index", "hasTitle", "congrats", "option", "list", "imgs"]);
 </template>
 
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 .manual-item {
   display: flex;
   align-items: center;
@@ -31,6 +33,10 @@ defineProps(["index", "hasTitle", "congrats", "option", "list", "imgs"]);
   padding-top: 20px;
   padding-bottom: 20px;
   border-top: 1px solid var(--text-color);
+  @media (max-width: $tab) {
+    flex-direction: column;
+    gap: 30px;
+  }
   &:first-child {
     border-top: none;
     .left {
@@ -39,11 +45,18 @@ defineProps(["index", "hasTitle", "congrats", "option", "list", "imgs"]);
     .right {
       padding-top: 20px;
       border-top: 1px solid var(--text-color);
+      @media (max-width: $tab) {
+        border-top: none;
+      }
     }
   }
   .left {
     width: 50%;
     padding-top: 130px;
+    @media (max-width: $tab) {
+      width: 100%;
+      padding-top: 0;
+    }
     h1 {
       font-weight: 400;
       font-size: 80px;
@@ -51,12 +64,27 @@ defineProps(["index", "hasTitle", "congrats", "option", "list", "imgs"]);
       text-transform: uppercase;
       color: var(--text-color);
       margin-bottom: 50px;
+      @media (max-width: $desktop-sm) {
+        font-size: 60px;
+        line-height: 52px;
+      }
+      @media (max-width: $tab) {
+        font-size: 35px;
+        line-height: 29px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--text-color);
+        margin-bottom: 20px;
+      }
     }
     h4 {
       font-weight: 400;
       font-size: 64px;
       line-height: 54px;
       color: var(--text-color);
+      @media (max-width: $tab) {
+        font-size: 35px;
+        line-height: 29px;
+      }
     }
     h5 {
       color: var(--text-color);
@@ -65,12 +93,20 @@ defineProps(["index", "hasTitle", "congrats", "option", "list", "imgs"]);
       font-size: 32px;
       line-height: 35px;
       margin-top: 50px;
+      @media (max-width: $tab) {
+        font-size: 24px;
+        line-height: 26px;
+        margin-top: 30px;
+      }
     }
     ul {
       display: flex;
       flex-direction: column;
       gap: 15px;
       margin-top: 30px;
+      @media (max-width: $tab) {
+        margin-top: 20px;
+      }
       li {
         font-weight: 400;
         font-size: 16px;
@@ -79,6 +115,9 @@ defineProps(["index", "hasTitle", "congrats", "option", "list", "imgs"]);
 
         position: relative;
         padding-left: 30px;
+        @media (max-width: $tab) {
+          padding-left: 20px;
+        }
         &:before {
           content: "";
           position: absolute;
@@ -88,6 +127,11 @@ defineProps(["index", "hasTitle", "congrats", "option", "list", "imgs"]);
           height: 10px;
           background: var(--text-color);
           border-radius: 999px;
+          @media (max-width: $tab) {
+            width: 5px;
+            height: 5px;
+            top: 8px;
+          }
         }
       }
     }
@@ -98,10 +142,18 @@ defineProps(["index", "hasTitle", "congrats", "option", "list", "imgs"]);
       color: var(--text-color);
       text-transform: uppercase;
       margin-top: 50px;
+      @media (max-width: $tab) {
+        margin-top: 30px;
+        font-size: 20px;
+        line-height: 22px;
+      }
     }
   }
   .right {
     width: 50%;
+    @media (max-width: $tab) {
+      width: 100%;
+    }
   }
 }
 </style>

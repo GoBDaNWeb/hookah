@@ -6,6 +6,7 @@ import ArrowRightIcon from "./ArrowRightIcon.vue";
 import BigArrowIcon from "./BigArrowIcon.vue";
 import PlusIcon from "./PlusIcon.vue";
 import ParadigmaIcon from "./ParadigmaIcon.vue";
+import CloseIcon from "./CloseIcon.vue";
 
 export { LogoIcon };
 export { TelegramIcon };
@@ -15,3 +16,4 @@ export { ArrowRightIcon };
 export { BigArrowIcon };
 export { PlusIcon };
 export { ParadigmaIcon };
+export { CloseIcon };

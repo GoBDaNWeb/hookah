@@ -10,6 +10,7 @@ import { Faq } from "@/widgets/faq";
 import { Contacts } from "@/widgets/contacts";
 
 import heroImg from "@/shared/assets/images/hero-photo.jpg";
+import contactsImg from "@/shared/assets/images/gallery/5.jpg";
 import hookahImg from "@/shared/assets/images/hookah.png";
 import hookahFaqImg from "@/shared/assets/images/hookah-white.jpg";
 import { ordersInfo, featureList, stampsList, howWorkList } from "../config";
@@ -30,7 +31,7 @@ const costDescr = "<p>Стоимость <br/> без учета доставк�
         'время: 11:00 - 02:00',
         'Доставка 1 - 1,5 часа',
       ]"
-      :imgs="[heroImg]"
+      :imgs="[heroImg, heroImg, heroImg, heroImg]"
     />
     <About
       :ordersInfo="ordersInfo"
@@ -48,6 +49,7 @@ const costDescr = "<p>Стоимость <br/> без учета доставк�
     <Contacts
       :tabs="['на дом', 'в офис', 'на дачу', 'в лофт']"
       :title="'Закажите кальян'"
+      :imgs="[contactsImg, contactsImg, contactsImg, contactsImg]"
     />
   </main>
 </template>

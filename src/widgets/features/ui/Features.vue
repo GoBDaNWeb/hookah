@@ -25,6 +25,8 @@ defineProps(["featureList", "isWhite"]);
 </template>
 
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 .features {
   background: var(--white-color);
   .features-inner {
@@ -33,15 +35,16 @@ defineProps(["featureList", "isWhite"]);
     gap: 60px;
     padding-top: 130px;
     position: relative;
-    &:after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: -30px;
-      width: 100%;
-      height: 1px;
-      background: var(--text-color);
+    overflow: auto;
+    padding-left: 35px;
+    border-bottom: 1px solid var(--text-color);
+    @media (max-width: $desktop-md-2) {
+      overflow: auto;
     }
+    @media (max-width: $tab) {
+      padding-top: 80px;
+    }
+
     .feature.white {
       .image-wrapper {
         span {
@@ -55,18 +58,24 @@ defineProps(["featureList", "isWhite"]);
       gap: 20px;
       position: relative;
       padding-bottom: 100px;
+      // padding-left: 35px;
+      @media (max-width: $tab-sm) {
+        gap: 0;
+      }
       &:before {
         content: "";
         position: absolute;
         height: 50px;
         width: 1px;
         background: var(--text-color);
-        left: -30px;
+        left: -35px;
         bottom: 0;
       }
       .image-wrapper {
         position: relative;
         margin-bottom: 16px;
+        width: 295px;
+        height: 175px;
         img {
           width: 100%;
           height: 100%;
@@ -80,6 +89,12 @@ defineProps(["featureList", "isWhite"]);
           font-size: 64px;
           line-height: 54px;
           color: var(--text-color);
+          @media (max-width: $tab-sm) {
+            font-size: 55px;
+            line-height: 46px;
+            top: 14px;
+            right: 12px;
+          }
         }
       }
       span {
@@ -88,6 +103,10 @@ defineProps(["featureList", "isWhite"]);
         line-height: 26px;
         color: var(--text-color);
         text-transform: uppercase;
+        @media (max-width: $tab-sm) {
+          font-size: 20px;
+          line-height: 22px;
+        }
       }
       p {
         font-weight: 400;

@@ -29,6 +29,13 @@ defineProps(["stampsList"]);
         prevEl: prev,
         nextEl: next,
       }"
+      :breakpoints="{
+        0: { slidesPerView: 2.1, spaceBetween: 10 },
+        767: { slidesPerView: 3.1 },
+        1024: { slidesPerView: 4.1, spaceBetween: 10 },
+        1280: { slidesPerView: 5.1, spaceBetween: 15 },
+        1400: { slidesPerView: 6, spaceBetween: 15 },
+      }"
       :modules="modules"
       class="stamp-swiper"
     >
@@ -43,6 +50,8 @@ defineProps(["stampsList"]);
 </template>
 
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 .swiper-wrapper {
   display: flex;
   flex-direction: column;
@@ -55,13 +64,16 @@ defineProps(["stampsList"]);
   .stamp-swiper {
     width: 100%;
     .image-wrapper {
-      width: 217px;
       height: 170px;
       background: var(--white-color);
       display: flex;
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid var(--text-color);
+      overflow: hidden;
+      @media (max-width: $mob) {
+        height: 118px;
+      }
       img {
         width: 80%;
         /* height: 100%; */

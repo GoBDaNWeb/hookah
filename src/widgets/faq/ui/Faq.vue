@@ -138,10 +138,16 @@ defineProps(["img", "hasInfo"]);
 </template>
 
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 .faq {
   background: var(--white-color);
   padding-top: 130px;
   padding-bottom: 130px;
+  @media (max-width: $tab) {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
   .faq-inner {
     h3 {
       font-weight: 400;
@@ -149,13 +155,24 @@ defineProps(["img", "hasInfo"]);
       line-height: 54px;
       color: var(--text-color);
       text-transform: uppercase;
+      @media (max-width: $tab) {
+        font-size: 35px;
+        line-height: 29px;
+      }
     }
     .faq-content {
       margin-top: 50px;
       display: flex;
       gap: 20px;
+      @media (max-width: $tab) {
+        flex-direction: column;
+        margin-top: 20px;
+      }
       .left {
         width: 50%;
+        @media (max-width: $tab) {
+          width: 100%;
+        }
         .accordion.active {
           button {
             p {
@@ -206,13 +223,17 @@ defineProps(["img", "hasInfo"]);
       }
       .right {
         width: 50%;
+        @media (max-width: $tab) {
+          width: 100%;
+          height: calc(30vw * 3);
+        }
         .image-wrapper {
           width: 100%;
           height: 100%;
           padding: 20px 20px 60px 20px;
           background: var(--bg-color);
           position: relative;
-          height: 700px;
+          max-height: 700px;
           &:after {
             content: "";
             position: absolute;
@@ -240,6 +261,10 @@ defineProps(["img", "hasInfo"]);
             top: 90px;
             right: 0;
             overflow: contain;
+            @media (max-width: $pre-mob) {
+              width: 168px;
+              height: 108px;
+            }
           }
         }
       }
@@ -248,10 +273,21 @@ defineProps(["img", "hasInfo"]);
       display: flex;
       margin-top: 130px;
       border-top: 1px solid var(--text-color);
+
+      @media (max-width: $tab-sm) {
+        flex-direction: column;
+        margin-top: 80px;
+      }
       .left {
         width: 50%;
         padding-top: 100px;
         padding-right: 120px;
+        @media (max-width: $tab) {
+          padding-top: 50px;
+        }
+        @media (max-width: $tab-sm) {
+          width: 100%;
+        }
         h5 {
           position: relative;
           font-weight: 400;
@@ -259,6 +295,10 @@ defineProps(["img", "hasInfo"]);
           line-height: 35px;
           color: var(--text-color);
           text-transform: uppercase;
+          @media (max-width: $tab-sm) {
+            font-size: 24px;
+            line-height: 26px;
+          }
           &:before {
             content: "";
             position: absolute;
@@ -268,6 +308,13 @@ defineProps(["img", "hasInfo"]);
             height: 20px;
             top: -50px;
             left: 0;
+            @media (max-width: $tab) {
+              top: -25px;
+            }
+            @media (max-width: $tab-sm) {
+              width: 12px;
+              height: 12px;
+            }
           }
         }
       }
@@ -275,6 +322,10 @@ defineProps(["img", "hasInfo"]);
         width: 50%;
         padding-top: 100px;
         position: relative;
+        @media (max-width: $tab-sm) {
+          width: 100%;
+          padding-top: 20px;
+        }
         &:before {
           content: "";
           position: absolute;
@@ -283,6 +334,9 @@ defineProps(["img", "hasInfo"]);
           background: var(--text-color);
           top: 0;
           left: 0;
+          @media (max-width: $tab-sm) {
+            display: none;
+          }
         }
         p {
           font-weight: 400;

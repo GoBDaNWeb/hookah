@@ -1,9 +1,19 @@
 <script setup>
+import { ref, reactive } from "vue";
 import { TelegramIcon } from "@/shared/icons";
 import { WhatsappIcon } from "@/shared/icons";
 import { Button } from "@/shared/ui/button";
-
+import { useModalStore } from "@/entities/modal-store";
+import { HeroSwiper } from "@/entities/hero-swiper";
+import { KinesisContainer, KinesisElement } from "vue-kinesis";
 defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
+
+const modal = useModalStore();
+
+const currentTab = reactive({ tab: 0 });
+const handleSetTab = (index) => {
+  currentTab.tab = index;
+};
 </script>
 
 <template>
@@ -24,7 +34,9 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
             </div>
             <div class="info-right">
               <ul>
-                <li v-for="item in list" :key="item">{{ item }}</li>
+                <li v-for="item in list" :key="item">
+                  {{ item }}
+                </li>
               </ul>
             </div>
           </div>
@@ -38,20 +50,56 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
                 <WhatsappIcon />
               </Button>
             </div>
-            <Button variable="primary"> заказать кальян </Button>
+            <Button variable="primary" :click="modal.handleOpenOrderModal">
+              заказать кальян
+            </Button>
           </div>
         </div>
         <div class="right">
           <div class="top">
             <ul v-if="tabs">
-              <li v-for="tab in tabs" :key="tab">{{ tab }}</li>
+              <li
+                v-for="(tab, index) in tabs"
+                :key="tab"
+                v-motion
+                :delay="400"
+                :initial="{
+                  y: -50,
+                  opacity: 0,
+                }"
+                :visible-once="{
+                  y: 0,
+                  opacity: 1,
+                  transition: {
+                    stiffness: '100',
+                  },
+                }"
+              >
+                <button
+                  :class="index === currentTab.tab ? 'active' : ''"
+                  @click="handleSetTab(index)"
+                >
+                  {{ tab }}
+                </button>
+              </li>
             </ul>
           </div>
-          <div class="images">
-            <div class="image-wrapper" v-for="img in imgs" :key="img">
-              <img :src="img" alt="photo" />
+          <kinesis-container>
+            <div class="images">
+              <kinesis-element v-if="tabs" :strength="20">
+                <HeroSwiper :imgs="imgs" :currentTab="currentTab.tab" />
+              </kinesis-element>
+              <kinesis-element v-else :strength="20">
+                <div
+                  class="image-wrapper"
+                  v-for="(img, index) in imgs"
+                  :key="index"
+                >
+                  <img :src="img" alt="photo" />
+                </div>
+              </kinesis-element>
             </div>
-          </div>
+          </kinesis-container>
         </div>
       </div>
     </div>
@@ -59,6 +107,7 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
 </template>
 
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
 .hero {
   position: relative;
   &:before {
@@ -69,18 +118,61 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
     top: 0;
     position: absolute;
     height: 100%;
+    @media (max-width: $desktop-md-2) {
+      width: calc(48% + 10px);
+    }
+    @media (max-width: $tab) {
+      display: none;
+    }
   }
   .hero-inner {
     display: flex;
     // min-height: 100vh;
     gap: 40px;
+    @media (max-width: $desktop-sm) {
+      gap: 15px;
+    }
+    @media (max-width: $tab) {
+      flex-direction: column-reverse;
+      gap: 0;
+    }
     .left {
-      width: 50%;
+      width: 48%;
       padding-top: 175px;
       z-index: 2;
+      @media (max-width: $tab) {
+        width: 100%;
+        position: relative;
+        padding-top: 40px;
+        margin-top: 20px;
+        &:before {
+          content: "";
+          background: var(--white-color);
+          left: 0;
+          top: 0;
+          position: absolute;
+          height: 100%;
+          margin: 0 -20px;
+          right: 0;
+        }
+      }
       h1.main {
         font-size: 130px;
         line-height: 110.5px;
+        @media (max-width: $desktop-md-2) {
+          font-size: 100px;
+          line-height: 80px;
+        }
+        @media (max-width: $desktop-sm) {
+          font-size: 80px;
+          line-height: 72px;
+          padding: 0 0 50px;
+        }
+        @media (max-width: $tab) {
+          font-size: 70px;
+          line-height: 60px;
+          padding: 0 0 30px;
+        }
       }
       h1 {
         font-weight: 400;
@@ -90,6 +182,17 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
         letter-spacing: -7%;
         text-transform: uppercase;
         padding: 0 30px 50px;
+        @media (max-width: $desktop-sm) {
+          padding: 0 0 50px;
+          font-size: 70px;
+          line-height: 60px;
+        }
+        @media (max-width: $tab) {
+          position: relative;
+          z-index: 2;
+          font-size: 35px;
+          line-height: 29px;
+        }
       }
       .info {
         padding: 70px 30px;
@@ -98,6 +201,14 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
         // justify-content: space-between;
         border-bottom: 1px solid var(--text-color);
         border-top: 1px solid var(--text-color);
+        @media (max-width: $desktop-sm) {
+          padding: 60px 0;
+        }
+        @media (max-width: $tab-sm) {
+          flex-direction: column;
+          gap: 30px;
+          padding: 30px 0;
+        }
         &:before {
           content: "";
           position: absolute;
@@ -108,6 +219,9 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
           left: 0;
           right: 0;
           margin: auto;
+          @media (max-width: $tab-sm) {
+            display: none;
+          }
         }
         &:after {
           content: "";
@@ -119,22 +233,36 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
           left: 0;
           right: 0;
           margin: auto;
+          @media (max-width: $tab-sm) {
+            display: none;
+          }
         }
         .info-left {
           width: 50%;
+          @media (max-width: $tab-sm) {
+            width: 100%;
+          }
           .cost {
             display: flex;
             flex-direction: column;
             gap: 20px;
+            @media (max-width: $tab-sm) {
+              gap: 11px;
+            }
             span {
               font-size: 24px;
               font-weight: 600;
               line-height: 26.4px;
-              letter-spacing: -7%;
+              letter-spacing: -1px;
               color: var(--text-color);
               position: relative;
               padding-left: 35px;
               text-transform: uppercase;
+              @media (max-width: $tab-sm) {
+                font-size: 20px;
+                line-height: 22px;
+                padding-left: 30px;
+              }
               &:before {
                 position: absolute;
                 content: "";
@@ -146,6 +274,10 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
                 bottom: 0;
                 margin: auto;
                 left: 0;
+                @media (max-width: $tab-sm) {
+                  width: 12px;
+                  height: 12px;
+                }
               }
             }
             & > div {
@@ -154,16 +286,27 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
               line-height: 20px;
               letter-spacing: -7%;
               color: var(--text-color);
+              @media (max-width: $tab-sm) {
+                font-size: 18px;
+                line-height: 19px;
+              }
             }
           }
         }
         .info-right {
           width: 50%;
           padding-left: 22px;
+          @media (max-width: $tab-sm) {
+            width: 100%;
+            padding-left: 0;
+          }
           ul {
             display: flex;
             flex-direction: column;
             gap: 16px;
+            @media (max-width: $tab-sm) {
+              gap: 10px;
+            }
             li {
               position: relative;
               font-weight: 400;
@@ -172,6 +315,11 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
               letter-spacing: -7%;
               padding-left: 35px;
               color: var(--text-color);
+              @media (max-width: $tab-sm) {
+                font-size: 18px;
+                line-height: 19px;
+                padding-left: 30px;
+              }
               &:before {
                 content: "";
                 position: absolute;
@@ -183,6 +331,10 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
                 top: 0;
                 bottom: 0;
                 margin: auto;
+                @media (max-width: $tab-sm) {
+                  width: 12px;
+                  height: 12px;
+                }
               }
             }
           }
@@ -196,16 +348,37 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
         padding-top: 50px;
         padding-left: 30px;
         padding-right: 30px;
+        @media (max-width: $desktop-md-2) {
+          flex-direction: column;
+          padding-bottom: 50px;
+        }
+        @media (max-width: $tab) {
+          z-index: 2;
+          position: relative;
+          flex-direction: row;
+          padding-left: 0;
+          padding-right: 0;
+        }
+        @media (max-width: $tab-sm) {
+          flex-wrap: wrap;
+          gap: 10px;
+        }
         & > button {
           white-space: nowrap;
+          @media (max-width: $tab-sm) {
+            width: 100%;
+          }
         }
         a {
-          font-weight: 600;
+          font-weight: 400;
           font-size: 24px;
           line-height: 24px;
           letter-spacing: -2px;
           white-space: nowrap;
           color: var(--text-color);
+          @media (max-width: $tab-sm) {
+            font-weight: 500;
+          }
         }
         .socials {
           display: flex;
@@ -214,13 +387,23 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
           button {
             width: 60px;
             height: 60px;
+            @media (max-width: $tab-sm) {
+              width: 50px;
+              height: 50px;
+            }
           }
         }
       }
     }
     .right {
-      width: 50%;
-      padding-top: 175px;
+      width: 52%;
+      padding: 175px 0px 20px 20px;
+      @media (max-width: $tab) {
+        width: 100%;
+      }
+      @media (max-width: $tab-sm) {
+        padding: 80px 0 0;
+      }
       .top {
         position: relative;
         padding-bottom: 20px;
@@ -237,25 +420,47 @@ defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
           align-items: center;
           justify-content: space-between;
           li {
-            position: relative;
-            padding-left: 36px;
-            font-weight: 400;
-            font-size: 24px;
-            letter-spacing: -7%;
-            color: var(--text-color);
-            text-transform: uppercase;
-            white-space: nowrap;
-            &:before {
-              content: "";
-              position: absolute;
-              width: 20px;
-              height: 20px;
-              border-radius: 999px;
-              background: var(--text-color);
-              left: 0;
-              top: 0;
-              bottom: 0;
-              margin: auto;
+            button.active {
+              color: var(--hover-color);
+              &:before {
+                background: var(--hover-color);
+              }
+            }
+            button {
+              position: relative;
+              padding-left: 36px;
+              font-weight: 400;
+              font-size: 24px;
+              letter-spacing: -2px;
+              color: var(--text-color);
+              text-transform: uppercase;
+              white-space: nowrap;
+              transition: var(--trs-300);
+              @media (max-width: $desktop-sm) {
+                font-size: 22px;
+                padding-left: 25px;
+              }
+              @media (max-width: $tab-sm) {
+                font-size: 14px;
+                line-height: 14px;
+              }
+              &:before {
+                content: "";
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                border-radius: 999px;
+                background: var(--text-color);
+                left: 0;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                transition: var(--trs-300);
+                @media (max-width: $tab-sm) {
+                  width: 12px;
+                  height: 12px;
+                }
+              }
             }
           }
         }

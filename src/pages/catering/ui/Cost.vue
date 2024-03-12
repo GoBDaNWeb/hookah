@@ -33,14 +33,14 @@ import { Button } from "@/shared/ui/button";
             <div class="image-wrapper">
               <img src="@/shared/assets/images/cost/1.jpg" alt="photo" />
             </div>
-            <p>На грейпфруте</p>
+            <h5>На грейпфруте</h5>
             <span>+ 300 ₽</span>
           </div>
           <div class="cost-content-item">
             <div class="image-wrapper">
               <img src="@/shared/assets/images/cost/2.jpg" alt="photo" />
             </div>
-            <p>стоимость На других фруктах</p>
+            <h5>стоимость На других фруктах</h5>
             <span>по запросу</span>
           </div>
         </div>
@@ -64,9 +64,14 @@ import { Button } from "@/shared/ui/button";
 </template>
 
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 .cost {
   background: var(--white-color);
   padding-top: 130px;
+  @media (max-width: $tab) {
+    padding-top: 80px;
+  }
   .cost-inner {
     h3 {
       font-weight: 400;
@@ -76,6 +81,11 @@ import { Button } from "@/shared/ui/button";
       position: relative;
       padding-left: 70px;
       text-transform: uppercase;
+      @media (max-width: $tab) {
+        font-size: 35px;
+        line-height: 29px;
+        padding-left: 40px;
+      }
       &:before {
         position: absolute;
         content: "";
@@ -87,17 +97,28 @@ import { Button } from "@/shared/ui/button";
         top: 0;
         bottom: 0;
         margin: auto;
+        @media (max-width: $tab) {
+          width: 30px;
+          height: 30px;
+        }
       }
     }
     .cost-about {
       display: flex;
       margin-top: 50px;
+      gap: 20px;
+      @media (max-width: $tab-sm) {
+        flex-direction: column;
+      }
       .cost-about-item {
         width: 50%;
         border-left: 1px solid var(--text-color);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        @media (max-width: $tab-sm) {
+          width: 100%;
+        }
         &:first-child {
           padding-left: 38px;
         }
@@ -109,6 +130,11 @@ import { Button } from "@/shared/ui/button";
           font-size: 32px;
           line-height: 35px;
           color: var(--text-color);
+          text-transform: uppercase;
+          @media (max-width: $tab) {
+            font-size: 24px;
+            line-height: 26px;
+          }
         }
         p {
           font-weight: 400;
@@ -123,6 +149,10 @@ import { Button } from "@/shared/ui/button";
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       margin-top: 50px;
+      @media (max-width: $tab) {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 40px;
+      }
       .cost-content-item {
         height: fit-content;
         width: 100%;
@@ -130,6 +160,9 @@ import { Button } from "@/shared/ui/button";
           padding-top: 50px;
           border-top: 1px solid var(--text-color);
           padding-left: 30px;
+          @media (max-width: $tab) {
+            padding-left: 0;
+          }
           p {
             font-weight: 400;
             font-size: 16px;
@@ -142,6 +175,9 @@ import { Button } from "@/shared/ui/button";
         .image-wrapper {
           width: 100%;
           height: 100%;
+          @media (max-width: $tab) {
+            margin-bottom: 20px;
+          }
           img {
             width: 100%;
             height: 100%;
@@ -154,24 +190,39 @@ import { Button } from "@/shared/ui/button";
           font-size: 24px;
           line-height: 26px;
           color: var(--text-color);
-          padding-left: 35px;
           display: flex;
           flex-direction: column;
           text-transform: uppercase;
-          &:before {
-            content: "";
-            position: absolute;
-            border-radius: 999px;
-            border: 1px solid var(--text-color);
-            width: 20px;
-            height: 20px;
-            top: 4px;
-            left: 0;
+          @media (max-width: $tab) {
+            font-size: 20px;
+            line-height: 22px;
           }
+          &:first-child {
+            padding-left: 35px;
+            &:before {
+              content: "";
+              position: absolute;
+              border-radius: 999px;
+              border: 1px solid var(--text-color);
+              width: 20px;
+              height: 20px;
+              top: 4px;
+              left: 0;
+              @media (max-width: $tab) {
+                width: 12px;
+                height: 12px;
+              }
+            }
+          }
+
           span {
             font-weight: 600;
             font-size: 24px;
             line-height: 26px;
+            @media (max-width: $tab) {
+              font-size: 20px;
+              line-height: 22px;
+            }
           }
         }
         p {
@@ -179,8 +230,11 @@ import { Button } from "@/shared/ui/button";
           font-size: 24px;
           line-height: 26px;
           color: var(--text-color);
-          text-transform: uppercase;
           margin-top: 20px;
+          @media (max-width: $tab) {
+            font-size: 16px;
+            line-height: 20px;
+          }
         }
         span {
           font-weight: 600;
@@ -198,6 +252,13 @@ import { Button } from "@/shared/ui/button";
       border-top: 1px solid var(--text-color);
       padding-left: 35px;
       padding-bottom: 150px;
+      @media (max-width: $tab) {
+        padding-bottom: 80px;
+        padding-left: 0;
+      }
+      @media (max-width: $tab-sm) {
+        margin-top: 20px;
+      }
       .contacts {
         display: flex;
         align-items: center;
@@ -205,8 +266,15 @@ import { Button } from "@/shared/ui/button";
         gap: 37px;
 
         max-width: 640px;
+        @media (max-width: $tab-sm) {
+          width: 100%;
+          flex-wrap: wrap;
+        }
         & > button {
           white-space: nowrap;
+          @media (max-width: $tab-sm) {
+            width: 100%;
+          }
         }
         a {
           font-weight: 600;
@@ -215,6 +283,10 @@ import { Button } from "@/shared/ui/button";
           letter-spacing: -2px;
           white-space: nowrap;
           color: var(--text-color);
+          @media (max-width: $tab-sm) {
+            font-size: 24px;
+            line-height: 24px;
+          }
         }
         .socials {
           display: flex;
@@ -223,6 +295,10 @@ import { Button } from "@/shared/ui/button";
           button {
             width: 60px;
             height: 60px;
+            @media (max-width: $tab-sm) {
+              width: 50px;
+              height: 50px;
+            }
           }
         }
       }
