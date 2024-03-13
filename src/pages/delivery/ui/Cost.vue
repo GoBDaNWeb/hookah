@@ -2,27 +2,84 @@
 import { TelegramIcon } from "@/shared/icons";
 import { WhatsappIcon } from "@/shared/icons";
 import { Button } from "@/shared/ui/button";
+import { KinesisContainer, KinesisElement } from "vue-kinesis";
 </script>
 
 <template>
   <div class="cost">
     <div class="container">
       <div class="cost-inner">
-        <h3>Стоимость</h3>
+        <h3
+          v-motion
+          :initial="{
+            x: -100,
+            opacity: 0,
+          }"
+          :visible-once="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              duration: 500,
+            },
+          }"
+        >
+          Стоимость
+        </h3>
         <div class="cost-about">
-          <div class="cost-about-item">
+          <div
+            class="cost-about-item"
+            v-motion
+            :delay="400"
+            :initial="{
+              opacity: 0,
+            }"
+            :visible-once="{
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+          >
             <span
               >Больше закладка табака — дольше процесс курения, до 1,5
               часа</span
             >
           </div>
-          <div class="cost-about-item">
+          <div
+            class="cost-about-item"
+            v-motion
+            :delay="400"
+            :initial="{
+              opacity: 0,
+            }"
+            :visible-once="{
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+          >
             <span>По умолчанию в комплект входит:</span>
             <p>Уголь из расчета 8 кубиков на чашу + 5 мундштуков</p>
           </div>
         </div>
         <div class="cost-content">
-          <div class="cost-content-item">
+          <div
+            class="cost-content-item"
+            v-motion
+            :delay="150"
+            :initial="{
+              scale: 0.8,
+              opacity: 0,
+            }"
+            :visible-once="{
+              scale: 1,
+              opacity: 1,
+              transition: {
+                duration: 800,
+              },
+            }"
+          >
             <span class="popular">Лучший выбор</span>
             <div class="image-wrapper">
               <img src="@/shared/assets/images/cost2/1.jpg" alt="photo" />
@@ -30,21 +87,66 @@ import { Button } from "@/shared/ui/button";
             <p>На грейпфруте</p>
             <span>800 ₽</span>
           </div>
-          <div class="cost-content-item">
+          <div
+            class="cost-content-item"
+            v-motion
+            :delay="250"
+            :initial="{
+              scale: 0.8,
+              opacity: 0,
+            }"
+            :visible-once="{
+              scale: 1,
+              opacity: 1,
+              transition: {
+                duration: 800,
+              },
+            }"
+          >
             <div class="image-wrapper">
               <img src="@/shared/assets/images/cost2/2.jpg" alt="photo" />
             </div>
             <p>На помело</p>
             <span>1 200 ₽</span>
           </div>
-          <div class="cost-content-item">
+          <div
+            class="cost-content-item"
+            v-motion
+            :delay="350"
+            :initial="{
+              scale: 0.8,
+              opacity: 0,
+            }"
+            :visible-once="{
+              scale: 1,
+              opacity: 1,
+              transition: {
+                duration: 800,
+              },
+            }"
+          >
             <div class="image-wrapper">
               <img src="@/shared/assets/images/cost2/3.jpg" alt="photo" />
             </div>
             <p>На гранате</p>
             <span>900 ₽</span>
           </div>
-          <div class="cost-content-item">
+          <div
+            class="cost-content-item"
+            v-motion
+            :delay="450"
+            :initial="{
+              scale: 0.8,
+              opacity: 0,
+            }"
+            :visible-once="{
+              scale: 1,
+              opacity: 1,
+              transition: {
+                duration: 800,
+              },
+            }"
+          >
             <div class="image-wrapper">
               <img src="@/shared/assets/images/cost2/4.jpg" alt="photo" />
             </div>
@@ -56,12 +158,20 @@ import { Button } from "@/shared/ui/button";
           <div class="contacts">
             <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
             <div class="socials">
-              <Button variable="social">
-                <TelegramIcon />
-              </Button>
-              <Button variable="social">
-                <WhatsappIcon />
-              </Button>
+              <kinesis-container>
+                <kinesis-element :strength="10" type="depth">
+                  <Button variable="social">
+                    <TelegramIcon />
+                  </Button>
+                </kinesis-element>
+              </kinesis-container>
+              <kinesis-container>
+                <kinesis-element :strength="10" type="depth">
+                  <Button variable="social">
+                    <WhatsappIcon />
+                  </Button>
+                </kinesis-element>
+              </kinesis-container>
             </div>
             <Button variable="primary"> заказать кальян </Button>
           </div>
@@ -169,7 +279,7 @@ import { Button } from "@/shared/ui/button";
         width: 100%;
         position: relative;
         padding-bottom: 80px;
-        @media (max-width: $tab){
+        @media (max-width: $tab) {
           padding-bottom: 0;
         }
         &:before {

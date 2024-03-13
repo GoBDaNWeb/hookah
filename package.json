@@ -13,6 +13,7 @@
     "@vueform/multiselect": "^2.6.6",
     "@vueform/vueform": "^1.7.3",
     "@vueuse/motion": "^2.1.0",
+    "framer-motion": "^11.0.12",
     "pinia": "^2.1.7",
     "swiper": "^11.0.6",
     "vue": "^3.4.15",

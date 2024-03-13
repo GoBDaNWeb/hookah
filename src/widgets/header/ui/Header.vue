@@ -8,6 +8,7 @@ import { Button } from "@/shared/ui/button";
 import { useMenuStore } from "@/entities/menu-store";
 import { useModalStore } from "@/entities/modal-store";
 import { links } from "@/shared/config";
+import { KinesisContainer, KinesisElement } from "vue-kinesis";
 const active = ref(false);
 const menu = useMenuStore();
 const modal = useModalStore();
@@ -28,26 +29,64 @@ window.addEventListener("scroll", controlNavbar);
   <header :class="{ active: active }">
     <div class="container">
       <div class="header-inner">
-        <RouterLink to="/" class="logo">
-          <LogoIcon />
-        </RouterLink>
+        <kinesis-container>
+          <kinesis-element :strength="10" type="depth">
+            <RouterLink
+              v-motion
+              :initial="{
+                opacity: 0,
+              }"
+              :enter="{
+                opacity: 1,
+              }"
+              to="/"
+              class="logo"
+            >
+              <LogoIcon />
+            </RouterLink>
+          </kinesis-element>
+        </kinesis-container>
         <nav>
           <RouterLink
             :to="link.url"
             v-for="(link, index) in links"
             :key="index"
-            >{{ link.title }}</RouterLink
+            v-motion
+            :delay="index * 100"
+            :initial="{
+              y: -100,
+              opacity: 0,
+            }"
+            :enter="{
+              y: 0,
+              opacity: 1,
+            }"
           >
+            <kinesis-container>
+              <kinesis-element :strength="10" type="depth">{{
+                link.title
+              }}</kinesis-element>
+            </kinesis-container>
+          </RouterLink>
         </nav>
+
         <div class="info">
           <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
           <div class="socials">
-            <Button variable="social">
-              <TelegramIcon />
-            </Button>
-            <Button variable="social">
-              <WhatsappIcon />
-            </Button>
+            <kinesis-container>
+              <kinesis-element :strength="10" type="depth">
+                <Button variable="social">
+                  <TelegramIcon />
+                </Button>
+              </kinesis-element>
+            </kinesis-container>
+            <kinesis-container>
+              <kinesis-element :strength="10" type="depth">
+                <Button variable="social">
+                  <WhatsappIcon />
+                </Button>
+              </kinesis-element>
+            </kinesis-container>
           </div>
 
           <Button variable="outline" :click="modal.handleOpenQuestionModal">
@@ -75,6 +114,7 @@ header.active {
     .logo {
       width: 65px;
       height: 65px;
+      display: block;
       @media (max-width: $tab-sm) {
         width: 45px;
         height: 45px;

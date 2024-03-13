@@ -10,6 +10,7 @@ import galleryImg8 from "@/shared/assets/images/gallery/8.jpg";
 import galleryImg9 from "@/shared/assets/images/gallery/9.jpg";
 import galleryImg10 from "@/shared/assets/images/gallery/10.jpg";
 import { Fancybox } from "@/widgets/fancybox";
+import { KinesisContainer, KinesisElement } from "vue-kinesis";
 const leftGallery = [
   {
     id: 1,
@@ -60,7 +61,22 @@ const rightGallery = [
   <div class="gallery">
     <div class="container">
       <div class="gallery-inner">
-        <h3>кальяны в деле</h3>
+        <h3
+          v-motion
+          :initial="{
+            x: -100,
+            opacity: 0,
+          }"
+          :visible-once="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              duration: 500,
+            },
+          }"
+        >
+          кальяны в деле
+        </h3>
         <Fancybox>
           <div class="gallery-content">
             <div class="left">
@@ -69,10 +85,27 @@ const rightGallery = [
                 :key="img.id"
                 data-fancybox="gallery"
                 :href="img.img"
+                v-motion
+                :delay="150"
+                :initial="{
+                  scale: 0.8,
+                  opacity: 0,
+                }"
+                :visible-once="{
+                  scale: 1,
+                  opacity: 1,
+                  transition: {
+                    duration: 500,
+                  },
+                }"
               >
-                <div class="image-wrapper">
-                  <img :src="img.img" alt="" />
-                </div>
+                <kinesis-container>
+                  <kinesis-element :strength="6" type="depth">
+                    <div class="image-wrapper">
+                      <img :src="img.img" alt="" />
+                    </div>
+                  </kinesis-element>
+                </kinesis-container>
               </a>
             </div>
 
@@ -82,10 +115,27 @@ const rightGallery = [
                 :key="img.id"
                 data-fancybox="gallery"
                 :href="img.img"
+                v-motion
+                :delay="150"
+                :initial="{
+                  scale: 0.8,
+                  opacity: 0,
+                }"
+                :visible-once="{
+                  scale: 1,
+                  opacity: 1,
+                  transition: {
+                    duration: 500,
+                  },
+                }"
               >
-                <div class="image-wrapper">
-                  <img :src="img.img" alt="" />
-                </div>
+                <kinesis-container>
+                  <kinesis-element :strength="6" type="depth">
+                    <div class="image-wrapper">
+                      <img :src="img.img" alt="" />
+                    </div>
+                  </kinesis-element>
+                </kinesis-container>
               </a>
             </div>
           </div>

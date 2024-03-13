@@ -8,7 +8,9 @@ import VueTheMask from "vue-the-mask";
 import router from "./app/router";
 import { MotionPlugin } from "@vueuse/motion";
 import VueKinesis from "vue-kinesis";
+
 const app = createApp(App);
+
 app.use(createPinia());
 app.use(VueTheMask);
 app.use(
@@ -16,6 +18,7 @@ app.use(
     apikey: "your-api-key",
   })
 );
+
 app.use(VueKinesis);
 app.use(router);
 app.use(MotionPlugin);

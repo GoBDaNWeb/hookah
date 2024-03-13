@@ -61,7 +61,20 @@ export default {
         <div class="left">
           <div class="top" v-if="tabs">
             <ul>
-              <li v-for="(tab, index) in tabs" :key="tab">
+              <li
+                v-for="(tab, index) in tabs"
+                :key="tab"
+                v-motion
+                :delay="index * 150"
+                :initial="{
+                  y: -50,
+                  opacity: 0,
+                }"
+                :visible-once="{
+                  y: 0,
+                  opacity: 1,
+                }"
+              >
                 <button
                   :class="index === currentTab.tab ? 'active' : ''"
                   @click="handleSetTab(index)"
@@ -71,13 +84,76 @@ export default {
               </li>
             </ul>
           </div>
-          <span v-if="badge" class="badge">{{ badge }}</span>
+          <span
+            v-if="badge"
+            class="badge"
+            v-motion
+            :initial="{
+              y: -50,
+              opacity: 0,
+            }"
+            :visible-once="{
+              y: 0,
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+            >{{ badge }}</span
+          >
 
           <div class="center">
-            <h3>{{ title }}</h3>
-            <h5 v-if="subTitle">{{ subTitle }}</h5>
+            <h3
+              v-motion
+              :initial="{
+                x: -100,
+                opacity: 0,
+              }"
+              :visible-once="{
+                x: 0,
+                opacity: 1,
+                transition: {
+                  duration: 500,
+                },
+              }"
+            >
+              {{ title }}
+            </h3>
+            <h5
+              v-if="subTitle"
+              v-motion
+              :delay="200"
+              :initial="{
+                x: -100,
+                opacity: 0,
+              }"
+              :visible-once="{
+                x: 0,
+                opacity: 1,
+                transition: {
+                  duration: 500,
+                },
+              }"
+            >
+              {{ subTitle }}
+            </h5>
             <ul v-if="list">
-              <li v-for="item in list" :key="item">{{ item }}</li>
+              <li
+                v-for="(item, index) in list"
+                :key="item"
+                v-motion
+                :delay="index * 150"
+                :initial="{
+                  x: -50,
+                  opacity: 0,
+                }"
+                :visible-once="{
+                  x: 0,
+                  opacity: 1,
+                }"
+              >
+                {{ item }}
+              </li>
             </ul>
             <h5 class="sub-title-form" v-if="subTitleForm">
               {{ subTitleForm }}
@@ -108,13 +184,28 @@ export default {
           </div>
           <div class="bottom">
             <div class="socials">
-              <Button variable="social"><WhatsappIcon /></Button>
-              <Button variable="social"><TelegramIcon /></Button>
+              <Button variable="social">
+                <WhatsappIcon />
+              </Button>
+
+              <Button variable="social">
+                <TelegramIcon />
+              </Button>
             </div>
             <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
           </div>
         </div>
-        <div class="right">
+        <div
+          class="right"
+          v-motion
+          :delay="300"
+          :initial="{
+            opacity: 0,
+          }"
+          :visible-once="{
+            opacity: 1,
+          }"
+        >
           <ContactsSwiper
             v-if="tabs"
             :imgs="imgs"

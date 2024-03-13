@@ -39,12 +39,28 @@ defineProps(["stampsList"]);
       :modules="modules"
       class="stamp-swiper"
     >
-      <SwiperSlide v-for="stamp in stampsList" :key="stamp.id"
-        ><div class="image-wrapper">
+      <SwiperSlide
+        v-for="(stamp, index) in stampsList"
+        :key="stamp.id"
+        v-motion
+        :delay="index * 150"
+        :initial="{
+          opacity: 0,
+          scale: 0.8,
+        }"
+        :visible-once="{
+          opacity: 1,
+          scale: 1,
+          transition: {
+            duration: 500,
+          },
+        }"
+      >
+        <div class="image-wrapper">
           <img :src="stamp.img" alt="" />
         </div>
-        <span>{{ stamp.title }}</span></SwiperSlide
-      >
+        <span>{{ stamp.title }}</span>
+      </SwiperSlide>
     </Swiper>
   </div>
 </template>

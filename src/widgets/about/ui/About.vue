@@ -1,45 +1,201 @@
 <script setup>
+import { ref } from "vue";
 defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
+import { KinesisContainer, KinesisElement } from "vue-kinesis";
 </script>
 
 <template>
   <div class="about">
-    <div class="coals">
-      <img src="@/shared/assets/images/coals.png" alt="" />
-    </div>
-    <div class="container">
-      <div class="about-inner">
-        <div class="left">
-          <div class="text">
-            <span> {{ title }}</span>
-            <p>
-              Alpha hookah — лучший кальян 2021 по версии John Calliano Awards
-              2021, 2022 гг.
-            </p>
+    <kinesis-container event="scroll">
+      <div class="coals">
+        <kinesis-element :strength="120" axis="x">
+          <img
+            v-motion
+            :delay="100"
+            :initial="{
+              x: -100,
+              opacity: 0,
+            }"
+            :visible-once="{
+              x: 0,
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+            src="@/shared/assets/images/coals/1.png"
+            alt=""
+          />
+        </kinesis-element>
+        <kinesis-element :strength="70" axis="x">
+          <img
+            v-motion
+            :delay="150"
+            :initial="{
+              x: -100,
+              opacity: 0,
+            }"
+            :visible-once="{
+              x: 0,
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+            src="@/shared/assets/images/coals/2.png"
+            alt=""
+          />
+        </kinesis-element>
+        <kinesis-element :strength="100" axis="x">
+          <img
+            v-motion
+            :delay="200"
+            :initial="{
+              x: -100,
+              opacity: 0,
+            }"
+            :visible-once="{
+              x: 0,
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+            src="@/shared/assets/images/coals/3.png"
+            alt=""
+          />
+        </kinesis-element>
+        <kinesis-element :strength="60" axis="x">
+          <img
+            v-motion
+            :delay="250"
+            :initial="{
+              x: -50,
+              opacity: 0,
+            }"
+            :visible-once="{
+              x: 0,
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+            src="@/shared/assets/images/coals/4.png"
+            alt=""
+          />
+        </kinesis-element>
+      </div>
+      <div class="container">
+        <div class="about-inner">
+          <div class="left">
+            <div class="text">
+              <span
+                v-motion
+                :delay="100"
+                :initial="{
+                  x: -50,
+                  opacity: 0,
+                }"
+                :visible-once="{
+                  x: 0,
+                  opacity: 1,
+                  transition: {
+                    duration: 500,
+                  },
+                }"
+              >
+                {{ title }}
+              </span>
+              <p
+                v-motion
+                :delay="300"
+                :initial="{
+                  x: -50,
+                  opacity: 0,
+                }"
+                :visible-once="{
+                  x: 0,
+                  opacity: 1,
+                  transition: {
+                    duration: 500,
+                  },
+                }"
+              >
+                Alpha hookah — лучший кальян 2021 по версии John Calliano Awards
+                2021, 2022 гг.
+              </p>
+            </div>
+            <div
+              class="image-wrapper"
+              v-motion
+              :initial="{
+                scale: 0.8,
+                opacity: 0,
+              }"
+              :visible-once="{
+                scale: 1,
+                opacity: 1,
+                transition: {
+                  duration: 800,
+                },
+              }"
+            >
+              <img :src="img" alt="hookah" />
+            </div>
+            <h3>{{ listTitle }}</h3>
           </div>
-          <div class="image-wrapper">
-            <img :src="img" alt="hookah" />
-          </div>
-          <h3>{{ listTitle }}</h3>
-        </div>
-        <div class="right">
-          <h3>{{ listTitle }}</h3>
-          <div class="order-list" :class="isGrid ? 'grid' : ''">
-            <div class="order-item" v-for="order in ordersInfo" :key="order.id">
-              <div class="image-wrapper">
-                <img :src="order.img" alt="" />
-              </div>
-              <div class="text">
-                <span>{{ order.title }}</span>
-                <p>
-                  {{ order.text }}
-                </p>
+          <div class="right">
+            <h3
+              v-motion
+              :delay="100"
+              :initial="{
+                x: 50,
+                opacity: 0,
+              }"
+              :visible-once="{
+                x: 0,
+                opacity: 1,
+                transition: {
+                  duration: 500,
+                },
+              }"
+            >
+              {{ listTitle }}
+            </h3>
+            <div class="order-list" :class="isGrid ? 'grid' : ''">
+              <div
+                class="order-item"
+                v-for="(order, index) in ordersInfo"
+                :key="order.id"
+                v-motion
+                :delay="index * 150"
+                :initial="{
+                  x: -100,
+                  opacity: 0,
+                }"
+                :visible-once="{
+                  x: 0,
+                  opacity: 1,
+                  transition: {
+                    duration: 400,
+                  },
+                }"
+              >
+                <div class="image-wrapper">
+                  <img :src="order.img" alt="" />
+                </div>
+                <div class="text">
+                  <span>{{ order.title }}</span>
+                  <p>
+                    {{ order.text }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </kinesis-container>
   </div>
 </template>
 
@@ -54,7 +210,7 @@ defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
     width: 360px;
     height: 240px;
     left: 0;
-    transform: rotate(10deg);
+    // transform: rotate(10deg);
     z-index: 2;
     @media (max-width: $tab) {
       bottom: auto;
@@ -64,12 +220,39 @@ defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
       width: 168px;
       height: 108px;
     }
-    img {
+    & > div {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      @media (max-width: $tab-sm) {
+      position: absolute;
+      &:nth-child(1) {
+        width: 73px;
+        height: 66px;
+        bottom: 106px;
+        left: 210px;
       }
+      &:nth-child(2) {
+        width: 108px;
+        height: 93px;
+        bottom: 25px;
+        left: 90px;
+      }
+      &:nth-child(3) {
+        width: 73px;
+        height: 82px;
+        bottom: 130px;
+        left: 123px;
+      }
+      &:nth-child(4) {
+        width: 102px;
+        height: 194px;
+        bottom: 0;
+        left: -20px;
+      }
+    }
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
     }
   }
   .about-inner {

@@ -10,27 +10,96 @@ defineProps(["stampsList", "howWorkList"]);
   <div class="stamps">
     <div class="container">
       <div class="stamps-inner">
-        <h3>
+        <h3
+          v-motion
+          :initial="{
+            x: -100,
+            opacity: 0,
+          }"
+          :visible-once="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              duration: 500,
+            },
+          }"
+        >
           используем проверенные<br />
           марки табака
         </h3>
         <div class="description">
-          <div class="left">
+          <div
+            class="left"
+            v-motion
+            :delay="300"
+            :initial="{
+              y: 100,
+              opacity: 0,
+            }"
+            :visible-once="{
+              y: 0,
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+          >
             <h5>Большой выбор вкусов</h5>
             <p>Подберём вкус и крепость по Вашему индивидуальному желанию!</p>
           </div>
-          <div class="right">
+          <div
+            class="right"
+            v-motion
+            :delay="450"
+            :initial="{
+              y: 100,
+              opacity: 0,
+            }"
+            :visible-once="{
+              y: 0,
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+          >
             <h5>наш табак не горчит и дает вкусный, насыщенный дым</h5>
           </div>
         </div>
         <StampsSwiper :stampsList="stampsList" />
         <div class="how-work" v-if="howWorkList">
-          <h3>как это работает</h3>
+          <h3
+            v-motion
+            :initial="{
+              x: -100,
+              opacity: 0,
+            }"
+            :visible-once="{
+              x: 0,
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+          >
+            как это работает
+          </h3>
           <div class="how-work__list">
             <div
               class="how-work__item"
-              v-for="howWork in howWorkList"
+              v-for="(howWork, index) in howWorkList"
               :key="howWork.id"
+              v-motion
+              :delay="index * 150"
+              :initial="{
+                opacity: 0,
+              }"
+              :visible-once="{
+                opacity: 1,
+                transition: {
+                  duration: 500,
+                },
+              }"
             >
               <span class="number"
                 >{{ howWork.id }}

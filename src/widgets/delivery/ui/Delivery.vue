@@ -3,28 +3,105 @@ import { Button } from "@/shared/ui/button";
 import { TelegramIcon } from "@/shared/icons";
 import { WhatsappIcon } from "@/shared/icons";
 import { Map } from "@/entities/map";
+import { KinesisContainer, KinesisElement } from "vue-kinesis";
 </script>
 
 <template>
   <div class="delivery">
     <div class="container">
       <div class="delivery-inner">
-        <h3>доставка и возврат</h3>
+        <h3
+          v-motion
+          :initial="{
+            x: -100,
+            opacity: 0,
+          }"
+          :visible-once="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              duration: 500,
+            },
+          }"
+        >
+          доставка и возврат
+        </h3>
         <div class="delivery-content">
           <div class="left">
-            <h5>Стоимость доставки и возврата объединена в единый платеж</h5>
+            <h5
+              v-motion
+              :delay="300"
+              :initial="{
+                x: -100,
+                opacity: 0,
+              }"
+              :visible-once="{
+                x: 0,
+                opacity: 1,
+                transition: {
+                  duration: 500,
+                },
+              }"
+            >
+              Стоимость доставки и возврата объединена в единый платеж
+            </h5>
             <div class="info">
-              <div class="info-item">
+              <div
+                class="info-item"
+                v-motion
+                :delay="150"
+                :initial="{
+                  x: -100,
+                  opacity: 0,
+                }"
+                :visible-once="{
+                  x: 0,
+                  opacity: 1,
+                  transition: {
+                    duration: 500,
+                  },
+                }"
+              >
                 <span class="label">В пределах МКАД</span>
                 <span class="line"></span>
                 <span class="value">500 ₽</span>
               </div>
-              <div class="info-item">
+              <div
+                class="info-item"
+                v-motion
+                :delay="250"
+                :initial="{
+                  x: -100,
+                  opacity: 0,
+                }"
+                :visible-once="{
+                  x: 0,
+                  opacity: 1,
+                  transition: {
+                    duration: 500,
+                  },
+                }"
+              >
                 <span class="label">до 5 км от МКАД</span>
                 <span class="line"></span>
                 <span class="value">800 ₽</span>
               </div>
-              <div class="info-item">
+              <div
+                class="info-item"
+                v-motion
+                :delay="350"
+                :initial="{
+                  x: -100,
+                  opacity: 0,
+                }"
+                :visible-once="{
+                  x: 0,
+                  opacity: 1,
+                  transition: {
+                    duration: 500,
+                  },
+                }"
+              >
                 <span class="label">от 5 км от МКАД</span>
                 <span class="line"></span>
                 <span class="value">Тариф Яндекс.Go экспресс</span>
@@ -44,14 +121,45 @@ import { Map } from "@/entities/map";
             <div class="contacts-info">
               <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
               <div class="socials">
-                <Button variable="social"><WhatsappIcon /></Button>
-                <Button variable="social"><TelegramIcon /></Button>
+                <kinesis-container>
+                  <kinesis-element :strength="10" type="depth">
+                    <Button variable="social">
+                      <WhatsappIcon />
+                    </Button>
+                  </kinesis-element>
+                </kinesis-container>
+                <kinesis-container>
+                  <kinesis-element :strength="10" type="depth">
+                    <Button variable="social">
+                      <TelegramIcon />
+                    </Button>
+                  </kinesis-element>
+                </kinesis-container>
               </div>
               <Button variable="primary"> заказать кальян </Button>
             </div>
           </div>
-          <div class="right">
-            <Map />
+          <div
+            class="right"
+            v-motion
+            :delay="150"
+            :initial="{
+              scale: 0.8,
+              opacity: 0,
+            }"
+            :visible-once="{
+              scale: 1,
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+          >
+            <KinesisContainer>
+              <kinesis-element :strength="10">
+                <Map />
+              </kinesis-element>
+            </KinesisContainer>
           </div>
         </div>
       </div>
@@ -285,11 +393,17 @@ import { Map } from "@/entities/map";
       }
       .right {
         width: 50%;
-        height: calc(20vw * 2);
-        max-height: 615px;
-        @media (max-width: $tab) {
-          width: 100%;
-          height: calc(30vw * 3);
+
+        & > div {
+          height: calc(20vw * 2);
+          max-height: 615px;
+          @media (max-width: $tab) {
+            width: 100%;
+            height: calc(30vw * 3);
+          }
+          div {
+            height: 100%;
+          }
         }
         p {
           font-weight: 400;

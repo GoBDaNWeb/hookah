@@ -7,14 +7,88 @@ defineProps(["index", "hasTitle", "congrats", "option", "list", "imgs"]);
 <template>
   <div class="manual-item">
     <div class="left">
-      <h1 v-if="hasTitle">инструкция</h1>
+      <h1
+        v-if="hasTitle"
+        v-motion
+        :initial="{
+          x: -100,
+          opacity: 0,
+        }"
+        :visible-once="{
+          x: 0,
+          opacity: 1,
+          transition: {
+            duration: 500,
+          },
+        }"
+      >
+        инструкция
+      </h1>
       <div class="content">
-        <h4>{{ index }}</h4>
-        <h5>{{ option }}</h5>
+        <h4
+          v-motion
+          :initial="{
+            opacity: 0,
+          }"
+          :visible-once="{
+            opacity: 1,
+            transition: {
+              duration: 500,
+            },
+          }"
+        >
+          {{ index }}
+        </h4>
+        <h5
+          v-motion
+          :delay="100"
+          :initial="{
+            x: -100,
+            opacity: 0,
+          }"
+          :visible-once="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              duration: 500,
+            },
+          }"
+        >
+          {{ option }}
+        </h5>
         <ul>
-          <li v-for="item in list" :key="item">{{ item }}</li>
+          <li
+            v-for="(item, index) in list"
+            :key="item"
+            v-motion
+            :delay="index * 200"
+            :initial="{
+              x: -50,
+              opacity: 0,
+            }"
+            :visible-once="{
+              x: 0,
+              opacity: 1,
+            }"
+          >
+            {{ item }}
+          </li>
         </ul>
-        <h6>{{ congrats }}</h6>
+        <h6
+          v-motion
+          :delay="300"
+          :initial="{
+            opacity: 0,
+          }"
+          :visible-once="{
+            opacity: 1,
+            transition: {
+              duration: 500,
+            },
+          }"
+        >
+          {{ congrats }}
+        </h6>
       </div>
     </div>
     <div class="right">

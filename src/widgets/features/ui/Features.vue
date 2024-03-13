@@ -9,8 +9,21 @@ defineProps(["featureList", "isWhite"]);
         <div
           class="feature"
           :class="isWhite ? 'white' : ''"
-          v-for="feature in featureList"
+          v-for="(feature, index) in featureList"
           :key="feature.id"
+          v-motion
+          :delay="index * 150"
+          :initial="{
+            scale: 0.8,
+            opacity: 0,
+          }"
+          :visible-once="{
+            scale: 1,
+            opacity: 1,
+            transition: {
+              duration: 500,
+            },
+          }"
         >
           <div class="image-wrapper">
             <img :src="feature.img" alt="" />

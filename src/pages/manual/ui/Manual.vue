@@ -10,6 +10,7 @@ import { Faq } from "@/widgets/faq";
 import { manualList } from "../config";
 import hookahFaqImg from "@/shared/assets/images/hookah-white.jpg";
 import contactsImg from "@/shared/assets/images/gallery/5.jpg";
+import { KinesisContainer, KinesisElement } from "vue-kinesis";
 </script>
 
 <template>
@@ -27,19 +28,42 @@ import contactsImg from "@/shared/assets/images/gallery/5.jpg";
           :imgs="manual.imgs"
         />
         <div class="info">
-          <h3>Что-то не получается?</h3>
+          <h3
+            v-motion
+            :initial="{
+              x: -100,
+              opacity: 0,
+            }"
+            :visible-once="{
+              x: 0,
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+          >
+            Что-то не получается?
+          </h3>
           <span
             >Свяжитесь с нами любым удобным способом, мы поможем по телефону или
             по видеосвязи</span
           >
           <div class="contacts">
             <div class="socials">
-              <Button variable="social">
-                <WhatsappIcon />
-              </Button>
-              <Button variable="social">
-                <TelegramIcon />
-              </Button>
+              <kinesis-container>
+                <kinesis-element :strength="10" type="depth">
+                  <Button variable="social">
+                    <WhatsappIcon />
+                  </Button>
+                </kinesis-element>
+              </kinesis-container>
+              <kinesis-container>
+                <kinesis-element :strength="10" type="depth">
+                  <Button variable="social">
+                    <TelegramIcon />
+                  </Button>
+                </kinesis-element>
+              </kinesis-container>
             </div>
             <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
           </div>

@@ -21,7 +21,18 @@ const handleSetTab = (index) => {
     <div class="container">
       <div class="hero-inner">
         <div class="left">
-          <h1 :class="isMain ? 'main' : ''">
+          <h1
+            v-motion
+            :initial="{
+              x: -100,
+              opacity: 0,
+            }"
+            :enter="{
+              x: 0,
+              opacity: 1,
+            }"
+            :class="isMain ? 'main' : ''"
+          >
             {{ title }}
           </h1>
           <div class="info">
@@ -34,7 +45,20 @@ const handleSetTab = (index) => {
             </div>
             <div class="info-right">
               <ul>
-                <li v-for="item in list" :key="item">
+                <li
+                  v-for="(item, index) in list"
+                  :key="item"
+                  v-motion
+                  :delay="index * 150"
+                  :initial="{
+                    x: -50,
+                    opacity: 0,
+                  }"
+                  :visible-once="{
+                    x: 0,
+                    opacity: 1,
+                  }"
+                >
                   {{ item }}
                 </li>
               </ul>
@@ -43,12 +67,20 @@ const handleSetTab = (index) => {
           <div class="contacts">
             <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
             <div class="socials">
-              <Button variable="social">
-                <TelegramIcon />
-              </Button>
-              <Button variable="social">
-                <WhatsappIcon />
-              </Button>
+              <kinesis-container>
+                <kinesis-element :strength="10" type="depth">
+                  <Button variable="social">
+                    <TelegramIcon />
+                  </Button>
+                </kinesis-element>
+              </kinesis-container>
+              <kinesis-container>
+                <kinesis-element :strength="10" type="depth">
+                  <Button variable="social">
+                    <WhatsappIcon />
+                  </Button>
+                </kinesis-element>
+              </kinesis-container>
             </div>
             <Button variable="primary" :click="modal.handleOpenOrderModal">
               заказать кальян
@@ -62,7 +94,7 @@ const handleSetTab = (index) => {
                 v-for="(tab, index) in tabs"
                 :key="tab"
                 v-motion
-                :delay="400"
+                :delay="index * 150"
                 :initial="{
                   y: -50,
                   opacity: 0,
@@ -70,9 +102,6 @@ const handleSetTab = (index) => {
                 :visible-once="{
                   y: 0,
                   opacity: 1,
-                  transition: {
-                    stiffness: '100',
-                  },
                 }"
               >
                 <button
@@ -85,7 +114,17 @@ const handleSetTab = (index) => {
             </ul>
           </div>
           <kinesis-container>
-            <div class="images">
+            <div
+              class="images"
+              v-motion
+              :delay="300"
+              :initial="{
+                opacity: 0,
+              }"
+              :enter="{
+                opacity: 1,
+              }"
+            >
               <kinesis-element v-if="tabs" :strength="20">
                 <HeroSwiper :imgs="imgs" :currentTab="currentTab.tab" />
               </kinesis-element>

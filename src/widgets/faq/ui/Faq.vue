@@ -66,7 +66,20 @@ defineProps(["img", "hasInfo"]);
   <div class="faq">
     <div class="container">
       <div class="faq-inner">
-        <h3>
+        <h3
+          v-motion
+          :initial="{
+            x: -100,
+            opacity: 0,
+          }"
+          :visible-once="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              duration: 500,
+            },
+          }"
+        >
           дополнительная <br />
           информация
         </h3>
@@ -77,6 +90,19 @@ defineProps(["img", "hasInfo"]);
               :class="{ active: question.isExpanded }"
               v-for="(question, index) in questions"
               :key="question.title"
+              v-motion
+              :delay="index * 150"
+              :initial="{
+                x: -100,
+                opacity: 0,
+              }"
+              :visible-once="{
+                x: 0,
+                opacity: 1,
+                transition: {
+                  duration: 500,
+                },
+              }"
             >
               <button @click="() => handleAccordion(index)">
                 <span>
@@ -96,7 +122,23 @@ defineProps(["img", "hasInfo"]);
           <div class="right">
             <div class="image-wrapper">
               <div class="image-wrapper-inner">
-                <img :src="img" alt="hookah" />
+                <img
+                  :src="img"
+                  alt="hookah"
+                  v-motion
+                  :delay="200"
+                  :initial="{
+                    scale: 0.8,
+                    opacity: 0,
+                  }"
+                  :visible-once="{
+                    scale: 1,
+                    opacity: 1,
+                    transition: {
+                      duration: 800,
+                    },
+                  }"
+                />
                 <img
                   class="coals"
                   src="@/shared/assets/images/coals-reverse.png"
@@ -108,12 +150,39 @@ defineProps(["img", "hasInfo"]);
         </div>
         <div class="faq-about" v-if="hasInfo">
           <div class="left">
-            <h5>
+            <h5
+              v-motion
+              :initial="{
+                x: -100,
+                opacity: 0,
+              }"
+              :visible-once="{
+                x: 0,
+                opacity: 1,
+                transition: {
+                  duration: 500,
+                },
+              }"
+            >
               Наслаждайтесь насыщенным дымом у себя дома, заказывая кальян у
               нас.
             </h5>
           </div>
-          <div class="right">
+          <div
+            class="right"
+            v-motion
+            :initial="{
+              x: 100,
+              opacity: 0,
+            }"
+            :visible-once="{
+              x: 0,
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+          >
             <p>
               Мы предлагаем не просто аренду, а полноценный сервис с доставкой.
               Ваш вечер превратится в настоящее событие, будь то вечеринка или

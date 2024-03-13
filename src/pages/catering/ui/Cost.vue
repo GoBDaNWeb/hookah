@@ -2,22 +2,64 @@
 import { TelegramIcon } from "@/shared/icons";
 import { WhatsappIcon } from "@/shared/icons";
 import { Button } from "@/shared/ui/button";
+import { KinesisContainer, KinesisElement } from "vue-kinesis";
 </script>
 
 <template>
   <div class="cost">
     <div class="container">
       <div class="cost-inner">
-        <h3>Стоимость</h3>
+        <h3
+          v-motion
+          :initial="{
+            x: -100,
+            opacity: 0,
+          }"
+          :visible-once="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              duration: 500,
+            },
+          }"
+        >
+          Стоимость
+        </h3>
         <div class="cost-about">
-          <div class="cost-about-item">
+          <div
+            class="cost-about-item"
+            v-motion
+            :delay="400"
+            :initial="{
+              opacity: 0,
+            }"
+            :visible-once="{
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+          >
             <span>Чаша меняется раз в 50 минут</span>
             <p>
               либо по первому требованию клиента (не зашло по вкусу, горчит и
               прочее)
             </p>
           </div>
-          <div class="cost-about-item">
+          <div
+            class="cost-about-item"
+            v-motion
+            :delay="400"
+            :initial="{
+              opacity: 0,
+            }"
+            :visible-once="{
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+          >
             <span
               >Оплата услуг наличными <br />
               либо на расчетный счет</span
@@ -29,14 +71,44 @@ import { Button } from "@/shared/ui/button";
             <h5>1 кальян На глиняной чаше <span>1 200 ₽ / час</span></h5>
             <p>Минимальный заказ — от 3-х часов</p>
           </div>
-          <div class="cost-content-item">
+          <div
+            class="cost-content-item"
+            v-motion
+            :delay="150"
+            :initial="{
+              scale: 0.8,
+              opacity: 0,
+            }"
+            :visible-once="{
+              scale: 1,
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+          >
             <div class="image-wrapper">
               <img src="@/shared/assets/images/cost/1.jpg" alt="photo" />
             </div>
             <h5>На грейпфруте</h5>
             <span>+ 300 ₽</span>
           </div>
-          <div class="cost-content-item">
+          <div
+            class="cost-content-item"
+            v-motion
+            :delay="250"
+            :initial="{
+              scale: 0.8,
+              opacity: 0,
+            }"
+            :visible-once="{
+              scale: 1,
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+          >
             <div class="image-wrapper">
               <img src="@/shared/assets/images/cost/2.jpg" alt="photo" />
             </div>
@@ -48,12 +120,20 @@ import { Button } from "@/shared/ui/button";
           <div class="contacts">
             <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
             <div class="socials">
-              <Button variable="social">
-                <TelegramIcon />
-              </Button>
-              <Button variable="social">
-                <WhatsappIcon />
-              </Button>
+              <kinesis-container>
+                <kinesis-element :strength="10" type="depth">
+                  <Button variable="social">
+                    <TelegramIcon />
+                  </Button>
+                </kinesis-element>
+              </kinesis-container>
+              <kinesis-container>
+                <kinesis-element :strength="10" type="depth">
+                  <Button variable="social">
+                    <WhatsappIcon />
+                  </Button>
+                </kinesis-element>
+              </kinesis-container>
             </div>
             <Button variable="primary"> заказать кальян </Button>
           </div>

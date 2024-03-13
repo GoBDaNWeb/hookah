@@ -4,6 +4,7 @@ import { Button } from "@/shared/ui/button";
 import { CostSwiper } from "@/entities/cost-swiper";
 import { costList } from "../config";
 import costImg from "@/shared/assets/images/cost.jpg";
+import { KinesisContainer, KinesisElement } from "vue-kinesis";
 const currentTab = reactive({ tab: 0 });
 const handleSetTab = (index) => {
   currentTab.tab = index;
@@ -14,12 +15,53 @@ const handleSetTab = (index) => {
   <div class="cost">
     <div class="container">
       <div class="cost-inner">
-        <h3>Стоимость кальяна в сутки</h3>
+        <h3
+          v-motion
+          :initial="{
+            x: -100,
+            opacity: 0,
+          }"
+          :visible-once="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              duration: 500,
+            },
+          }"
+        >
+          Стоимость кальяна в сутки
+        </h3>
         <div class="cost-about">
-          <div class="cost-about-item">
+          <div
+            class="cost-about-item"
+            v-motion
+            :delay="400"
+            :initial="{
+              opacity: 0,
+            }"
+            :visible-once="{
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+          >
             <h5>цены указаны <span> без учета доставки </span></h5>
           </div>
-          <div class="cost-about-item">
+          <div
+            class="cost-about-item"
+            v-motion
+            :delay="400"
+            :initial="{
+              opacity: 0,
+            }"
+            :visible-once="{
+              opacity: 1,
+              transition: {
+                duration: 500,
+              },
+            }"
+          >
             <h5>На каждую чашу кладем <span>по 8 кубиков угля</span></h5>
           </div>
         </div>
@@ -71,11 +113,30 @@ const handleSetTab = (index) => {
               </div>
             </div>
           </div>
-          <div class="right">
-            <CostSwiper
-              :imgs="[costImg, costImg, costImg, costImg, costImg]"
-              :currentTab="currentTab.tab"
-            />
+          <div
+            class="right"
+            v-motion
+            :delay="400"
+            :initial="{
+              scale: 0.8,
+              opacity: 0,
+            }"
+            :visible-once="{
+              scale: 1,
+              opacity: 1,
+              transition: {
+                duration: 800,
+              },
+            }"
+          >
+            <kinesis-container>
+              <kinesis-element :strength="20">
+                <CostSwiper
+                  :imgs="[costImg, costImg, costImg, costImg, costImg]"
+                  :currentTab="currentTab.tab"
+                />
+              </kinesis-element>
+            </kinesis-container>
           </div>
         </div>
       </div>
