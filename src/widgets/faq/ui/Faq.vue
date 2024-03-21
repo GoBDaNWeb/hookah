@@ -64,145 +64,191 @@ defineProps(["img", "hasInfo"]);
 
 <template>
   <div class="faq">
-    <div class="container">
-      <div class="faq-inner">
-        <h3
-          v-motion
-          :initial="{
-            x: -100,
-            opacity: 0,
-          }"
-          :visible-once="{
-            x: 0,
-            opacity: 1,
-            transition: {
-              duration: 500,
-            },
-          }"
-        >
-          дополнительная <br />
-          информация
-        </h3>
-        <div class="faq-content">
-          <div class="left">
-            <div
-              class="accordion"
-              :class="{ active: question.isExpanded }"
-              v-for="(question, index) in questions"
-              :key="question.title"
-              v-motion
-              :delay="index * 150"
-              :initial="{
-                x: -100,
-                opacity: 0,
-              }"
-              :visible-once="{
-                x: 0,
-                opacity: 1,
-                transition: {
-                  duration: 500,
-                },
-              }"
-            >
-              <button @click="() => handleAccordion(index)">
-                <span>
-                  <PlusIcon />
-                </span>
-                <p>
-                  {{ question.title }}
-                </p>
-              </button>
-              <Collapse :when="questions[index].isExpanded" class="collapse">
-                <p>
-                  {{ question.answer }}
-                </p>
-              </Collapse>
+    <kinesis-container event="scroll">
+      <div class="container">
+        <div class="faq-inner">
+          <h3>
+            дополнительная <br />
+            информация
+          </h3>
+
+          <div class="faq-content">
+            <div class="left">
+              <div
+                class="accordion"
+                :class="{ active: question.isExpanded }"
+                v-for="(question, index) in questions"
+                :key="question.title"
+              >
+                <button @click="() => handleAccordion(index)">
+                  <span>
+                    <PlusIcon />
+                  </span>
+                  <p>
+                    {{ question.title }}
+                  </p>
+                </button>
+                <Collapse :when="questions[index].isExpanded" class="collapse">
+                  <p>
+                    {{ question.answer }}
+                  </p>
+                </Collapse>
+              </div>
             </div>
-          </div>
-          <div class="right">
-            <div class="image-wrapper">
-              <div class="image-wrapper-inner">
-                <img
-                  :src="img"
-                  alt="hookah"
-                  v-motion
-                  :delay="200"
-                  :initial="{
-                    scale: 0.8,
-                    opacity: 0,
-                  }"
-                  :visible-once="{
-                    scale: 1,
-                    opacity: 1,
-                    transition: {
-                      duration: 800,
-                    },
-                  }"
-                />
-                <img
-                  class="coals"
-                  src="@/shared/assets/images/coals-reverse.png"
-                  alt="coals"
-                />
+            <div class="right">
+              <div class="image-wrapper">
+                <div class="image-wrapper-inner">
+                  <img :src="img" alt="hookah" />
+
+                  <div class="coals">
+                    <kinesis-element :strength="120" axis="x">
+                      <img
+                        v-motion
+                        :delay="100"
+                        :initial="{
+                          x: 100,
+                          opacity: 0,
+                        }"
+                        :visible-once="{
+                          x: 0,
+                          opacity: 1,
+                          transition: {
+                            duration: 500,
+                          },
+                        }"
+                        src="@/shared/assets/images/coals-reverse/1.png"
+                        alt=""
+                      />
+                    </kinesis-element>
+                    <kinesis-element :strength="70" axis="x">
+                      <img
+                        v-motion
+                        :delay="150"
+                        :initial="{
+                          x: 100,
+                          opacity: 0,
+                        }"
+                        :visible-once="{
+                          x: 0,
+                          opacity: 1,
+                          transition: {
+                            duration: 500,
+                          },
+                        }"
+                        src="@/shared/assets/images/coals-reverse/2.png"
+                        alt=""
+                      />
+                    </kinesis-element>
+                    <kinesis-element :strength="100" axis="x">
+                      <img
+                        v-motion
+                        :delay="200"
+                        :initial="{
+                          x: 100,
+                          opacity: 0,
+                        }"
+                        :visible-once="{
+                          x: 0,
+                          opacity: 1,
+                          transition: {
+                            duration: 500,
+                          },
+                        }"
+                        src="@/shared/assets/images/coals-reverse/3.png"
+                        alt=""
+                      />
+                    </kinesis-element>
+                    <kinesis-element :strength="40" axis="x">
+                      <img
+                        v-motion
+                        :delay="250"
+                        :initial="{
+                          x: 50,
+                          opacity: 0,
+                        }"
+                        :visible-once="{
+                          x: 0,
+                          opacity: 1,
+                          transition: {
+                            duration: 500,
+                          },
+                        }"
+                        src="@/shared/assets/images/coals-reverse/4.png"
+                        alt=""
+                      />
+                    </kinesis-element>
+                    <kinesis-element :strength="80" axis="x">
+                      <img
+                        v-motion
+                        :delay="250"
+                        :initial="{
+                          x: 50,
+                          opacity: 0,
+                        }"
+                        :visible-once="{
+                          x: 0,
+                          opacity: 1,
+                          transition: {
+                            duration: 500,
+                          },
+                        }"
+                        src="@/shared/assets/images/coals-reverse/5.png"
+                        alt=""
+                      />
+                    </kinesis-element>
+                    <kinesis-element :strength="60" axis="x">
+                      <img
+                        v-motion
+                        :delay="250"
+                        :initial="{
+                          x: 50,
+                          opacity: 0,
+                        }"
+                        :visible-once="{
+                          x: 0,
+                          opacity: 1,
+                          transition: {
+                            duration: 500,
+                          },
+                        }"
+                        src="@/shared/assets/images/coals-reverse/6.png"
+                        alt=""
+                      />
+                    </kinesis-element>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="faq-about" v-if="hasInfo">
-          <div class="left">
-            <h5
-              v-motion
-              :initial="{
-                x: -100,
-                opacity: 0,
-              }"
-              :visible-once="{
-                x: 0,
-                opacity: 1,
-                transition: {
-                  duration: 500,
-                },
-              }"
-            >
-              Наслаждайтесь насыщенным дымом у себя дома, заказывая кальян у
-              нас.
-            </h5>
-          </div>
-          <div
-            class="right"
-            v-motion
-            :initial="{
-              x: 100,
-              opacity: 0,
-            }"
-            :visible-once="{
-              x: 0,
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
-          >
-            <p>
-              Мы предлагаем не просто аренду, а полноценный сервис с доставкой.
-              Ваш вечер превратится в настоящее событие, будь то вечеринка или
-              спокойный отдых после рабочего дня. <br />
-              <br />
-              Наша доставка кальяна — это удобство и высокое качество
-              обслуживания. Легко выбрать и заказать кальян, подходящий именно
-              вам. <br /><br />
-              Мы предлагаем разнообразные варианты для любого случая: от
-              романтического вечера до большой вечеринки. Всё необходимое для
-              комфортного курения кальяна у вас дома мы предоставим, включая
-              качественные аксессуары и разнообразные ароматы табака.
-              <br /><br />
-              Обратитесь к нам, и ваше мероприятие станет по-настоящему
-              особенным.
-            </p>
+          <div class="faq-about" v-if="hasInfo">
+            <div class="left">
+              <h5>
+                Наслаждайтесь насыщенным дымом у себя дома, заказывая кальян у
+                нас.
+              </h5>
+            </div>
+            <div class="right">
+              <p>
+                Мы предлагаем не просто аренду, а полноценный сервис с
+                доставкой. Ваш вечер превратится в настоящее событие, будь то
+                вечеринка или спокойный отдых после рабочего дня. <br />
+                <br />
+                Наша доставка кальяна — это удобство и высокое качество
+                обслуживания. Легко выбрать и заказать кальян, подходящий именно
+                вам. <br /><br />
+                Мы предлагаем разнообразные варианты для любого случая: от
+                романтического вечера до большой вечеринки. Всё необходимое для
+                комфортного курения кальяна у вас дома мы предоставим, включая
+                качественные аксессуары и разнообразные ароматы табака.
+                <br /><br />
+                Обратитесь к нам, и ваше мероприятие станет по-настоящему
+                особенным.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </kinesis-container>
   </div>
 </template>
 
@@ -224,6 +270,7 @@ defineProps(["img", "hasInfo"]);
       line-height: 54px;
       color: var(--text-color);
       text-transform: uppercase;
+      letter-spacing: -2px;
       @media (max-width: $tab) {
         font-size: 35px;
         line-height: 29px;
@@ -317,6 +364,113 @@ defineProps(["img", "hasInfo"]);
             width: 100%;
             height: 100%;
             position: relative;
+            overflow: hidden;
+            .coals {
+              position: absolute;
+              bottom: 170px;
+              width: 360px;
+              height: 240px;
+              right: 0;
+              // transform: rotate(10deg);
+              z-index: 2;
+              @media (max-width: $tab) {
+                bottom: auto;
+                top: 36%;
+              }
+              @media (max-width: $pre-mob) {
+                width: 168px;
+                height: 108px;
+              }
+              & > div {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                &:nth-child(1) {
+                  width: 73px;
+                  height: 70px;
+                  bottom: 106px;
+                  right: 210px;
+
+                  @media (max-width: $tab) {
+                    width: 53px;
+                    height: 50px;
+                  }
+                  @media (max-width: $pre-mob) {
+                    right: 190px;
+                  }
+                }
+                &:nth-child(2) {
+                  width: 40px;
+                  height: 36px;
+                  bottom: 170px;
+                  right: 160px;
+
+                  @media (max-width: $tab) {
+                    width: 20px;
+                    height: 16px;
+                  }
+                  @media (max-width: $pre-mob) {
+                    right: 140px;
+                    bottom: 140px;
+                  }
+                }
+                &:nth-child(3) {
+                  width: 25px;
+                  height: 28px;
+                  bottom: 130px;
+                  right: 123px;
+                  @media (max-width: $tab) {
+                    width: 15px;
+                    height: 18px;
+                  }
+                  @media (max-width: $pre-mob) {
+                    right: 103px;
+                    bottom: 100px;
+                  }
+                }
+                &:nth-child(4) {
+                  width: 116px;
+                  height: 98px;
+                  bottom: 20px;
+                  right: 100px;
+                  @media (max-width: $tab) {
+                    width: 96px;
+                    height: 78px;
+                  }
+                  @media (max-width: $pre-mob) {
+                    right: 80px;
+                  }
+                }
+                &:nth-child(5) {
+                  width: 68px;
+                  height: 79px;
+                  right: 26px;
+                  bottom: 109px;
+                  @media (max-width: $tab) {
+                    width: 48px;
+                    height: 59px;
+                  }
+                  @media (max-width: $pre-mob) {
+                    right: 6px;
+                  }
+                }
+                &:nth-child(6) {
+                  width: 75px;
+                  height: 112px;
+                  bottom: 0;
+                  right: -25px;
+                  @media (max-width: $tab) {
+                    width: 55px;
+                    height: 92px;
+                  }
+                }
+              }
+              img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+              }
+            }
           }
           img {
             width: 100%;

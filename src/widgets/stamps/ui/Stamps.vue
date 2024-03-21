@@ -10,7 +10,11 @@ defineProps(["stampsList", "howWorkList"]);
   <div class="stamps">
     <div class="container">
       <div class="stamps-inner">
-        <h3
+        <h3>
+          используем проверенные<br />
+          марки табака
+        </h3>
+        <!-- <h3
           v-motion
           :initial="{
             x: -100,
@@ -26,9 +30,13 @@ defineProps(["stampsList", "howWorkList"]);
         >
           используем проверенные<br />
           марки табака
-        </h3>
+        </h3> -->
         <div class="description">
-          <div
+          <div class="left">
+            <h5>Большой выбор вкусов</h5>
+            <p>Подберём вкус и крепость по Вашему индивидуальному желанию!</p>
+          </div>
+          <!-- <div
             class="left"
             v-motion
             :delay="300"
@@ -46,8 +54,11 @@ defineProps(["stampsList", "howWorkList"]);
           >
             <h5>Большой выбор вкусов</h5>
             <p>Подберём вкус и крепость по Вашему индивидуальному желанию!</p>
+          </div> -->
+          <div class="right">
+            <h5>наш табак не горчит и дает вкусный, насыщенный дым</h5>
           </div>
-          <div
+          <!-- <div
             class="right"
             v-motion
             :delay="450"
@@ -64,11 +75,12 @@ defineProps(["stampsList", "howWorkList"]);
             }"
           >
             <h5>наш табак не горчит и дает вкусный, насыщенный дым</h5>
-          </div>
+          </div> -->
         </div>
         <StampsSwiper :stampsList="stampsList" />
         <div class="how-work" v-if="howWorkList">
-          <h3
+          <h3>как это работает</h3>
+          <!-- <h3
             v-motion
             :initial="{
               x: -100,
@@ -83,9 +95,23 @@ defineProps(["stampsList", "howWorkList"]);
             }"
           >
             как это работает
-          </h3>
+          </h3> -->
           <div class="how-work__list">
             <div
+              class="how-work__item"
+              v-for="howWork in howWorkList"
+              :key="howWork.id"
+            >
+              <span class="number"
+                >{{ howWork.id }}
+                <span v-if="howWork.hasArrow"><BigArrowIcon /></span
+              ></span>
+              <p>{{ howWork.text }}</p>
+              <Button v-if="howWork.hasBtn" variable="outline"
+                >инструкция
+              </Button>
+            </div>
+            <!-- <div
               class="how-work__item"
               v-for="(howWork, index) in howWorkList"
               :key="howWork.id"
@@ -109,7 +135,7 @@ defineProps(["stampsList", "howWorkList"]);
               <Button v-if="howWork.hasBtn" variable="outline"
                 >инструкция
               </Button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -137,9 +163,27 @@ defineProps(["stampsList", "howWorkList"]);
       line-height: 54px;
       color: var(--text-color);
       text-transform: uppercase;
+      position: relative;
+      padding-left: 75px;
+      letter-spacing: -5px;
       @media (max-width: $tab) {
         font-size: 35px;
         line-height: 29px;
+      }
+      &:before {
+        content: "";
+        position: absolute;
+        width: 45px;
+        height: 45px;
+        background: var(--text-color);
+        left: 0;
+        top: 8px;
+        margin: auto;
+        @media (max-width: $tab) {
+          width: 30px;
+          height: 30px;
+          bottom: auto;
+        }
       }
     }
     .description {

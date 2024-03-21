@@ -1,98 +1,34 @@
 <script setup>
 import { ManualSwiper } from "@/entities/manual-swiper";
 
-defineProps(["index", "hasTitle", "congrats", "option", "list", "imgs"]);
+defineProps(["index", "hasTitle", "congrats", "option", "list", "img"]);
 </script>
 
 <template>
   <div class="manual-item">
     <div class="left">
-      <h1
-        v-if="hasTitle"
-        v-motion
-        :initial="{
-          x: -100,
-          opacity: 0,
-        }"
-        :visible-once="{
-          x: 0,
-          opacity: 1,
-          transition: {
-            duration: 500,
-          },
-        }"
-      >
-        инструкция
-      </h1>
+      <h1 v-if="hasTitle">инструкция</h1>
       <div class="content">
-        <h4
-          v-motion
-          :initial="{
-            opacity: 0,
-          }"
-          :visible-once="{
-            opacity: 1,
-            transition: {
-              duration: 500,
-            },
-          }"
-        >
+        <h4>
           {{ index }}
         </h4>
-        <h5
-          v-motion
-          :delay="100"
-          :initial="{
-            x: -100,
-            opacity: 0,
-          }"
-          :visible-once="{
-            x: 0,
-            opacity: 1,
-            transition: {
-              duration: 500,
-            },
-          }"
-        >
+        <h5>
           {{ option }}
         </h5>
         <ul>
-          <li
-            v-for="(item, index) in list"
-            :key="item"
-            v-motion
-            :delay="index * 200"
-            :initial="{
-              x: -50,
-              opacity: 0,
-            }"
-            :visible-once="{
-              x: 0,
-              opacity: 1,
-            }"
-          >
+          <li v-for="item in list" :key="item">
             {{ item }}
           </li>
         </ul>
-        <h6
-          v-motion
-          :delay="300"
-          :initial="{
-            opacity: 0,
-          }"
-          :visible-once="{
-            opacity: 1,
-            transition: {
-              duration: 500,
-            },
-          }"
-        >
+        <h6>
           {{ congrats }}
         </h6>
       </div>
     </div>
     <div class="right">
-      <ManualSwiper :imgs="imgs" />
+      <div class="image-wrapper">
+        <img :src="img" alt="photo" />
+      </div>
     </div>
   </div>
 </template>
@@ -227,6 +163,14 @@ defineProps(["index", "hasTitle", "congrats", "option", "list", "imgs"]);
     width: 50%;
     @media (max-width: $tab) {
       width: 100%;
+    }
+    .image-wrapper {
+      background: var(--white-color);
+      padding: 20px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }

@@ -29,64 +29,29 @@ window.addEventListener("scroll", controlNavbar);
   <header :class="{ active: active }">
     <div class="container">
       <div class="header-inner">
-        <kinesis-container>
-          <kinesis-element :strength="10" type="depth">
-            <RouterLink
-              v-motion
-              :initial="{
-                opacity: 0,
-              }"
-              :enter="{
-                opacity: 1,
-              }"
-              to="/"
-              class="logo"
-            >
-              <LogoIcon />
-            </RouterLink>
-          </kinesis-element>
-        </kinesis-container>
+        <RouterLink to="/" class="logo">
+          <LogoIcon />
+        </RouterLink>
         <nav>
           <RouterLink
             :to="link.url"
             v-for="(link, index) in links"
             :key="index"
-            v-motion
-            :delay="index * 100"
-            :initial="{
-              y: -100,
-              opacity: 0,
-            }"
-            :enter="{
-              y: 0,
-              opacity: 1,
-            }"
           >
-            <kinesis-container>
-              <kinesis-element :strength="10" type="depth">{{
-                link.title
-              }}</kinesis-element>
-            </kinesis-container>
+            {{ link.title }}
           </RouterLink>
         </nav>
 
         <div class="info">
           <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
           <div class="socials">
-            <kinesis-container>
-              <kinesis-element :strength="10" type="depth">
-                <Button variable="social">
-                  <TelegramIcon />
-                </Button>
-              </kinesis-element>
-            </kinesis-container>
-            <kinesis-container>
-              <kinesis-element :strength="10" type="depth">
-                <Button variable="social">
-                  <WhatsappIcon />
-                </Button>
-              </kinesis-element>
-            </kinesis-container>
+            <Button variable="social tg">
+              <TelegramIcon />
+            </Button>
+
+            <Button variable="social wa">
+              <WhatsappIcon />
+            </Button>
           </div>
 
           <Button variable="outline" :click="modal.handleOpenQuestionModal">
@@ -150,6 +115,8 @@ header {
       transition: var(--trs-300);
       width: 85px;
       height: 85px;
+      display: block;
+
       @media (max-width: $tab-sm) {
         width: 45px;
         height: 45px;
@@ -174,6 +141,7 @@ header {
         font-size: 15px;
         font-weight: 500;
         line-height: 15px;
+        letter-spacing: -1px;
         &:hover {
           color: var(--hover-color);
         }
@@ -183,6 +151,17 @@ header {
       display: flex;
       align-items: center;
       gap: 15px;
+      a {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 18px;
+        letter-spacing: -1px;
+        color: #45403d;
+        transition: var(--trs-300);
+        &:hover {
+          color: var(--hover-color);
+        }
+      }
       .socials {
         display: flex;
         gap: 5px;

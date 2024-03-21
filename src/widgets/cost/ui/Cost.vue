@@ -4,8 +4,11 @@ import { Button } from "@/shared/ui/button";
 import { CostSwiper } from "@/entities/cost-swiper";
 import { costList } from "../config";
 import costImg from "@/shared/assets/images/cost.jpg";
+import { useModalStore } from "@/entities/modal-store";
+import { WhatsappIcon, TelegramIcon } from "@/shared/icons";
 import { KinesisContainer, KinesisElement } from "vue-kinesis";
 const currentTab = reactive({ tab: 0 });
+const modal = useModalStore();
 const handleSetTab = (index) => {
   currentTab.tab = index;
 };
@@ -15,53 +18,14 @@ const handleSetTab = (index) => {
   <div class="cost">
     <div class="container">
       <div class="cost-inner">
-        <h3
-          v-motion
-          :initial="{
-            x: -100,
-            opacity: 0,
-          }"
-          :visible-once="{
-            x: 0,
-            opacity: 1,
-            transition: {
-              duration: 500,
-            },
-          }"
-        >
-          Стоимость кальяна в сутки
-        </h3>
+        <h3>Стоимость кальяна в сутки</h3>
+
         <div class="cost-about">
-          <div
-            class="cost-about-item"
-            v-motion
-            :delay="400"
-            :initial="{
-              opacity: 0,
-            }"
-            :visible-once="{
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
-          >
+          <div class="cost-about-item">
             <h5>цены указаны <span> без учета доставки </span></h5>
           </div>
-          <div
-            class="cost-about-item"
-            v-motion
-            :delay="400"
-            :initial="{
-              opacity: 0,
-            }"
-            :visible-once="{
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
-          >
+
+          <div class="cost-about-item">
             <h5>На каждую чашу кладем <span>по 8 кубиков угля</span></h5>
           </div>
         </div>
@@ -69,16 +33,6 @@ const handleSetTab = (index) => {
           <div class="left">
             <div class="cost-list">
               <div
-                v-motion
-                :initial="{
-                  x: -100,
-                  opacity: 0,
-                }"
-                :delay="400"
-                :visible-once="{
-                  x: 0,
-                  opacity: 1,
-                }"
                 class="cost-item"
                 :class="currentTab.tab === index ? 'active' : ''"
                 v-for="(cost, index) in costList"
@@ -109,34 +63,30 @@ const handleSetTab = (index) => {
                   комплектующие вы приобретаете самостоятельно, также из можно
                   заказать у нас.
                 </p>
-                <Button variable="outline"> стоимость комплектующих </Button>
+                <div class="contacts">
+                  <div class="socials">
+                    <Button variable="social tg">
+                      <TelegramIcon />
+                    </Button>
+                    <Button variable="social wa">
+                      <WhatsappIcon />
+                    </Button>
+                  </div>
+                  <Button
+                    variable="primary"
+                    :click="modal.handleOpenOrderModal"
+                  >
+                    заказать кальян
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-          <div
-            class="right"
-            v-motion
-            :delay="400"
-            :initial="{
-              scale: 0.8,
-              opacity: 0,
-            }"
-            :visible-once="{
-              scale: 1,
-              opacity: 1,
-              transition: {
-                duration: 800,
-              },
-            }"
-          >
-            <kinesis-container>
-              <kinesis-element :strength="20">
-                <CostSwiper
-                  :imgs="[costImg, costImg, costImg, costImg, costImg]"
-                  :currentTab="currentTab.tab"
-                />
-              </kinesis-element>
-            </kinesis-container>
+          <div class="right">
+            <CostSwiper
+              :imgs="[costImg, costImg, costImg, costImg, costImg]"
+              :currentTab="currentTab.tab"
+            />
           </div>
         </div>
       </div>
@@ -162,6 +112,7 @@ const handleSetTab = (index) => {
       position: relative;
       padding-left: 70px;
       text-transform: uppercase;
+      letter-spacing: -2px;
       @media (max-width: $tab) {
         font-size: 35px;
         padding-left: 40px;
@@ -188,9 +139,9 @@ const handleSetTab = (index) => {
     .cost-about {
       display: flex;
       margin-top: 40px;
-      gap: 20px;
       @media (max-width: $tab-sm) {
         flex-direction: column;
+        gap: 20px;
       }
       .cost-about-item {
         width: 50%;
@@ -380,6 +331,70 @@ const handleSetTab = (index) => {
             @media (max-width: $tab) {
               gap: 20px;
             }
+            @media (max-width: $tab-sm) {
+              max-width: 100%;
+            }
+            .contacts {
+              display: flex;
+              align-items: center;
+              gap: 37px;
+              padding-top: 50px;
+              padding-right: 30px;
+              @media (max-width: $desktop-md-2) {
+                flex-direction: column;
+                padding-bottom: 50px;
+              }
+              @media (max-width: $tab) {
+                z-index: 2;
+                position: relative;
+                flex-direction: row;
+                padding-left: 0;
+                padding-right: 0;
+              }
+              @media (max-width: $tab-sm) {
+                flex-wrap: wrap;
+                gap: 10px;
+                width: 100%;
+              }
+              & > button {
+                white-space: nowrap;
+                @media (max-width: $tab-sm) {
+                  width: 100%;
+                }
+              }
+              a {
+                font-weight: 400;
+                font-size: 24px;
+                line-height: 24px;
+                letter-spacing: -2px;
+                white-space: nowrap;
+                color: var(--text-color);
+                transition: var(--trs-300);
+                &:hover {
+                  color: var(--hover-color);
+                }
+                @media (max-width: $tab-sm) {
+                  font-weight: 500;
+                }
+              }
+              .socials {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                @media (max-width: $tab-sm) {
+                  justify-content: space-between;
+                  width: 100%;
+                }
+                button {
+                  width: 60px;
+                  height: 60px;
+                  @media (max-width: $tab-sm) {
+                    width: 50px;
+                    height: 50px;
+                  }
+                }
+              }
+            }
             h6 {
               font-weight: 400;
               font-size: 24px;
@@ -417,12 +432,6 @@ const handleSetTab = (index) => {
                 line-height: 20px;
                 color: var(--text-color);
               }
-            }
-            button {
-              font-weight: 500;
-              font-size: 14px;
-              line-height: 14px;
-              max-width: 250px;
             }
           }
         }

@@ -16,6 +16,8 @@ import hookahFaqImg from "@/shared/assets/images/hookah-white.jpg";
 import { ordersInfo, featureList, stampsList, howWorkList } from "../config";
 
 const costDescr = "<p>Стоимость <br/> без учета доставки</p>";
+const list =
+  "<ul><li>По Москве и области</li><li>время: 11:00 - 02:00</li><li>Доставка 1 - 1,5 часа</li></ul>";
 </script>
 
 <template>
@@ -26,11 +28,7 @@ const costDescr = "<p>Стоимость <br/> без учета доставк�
       :tabs="['на дом', 'в офис', 'на дачу', 'в лофт']"
       :cost="'от 1 900 ₽'"
       :costDescr="costDescr"
-      :list="[
-        'По Москве и области',
-        'время: 11:00 - 02:00',
-        'Доставка 1 - 1,5 часа',
-      ]"
+      :list="list"
       :imgs="[heroImg, heroImg, heroImg, heroImg]"
     />
     <About

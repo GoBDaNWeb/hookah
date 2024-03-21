@@ -22,7 +22,6 @@ export default {
       },
     });
     const onSubmit = (data) => {
-      console.log(data);
       props.handleClose();
       modal.handleOpenSuccessModal();
     };
@@ -52,10 +51,10 @@ export default {
         <h2>{{ title }}</h2>
         <div class="contacts">
           <div class="socials">
-            <Button variable="social">
+            <Button variable="social tg">
               <TelegramIcon />
             </Button>
-            <Button variable="social">
+            <Button variable="social wa">
               <WhatsappIcon />
             </Button>
           </div>
@@ -115,6 +114,9 @@ export default {
   padding: 40px;
   pointer-events: none;
   transition: var(--trs-600);
+  @media (max-width: $tab-sm) {
+    padding: 0;
+  }
   .modal-content {
     background: var(--bg-color);
     padding: 100px;
@@ -126,6 +128,15 @@ export default {
     transition-delay: 300ms;
     transition: var(--trs-600);
     max-width: 1200px;
+    @media (max-width: $tab) {
+      grid-template-columns: 1fr;
+      padding: 100px 20px;
+      gap: 80px;
+    }
+    @media (max-width: $tab-sm) {
+      height: 100%;
+      width: 100%;
+    }
     & > button {
       position: absolute;
       top: 30px;
@@ -133,6 +144,10 @@ export default {
       width: 35px;
       height: 35px;
       padding: 0;
+      @media (max-width: $tab) {
+        top: 20px;
+        right: 20px;
+      }
       svg {
         stroke: var(--text-color);
         width: 100%;
@@ -149,6 +164,12 @@ export default {
         position: relative;
         max-width: 370px;
         text-transform: uppercase;
+        letter-spacing: -1px;
+        @media (max-width: $tab) {
+          font-size: 35px;
+          line-height: 29px;
+          max-width: 100%;
+        }
         &:before {
           content: "";
           position: absolute;
@@ -158,6 +179,10 @@ export default {
           background: var(--text-color);
           left: 0;
           top: -55px;
+          @media (max-width: $tab) {
+            width: 30px;
+            height: 30px;
+          }
         }
       }
       .contacts {
@@ -174,6 +199,10 @@ export default {
           letter-spacing: -2px;
           white-space: nowrap;
           color: var(--text-color);
+          transition: var(--trs-300);
+          &:hover {
+            color: var(--hover-color);
+          }
           @media (max-width: $tab-sm) {
             font-weight: 500;
           }
@@ -213,6 +242,9 @@ export default {
         }
         button {
           width: 300px;
+          @media (max-width: $tab-sm) {
+            width: 100%;
+          }
         }
       }
     }

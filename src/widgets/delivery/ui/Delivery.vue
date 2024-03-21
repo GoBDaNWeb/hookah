@@ -10,98 +10,26 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
   <div class="delivery">
     <div class="container">
       <div class="delivery-inner">
-        <h3
-          v-motion
-          :initial="{
-            x: -100,
-            opacity: 0,
-          }"
-          :visible-once="{
-            x: 0,
-            opacity: 1,
-            transition: {
-              duration: 500,
-            },
-          }"
-        >
-          доставка и возврат
-        </h3>
+        <h3>доставка и возврат</h3>
+
         <div class="delivery-content">
           <div class="left">
-            <h5
-              v-motion
-              :delay="300"
-              :initial="{
-                x: -100,
-                opacity: 0,
-              }"
-              :visible-once="{
-                x: 0,
-                opacity: 1,
-                transition: {
-                  duration: 500,
-                },
-              }"
-            >
-              Стоимость доставки и возврата объединена в единый платеж
-            </h5>
+            <h5>Стоимость доставки и возврата объединена в единый платеж</h5>
+
             <div class="info">
-              <div
-                class="info-item"
-                v-motion
-                :delay="150"
-                :initial="{
-                  x: -100,
-                  opacity: 0,
-                }"
-                :visible-once="{
-                  x: 0,
-                  opacity: 1,
-                  transition: {
-                    duration: 500,
-                  },
-                }"
-              >
+              <div class="info-item">
                 <span class="label">В пределах МКАД</span>
                 <span class="line"></span>
                 <span class="value">500 ₽</span>
               </div>
-              <div
-                class="info-item"
-                v-motion
-                :delay="250"
-                :initial="{
-                  x: -100,
-                  opacity: 0,
-                }"
-                :visible-once="{
-                  x: 0,
-                  opacity: 1,
-                  transition: {
-                    duration: 500,
-                  },
-                }"
-              >
+
+              <div class="info-item">
                 <span class="label">до 5 км от МКАД</span>
                 <span class="line"></span>
                 <span class="value">800 ₽</span>
               </div>
-              <div
-                class="info-item"
-                v-motion
-                :delay="350"
-                :initial="{
-                  x: -100,
-                  opacity: 0,
-                }"
-                :visible-once="{
-                  x: 0,
-                  opacity: 1,
-                  transition: {
-                    duration: 500,
-                  },
-                }"
-              >
+
+              <div class="info-item">
                 <span class="label">от 5 км от МКАД</span>
                 <span class="line"></span>
                 <span class="value">Тариф Яндекс.Go экспресс</span>
@@ -121,45 +49,20 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
             <div class="contacts-info">
               <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
               <div class="socials">
-                <kinesis-container>
-                  <kinesis-element :strength="10" type="depth">
-                    <Button variable="social">
-                      <WhatsappIcon />
-                    </Button>
-                  </kinesis-element>
-                </kinesis-container>
-                <kinesis-container>
-                  <kinesis-element :strength="10" type="depth">
-                    <Button variable="social">
-                      <TelegramIcon />
-                    </Button>
-                  </kinesis-element>
-                </kinesis-container>
+                <Button variable="social wa">
+                  <WhatsappIcon />
+                </Button>
+
+                <Button variable="social tg">
+                  <TelegramIcon />
+                </Button>
               </div>
+
               <Button variable="primary"> заказать кальян </Button>
             </div>
           </div>
-          <div
-            class="right"
-            v-motion
-            :delay="150"
-            :initial="{
-              scale: 0.8,
-              opacity: 0,
-            }"
-            :visible-once="{
-              scale: 1,
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
-          >
-            <KinesisContainer>
-              <kinesis-element :strength="10">
-                <Map />
-              </kinesis-element>
-            </KinesisContainer>
+          <div class="right">
+            <Map />
           </div>
         </div>
       </div>
@@ -312,6 +215,10 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
             line-height: 24px;
             color: var(--text-color);
             letter-spacing: -2px;
+            transition: var(--trs-300);
+            &:hover {
+              color: var(--hover-color);
+            }
           }
           .socials {
             display: flex;
@@ -393,7 +300,9 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
       }
       .right {
         width: 50%;
-
+        @media (max-width: $tab) {
+          width: 100%;
+        }
         & > div {
           height: calc(20vw * 2);
           max-height: 615px;
@@ -416,6 +325,9 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
           height: 100%;
           background-color: var(--bg-color);
           filter: grayscale(1);
+          @media (max-width: $tab) {
+            height: calc(20vw * 4) !important;
+          }
         }
       }
     }

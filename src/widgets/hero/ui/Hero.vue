@@ -1,7 +1,6 @@
 <script setup>
 import { ref, reactive } from "vue";
-import { TelegramIcon } from "@/shared/icons";
-import { WhatsappIcon } from "@/shared/icons";
+import { WhatsappIcon, TelegramIcon } from "@/shared/icons";
 import { Button } from "@/shared/ui/button";
 import { useModalStore } from "@/entities/modal-store";
 import { HeroSwiper } from "@/entities/hero-swiper";
@@ -21,20 +20,10 @@ const handleSetTab = (index) => {
     <div class="container">
       <div class="hero-inner">
         <div class="left">
-          <h1
-            v-motion
-            :initial="{
-              x: -100,
-              opacity: 0,
-            }"
-            :enter="{
-              x: 0,
-              opacity: 1,
-            }"
-            :class="isMain ? 'main' : ''"
-          >
+          <h1 :class="isMain ? 'main' : ''">
             {{ title }}
           </h1>
+
           <div class="info">
             <div class="info-left">
               <div class="cost">
@@ -43,44 +32,17 @@ const handleSetTab = (index) => {
                 <div v-html="costDescr"></div>
               </div>
             </div>
-            <div class="info-right">
-              <ul>
-                <li
-                  v-for="(item, index) in list"
-                  :key="item"
-                  v-motion
-                  :delay="index * 150"
-                  :initial="{
-                    x: -50,
-                    opacity: 0,
-                  }"
-                  :visible-once="{
-                    x: 0,
-                    opacity: 1,
-                  }"
-                >
-                  {{ item }}
-                </li>
-              </ul>
-            </div>
+            <div class="info-right" v-html="list"></div>
           </div>
           <div class="contacts">
             <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
             <div class="socials">
-              <kinesis-container>
-                <kinesis-element :strength="10" type="depth">
-                  <Button variable="social">
-                    <TelegramIcon />
-                  </Button>
-                </kinesis-element>
-              </kinesis-container>
-              <kinesis-container>
-                <kinesis-element :strength="10" type="depth">
-                  <Button variable="social">
-                    <WhatsappIcon />
-                  </Button>
-                </kinesis-element>
-              </kinesis-container>
+              <Button variable="social tg">
+                <TelegramIcon />
+              </Button>
+              <Button variable="social wa">
+                <WhatsappIcon />
+              </Button>
             </div>
             <Button variable="primary" :click="modal.handleOpenOrderModal">
               заказать кальян
@@ -90,20 +52,7 @@ const handleSetTab = (index) => {
         <div class="right">
           <div class="top">
             <ul v-if="tabs">
-              <li
-                v-for="(tab, index) in tabs"
-                :key="tab"
-                v-motion
-                :delay="index * 150"
-                :initial="{
-                  y: -50,
-                  opacity: 0,
-                }"
-                :visible-once="{
-                  y: 0,
-                  opacity: 1,
-                }"
-              >
+              <li v-for="(tab, index) in tabs" :key="tab">
                 <button
                   :class="index === currentTab.tab ? 'active' : ''"
                   @click="handleSetTab(index)"
@@ -113,38 +62,86 @@ const handleSetTab = (index) => {
               </li>
             </ul>
           </div>
-          <kinesis-container>
+          <div class="images">
+            <HeroSwiper v-if="tabs" :imgs="imgs" :currentTab="currentTab.tab" />
             <div
-              class="images"
-              v-motion
-              :delay="300"
-              :initial="{
-                opacity: 0,
-              }"
-              :enter="{
-                opacity: 1,
-              }"
+              v-else
+              class="image-wrapper"
+              v-for="(img, index) in imgs"
+              :key="index"
             >
-              <kinesis-element v-if="tabs" :strength="20">
-                <HeroSwiper :imgs="imgs" :currentTab="currentTab.tab" />
-              </kinesis-element>
-              <kinesis-element v-else :strength="20">
-                <div
-                  class="image-wrapper"
-                  v-for="(img, index) in imgs"
-                  :key="index"
-                >
-                  <img :src="img" alt="photo" />
-                </div>
-              </kinesis-element>
+              <img :src="img" alt="photo" />
             </div>
-          </kinesis-container>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
+<style lang="scss">
+@import "@/shared/styles/vars";
+
+.hero {
+  .hero-inner {
+    .info-right {
+      width: 50%;
+      padding-left: 22px;
+      @media (max-width: $tab-sm) {
+        width: 100%;
+        padding-left: 0;
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        @media (max-width: $tab-sm) {
+          gap: 10px;
+        }
+        li {
+          position: relative;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 20px;
+          letter-spacing: -7%;
+          padding-left: 35px;
+          color: var(--text-color);
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          @media (max-width: $tab-sm) {
+            font-size: 18px;
+            line-height: 19px;
+            padding-left: 30px;
+          }
+          span {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 15px;
+            color: #45403d;
+            letter-spacing: -0.5px;
+          }
+          &:before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--text-color);
+            border-radius: 999px;
+            left: 0;
+            top: 2px;
+            margin: auto;
+            @media (max-width: $tab-sm) {
+              width: 12px;
+              height: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</style>
 <style lang="scss" scoped>
 @import "@/shared/styles/vars";
 .hero {
@@ -198,6 +195,7 @@ const handleSetTab = (index) => {
       h1.main {
         font-size: 130px;
         line-height: 110.5px;
+        letter-spacing: -7px;
         @media (max-width: $desktop-md-2) {
           font-size: 100px;
           line-height: 80px;
@@ -218,7 +216,7 @@ const handleSetTab = (index) => {
         color: var(--text-color);
         font-size: 80px;
         line-height: 72px;
-        letter-spacing: -7%;
+        letter-spacing: -4px;
         text-transform: uppercase;
         padding: 0 30px 50px;
         @media (max-width: $desktop-sm) {
@@ -409,12 +407,16 @@ const handleSetTab = (index) => {
           }
         }
         a {
-          font-weight: 400;
+          font-weight: 600;
           font-size: 24px;
           line-height: 24px;
           letter-spacing: -2px;
           white-space: nowrap;
           color: var(--text-color);
+          transition: var(--trs-300);
+          &:hover {
+            color: var(--hover-color);
+          }
           @media (max-width: $tab-sm) {
             font-weight: 500;
           }
@@ -463,6 +465,7 @@ const handleSetTab = (index) => {
               color: var(--hover-color);
               &:before {
                 background: var(--hover-color);
+                border-color: rgba(0, 0, 0, 0);
               }
             }
             button {
@@ -470,7 +473,7 @@ const handleSetTab = (index) => {
               padding-left: 36px;
               font-weight: 400;
               font-size: 24px;
-              letter-spacing: -2px;
+              letter-spacing: -1px;
               color: var(--text-color);
               text-transform: uppercase;
               white-space: nowrap;
@@ -489,7 +492,7 @@ const handleSetTab = (index) => {
                 width: 20px;
                 height: 20px;
                 border-radius: 999px;
-                background: var(--text-color);
+                border: 1px solid var(--text-color);
                 left: 0;
                 top: 0;
                 bottom: 0;

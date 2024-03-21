@@ -1,5 +1,6 @@
 <script setup>
 import { StampsSwiper } from "@/entities/stamps-swiper";
+import { PartnersSwiper } from "@/entities/partners-swiper";
 import { partnersList } from "../config";
 </script>
 
@@ -8,7 +9,7 @@ import { partnersList } from "../config";
     <div class="container">
       <div class="partners-inner">
         <h3>нам доверяют</h3>
-        <StampsSwiper :stampsList="partnersList" />
+        <PartnersSwiper :partnerList="partnersList" />
       </div>
     </div>
   </div>

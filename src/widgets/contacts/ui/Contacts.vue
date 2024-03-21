@@ -61,7 +61,15 @@ export default {
         <div class="left">
           <div class="top" v-if="tabs">
             <ul>
-              <li
+              <li v-for="(tab, index) in tabs" :key="tab">
+                <button
+                  :class="index === currentTab.tab ? 'active' : ''"
+                  @click="handleSetTab(index)"
+                >
+                  {{ tab }}
+                </button>
+              </li>
+              <!-- <li
                 v-for="(tab, index) in tabs"
                 :key="tab"
                 v-motion
@@ -81,10 +89,13 @@ export default {
                 >
                   {{ tab }}
                 </button>
-              </li>
+              </li> -->
             </ul>
           </div>
-          <span
+          <span v-if="badge" class="badge">
+            {{ badge }}
+          </span>
+          <!-- <span
             v-if="badge"
             class="badge"
             v-motion
@@ -99,11 +110,15 @@ export default {
                 duration: 500,
               },
             }"
-            >{{ badge }}</span
           >
+            {{ badge }}
+          </span> -->
 
           <div class="center">
-            <h3
+            <h3>
+              {{ title }}
+            </h3>
+            <!-- <h3
               v-motion
               :initial="{
                 x: -100,
@@ -118,8 +133,11 @@ export default {
               }"
             >
               {{ title }}
-            </h3>
-            <h5
+            </h3> -->
+            <h5 v-if="subTitle">
+              {{ subTitle }}
+            </h5>
+            <!-- <h5
               v-if="subTitle"
               v-motion
               :delay="200"
@@ -136,9 +154,12 @@ export default {
               }"
             >
               {{ subTitle }}
-            </h5>
+            </h5> -->
             <ul v-if="list">
-              <li
+              <li v-for="item in list" :key="item">
+                {{ item }}
+              </li>
+              <!-- <li
                 v-for="(item, index) in list"
                 :key="item"
                 v-motion
@@ -153,7 +174,7 @@ export default {
                 }"
               >
                 {{ item }}
-              </li>
+              </li> -->
             </ul>
             <h5 class="sub-title-form" v-if="subTitleForm">
               {{ subTitleForm }}
@@ -184,18 +205,33 @@ export default {
           </div>
           <div class="bottom">
             <div class="socials">
-              <Button variable="social">
+              <Button variable="social wa">
                 <WhatsappIcon />
               </Button>
 
-              <Button variable="social">
+              <Button variable="social tg ">
                 <TelegramIcon />
               </Button>
             </div>
             <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
           </div>
         </div>
-        <div
+        <div class="right">
+          <ContactsSwiper
+            v-if="tabs"
+            :imgs="imgs"
+            :currentTab="currentTab.tab"
+          />
+          <div v-else class="image-wrapper">
+            <img v-if="img" :src="img" alt="photo" />
+            <img
+              v-else
+              src="@/shared/assets/images/gallery/5.jpg"
+              alt="photo"
+            />
+          </div>
+        </div>
+        <!-- <div
           class="right"
           v-motion
           :delay="300"
@@ -219,7 +255,7 @@ export default {
               alt="photo"
             />
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="contacts-info">
         <div class="left">
@@ -227,7 +263,7 @@ export default {
             <li>© 2024</li>
             <li>кальяннадом.рф</li>
             <li>Все права защищены</li>
-            <li>Политика конфиденциальности</li>
+            <li><a href="#">Политика конфиденциальности</a></li>
           </ul>
         </div>
         <div class="right">
@@ -237,13 +273,13 @@ export default {
               <span>11:00 - 02:00</span>
             </li>
             <li>
-              <a href="https://paradigma-digital.ru/" target="_blank"
-                ><ParadigmaIcon />
-                <span
-                  >Разработка сайта – <br />
-                  Paradigma</span
-                ></a
-              >
+              <a href="https://paradigma-digital.ru/" target="_blank">
+                <ParadigmaIcon />
+                <span>
+                  Разработка сайта – <br />
+                  Paradigma
+                </span>
+              </a>
             </li>
           </ul>
         </div>
@@ -449,6 +485,10 @@ export default {
             }
             a {
               text-decoration: underline;
+              transition: var(--trs-300);
+              &:hover {
+                color: var(--hover-color);
+              }
             }
           }
         }
@@ -469,6 +509,10 @@ export default {
           line-height: 30px;
           color: var(--text-color);
           letter-spacing: -2px;
+          transition: var(--trs-300);
+          &:hover {
+            color: var(--hover-color);
+          }
           @media (max-width: $tab) {
             font-size: 24px;
             line-height: 24px;
@@ -561,6 +605,12 @@ export default {
               padding-left: 0;
             }
           }
+          a {
+            transition: var(--trs-300);
+            &:hover {
+              color: var(--hover-color);
+            }
+          }
         }
       }
     }
@@ -610,7 +660,19 @@ export default {
             display: flex;
             gap: 13px;
             align-items: center;
+            transition: var(--trs-300);
+            svg {
+              fill: #45403d;
+              transition: var(--trs-300);
+            }
+            &:hover {
+              color: var(--hover-color);
+              svg {
+                fill: var(--hover-color);
+              }
+            }
           }
+
           &:first-child {
             display: flex;
             flex-direction: column;

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle"]);
+defineProps(["ordersInfo", "title", "img", "isGrid", "listTitle", "orderText"]);
 import { KinesisContainer, KinesisElement } from "vue-kinesis";
 </script>
 
@@ -89,106 +89,38 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
         <div class="about-inner">
           <div class="left">
             <div class="text">
-              <span
-                v-motion
-                :delay="100"
-                :initial="{
-                  x: -50,
-                  opacity: 0,
-                }"
-                :visible-once="{
-                  x: 0,
-                  opacity: 1,
-                  transition: {
-                    duration: 500,
-                  },
-                }"
-              >
+              <span>
                 {{ title }}
               </span>
-              <p
-                v-motion
-                :delay="300"
-                :initial="{
-                  x: -50,
-                  opacity: 0,
-                }"
-                :visible-once="{
-                  x: 0,
-                  opacity: 1,
-                  transition: {
-                    duration: 500,
-                  },
-                }"
-              >
+
+              <p>
                 Alpha hookah — лучший кальян 2021 по версии John Calliano Awards
                 2021, 2022 гг.
               </p>
             </div>
-            <div
-              class="image-wrapper"
-              v-motion
-              :initial="{
-                scale: 0.8,
-                opacity: 0,
-              }"
-              :visible-once="{
-                scale: 1,
-                opacity: 1,
-                transition: {
-                  duration: 800,
-                },
-              }"
-            >
+            <div class="image-wrapper">
               <img :src="img" alt="hookah" />
             </div>
+
             <h3>{{ listTitle }}</h3>
           </div>
           <div class="right">
-            <h3
-              v-motion
-              :delay="100"
-              :initial="{
-                x: 50,
-                opacity: 0,
-              }"
-              :visible-once="{
-                x: 0,
-                opacity: 1,
-                transition: {
-                  duration: 500,
-                },
-              }"
-            >
+            <h3>
               {{ listTitle }}
             </h3>
+
             <div class="order-list" :class="isGrid ? 'grid' : ''">
               <div
                 class="order-item"
-                v-for="(order, index) in ordersInfo"
+                v-for="order in ordersInfo"
                 :key="order.id"
-                v-motion
-                :delay="index * 150"
-                :initial="{
-                  x: -100,
-                  opacity: 0,
-                }"
-                :visible-once="{
-                  x: 0,
-                  opacity: 1,
-                  transition: {
-                    duration: 400,
-                  },
-                }"
               >
                 <div class="image-wrapper">
                   <img :src="order.img" alt="" />
                 </div>
                 <div class="text">
                   <span>{{ order.title }}</span>
-                  <p>
-                    {{ order.text }}
-                  </p>
+                  <div class="text-container" v-html="order.text"></div>
                 </div>
               </div>
             </div>
@@ -199,6 +131,45 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
   </div>
 </template>
 
+<style lang="scss">
+@import "@/shared/styles/vars";
+.about {
+  .text-container {
+    p {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20.8px;
+      color: var(--text-color);
+      letter-spacing: -1px;
+      @media (max-width: $tab-sm) {
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+    ul {
+      margin-top: 10px;
+      li {
+        display: flex;
+        gap: 2px;
+        flex-wrap: wrap;
+        span {
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 20px;
+          color: var(--text-color);
+          white-space: nowrap;
+        }
+        p {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 20px;
+          color: var(--text-color);
+        }
+      }
+    }
+  }
+}
+</style>
 <style lang="scss" scoped>
 @import "@/shared/styles/vars";
 
@@ -214,7 +185,7 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
     z-index: 2;
     @media (max-width: $tab) {
       bottom: auto;
-      top: 18%;
+      top: 20%;
     }
     @media (max-width: $pre-mob) {
       width: 168px;
@@ -229,24 +200,40 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
         height: 66px;
         bottom: 106px;
         left: 210px;
+        @media (max-width: $tab) {
+          width: 53px;
+          height: 46px;
+        }
       }
       &:nth-child(2) {
         width: 108px;
         height: 93px;
         bottom: 25px;
         left: 90px;
+        @media (max-width: $tab) {
+          width: 88px;
+          height: 73px;
+        }
       }
       &:nth-child(3) {
         width: 73px;
         height: 82px;
         bottom: 130px;
         left: 123px;
+        @media (max-width: $tab) {
+          width: 53px;
+          height: 62px;
+        }
       }
       &:nth-child(4) {
         width: 102px;
         height: 194px;
         bottom: 0;
         left: -20px;
+        @media (max-width: $tab) {
+          width: 82px;
+          height: 174px;
+        }
       }
     }
     img {
@@ -336,11 +323,26 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
           font-size: 16px;
           line-height: 20.8px;
           color: var(--text-color);
+          letter-spacing: -1px;
           @media (max-width: $tab-sm) {
             font-size: 16px;
             line-height: 20px;
           }
         }
+        .text-container {
+          p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20.8px;
+            color: var(--text-color);
+            letter-spacing: -1px;
+            @media (max-width: $tab-sm) {
+              font-size: 16px;
+              line-height: 20px;
+            }
+          }
+        }
+
         &:before {
           content: "";
           position: absolute;
@@ -438,6 +440,7 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
           align-items: center;
           @media (max-width: $tab-sm) {
             gap: 23px;
+            align-items: flex-start;
           }
           .image-wrapper {
             min-width: 90px;

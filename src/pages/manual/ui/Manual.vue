@@ -25,45 +25,22 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
           :congrats="manual.congrats"
           :option="manual.option"
           :list="manual.list"
-          :imgs="manual.imgs"
+          :img="manual.img"
         />
         <div class="info">
-          <h3
-            v-motion
-            :initial="{
-              x: -100,
-              opacity: 0,
-            }"
-            :visible-once="{
-              x: 0,
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
-          >
-            Что-то не получается?
-          </h3>
+          <h3>Что-то не получается?</h3>
           <span
             >Свяжитесь с нами любым удобным способом, мы поможем по телефону или
             по видеосвязи</span
           >
           <div class="contacts">
             <div class="socials">
-              <kinesis-container>
-                <kinesis-element :strength="10" type="depth">
-                  <Button variable="social">
-                    <WhatsappIcon />
-                  </Button>
-                </kinesis-element>
-              </kinesis-container>
-              <kinesis-container>
-                <kinesis-element :strength="10" type="depth">
-                  <Button variable="social">
-                    <TelegramIcon />
-                  </Button>
-                </kinesis-element>
-              </kinesis-container>
+              <Button variable="social wa">
+                <WhatsappIcon />
+              </Button>
+              <Button variable="social tg">
+                <TelegramIcon />
+              </Button>
             </div>
             <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
           </div>
@@ -159,6 +136,10 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
           letter-spacing: -2px;
           white-space: nowrap;
           color: var(--text-color);
+          transition: var(--trs-300);
+          &:hover {
+            color: var(--hover-color);
+          }
         }
         .socials {
           display: flex;

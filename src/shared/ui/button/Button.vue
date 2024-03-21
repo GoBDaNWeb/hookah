@@ -8,7 +8,7 @@ const props = defineProps(["title", "variable", "click", "type"]);
   </button>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 button {
   border-radius: 99px;
   height: 35px;
@@ -36,6 +36,21 @@ button.social {
   align-items: center;
   justify-content: center;
   padding: 0;
+}
+button.social.wa {
+  background: #4dbd66;
+  transition: var(--trs-300);
+  &:hover {
+    background: #309b48;
+  }
+}
+button.social.tg {
+  background: #44b5c4;
+  transition: var(--trs-300);
+
+  &:hover {
+    background: #24a4b6;
+  }
 }
 button.primary:hover {
   background: var(--hover-color);

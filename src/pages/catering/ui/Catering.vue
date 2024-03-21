@@ -17,6 +17,8 @@ import hookahFaqImg from "@/shared/assets/images/hookah-white2.jpg";
 import { ordersInfo, featureList, stampsList } from "../config";
 
 const costDescr = "<p>Заказ кальяна <br/> на мероприятие</p>";
+const list =
+  "<ul><li>По Москве и области</li><li>Работаем с физ лицами и организациями</li></ul>";
 </script>
 
 <template>
@@ -26,7 +28,7 @@ const costDescr = "<p>Заказ кальяна <br/> на мероприяти�
       :isMain="false"
       :cost="'от 3 600 ₽ '"
       :costDescr="costDescr"
-      :list="['По Москве и области', 'Работаем с физ лицами и организациями']"
+      :list="list"
       :imgs="[heroImg]"
     />
     <About

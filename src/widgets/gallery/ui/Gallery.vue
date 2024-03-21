@@ -61,7 +61,8 @@ const rightGallery = [
   <div class="gallery">
     <div class="container">
       <div class="gallery-inner">
-        <h3
+        <h3>кальяны в деле</h3>
+        <!-- <h3
           v-motion
           :initial="{
             x: -100,
@@ -76,10 +77,22 @@ const rightGallery = [
           }"
         >
           кальяны в деле
-        </h3>
+        </h3> -->
         <Fancybox>
           <div class="gallery-content">
             <div class="left">
+              <a
+                v-for="img in leftGallery"
+                :key="img.id"
+                data-fancybox="gallery"
+                :href="img.img"
+              >
+                <div class="image-wrapper">
+                  <img :src="img.img" alt="" />
+                </div>
+              </a>
+            </div>
+            <!-- <div class="left">
               <a
                 v-for="img in leftGallery"
                 :key="img.id"
@@ -107,9 +120,21 @@ const rightGallery = [
                   </kinesis-element>
                 </kinesis-container>
               </a>
-            </div>
+            </div> -->
 
             <div class="right">
+              <a
+                v-for="img in rightGallery"
+                :key="img.id"
+                data-fancybox="gallery"
+                :href="img.img"
+              >
+                <div class="image-wrapper">
+                  <img :src="img.img" alt="" />
+                </div>
+              </a>
+            </div>
+            <!-- <div class="right">
               <a
                 v-for="img in rightGallery"
                 :key="img.id"
@@ -137,7 +162,7 @@ const rightGallery = [
                   </kinesis-element>
                 </kinesis-container>
               </a>
-            </div>
+            </div> -->
           </div>
         </Fancybox>
       </div>

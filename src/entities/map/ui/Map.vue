@@ -39,6 +39,8 @@ ymaps.ready(init);
 </template>
 
 <style lang="scss" scoped>
+@import "@/shared/styles/vars";
+
 .map {
   width: 100%;
   height: 100%;

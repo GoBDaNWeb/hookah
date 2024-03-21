@@ -33,8 +33,8 @@ defineProps(["imgs"]);
       :modules="modules"
       class="stamp-swiper"
     >
-      <SwiperSlide v-for="(img, index) in imgs" :key="index"
-        ><div class="image-wrapper">
+      <SwiperSlide v-for="(img, index) in imgs" :key="index">
+        <div class="image-wrapper">
           <img :src="img" alt="photo" />
         </div>
       </SwiperSlide>

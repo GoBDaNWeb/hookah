@@ -13,6 +13,8 @@ import { featureList, stampsList } from "../config";
 
 const costDescr =
   "<p> Стоимость по тарифу <br/> перевозчика — <br /> Яндекс достависта <br />  и других сервисов доставки </p>";
+const list =
+  "<ul><li>По Москве и области</li><li>время: 11:00 - 02:00</li><li>Доставка 1 - 1,5 часа<span>доступна экспресс доставка</span></li></ul>";
 </script>
 
 <template>
@@ -22,11 +24,7 @@ const costDescr =
       :isMain="false"
       :cost="''"
       :costDescr="costDescr"
-      :list="[
-        'По Москве и области',
-        'время: 11:00 - 02:00',
-        'Доставка 1 - 1,5 часа',
-      ]"
+      :list="list"
       :imgs="[heroImg]"
     />
 

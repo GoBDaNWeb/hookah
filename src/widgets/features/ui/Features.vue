@@ -9,25 +9,11 @@ defineProps(["featureList", "isWhite"]);
         <div
           class="feature"
           :class="isWhite ? 'white' : ''"
-          v-for="(feature, index) in featureList"
+          v-for="feature in featureList"
           :key="feature.id"
-          v-motion
-          :delay="index * 150"
-          :initial="{
-            scale: 0.8,
-            opacity: 0,
-          }"
-          :visible-once="{
-            scale: 1,
-            opacity: 1,
-            transition: {
-              duration: 500,
-            },
-          }"
         >
           <div class="image-wrapper">
             <img :src="feature.img" alt="" />
-            <span>{{ feature.id }}</span>
           </div>
           <span>{{ feature.title }}</span>
           <p>{{ feature.text }}</p>
@@ -51,6 +37,12 @@ defineProps(["featureList", "isWhite"]);
     overflow: auto;
     padding-left: 35px;
     border-bottom: 1px solid var(--text-color);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    height: 100%;
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
     @media (max-width: $desktop-md-2) {
       overflow: auto;
     }

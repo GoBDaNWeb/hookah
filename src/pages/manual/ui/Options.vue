@@ -2,39 +2,9 @@
   <div class="options">
     <div class="container">
       <div class="options-inner">
-        <h3
-          v-motion
-          :initial="{
-            x: -100,
-            opacity: 0,
-          }"
-          :visible-once="{
-            x: 0,
-            opacity: 1,
-            transition: {
-              duration: 500,
-            },
-          }"
-        >
-          дополнительные опции
-        </h3>
+        <h3>дополнительные опции</h3>
         <div class="options-list">
-          <div
-            class="option-item"
-            v-motion
-            :delay="150"
-            :initial="{
-              scale: 0.8,
-              opacity: 0,
-            }"
-            :visible-once="{
-              scale: 1,
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
-          >
+          <div class="option-item">
             <div class="image-wrapper">
               <img src="@/shared/assets/images/options/1.jpg" alt="photo" />
             </div>
@@ -42,22 +12,7 @@
             <span>700 ₽ </span>
             <p>Вы можете продлить аренду кальяна, стоимость продления 700 ₽</p>
           </div>
-          <div
-            class="option-item"
-            v-motion
-            :delay="250"
-            :initial="{
-              scale: 0.8,
-              opacity: 0,
-            }"
-            :visible-once="{
-              scale: 1,
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
-          >
+          <div class="option-item">
             <div class="image-wrapper">
               <img src="@/shared/assets/images/options/2.jpg" alt="photo" />
             </div>
@@ -68,22 +23,7 @@
               от 600 ₽ (без учета доставки)
             </p>
           </div>
-          <div
-            class="option-item"
-            v-motion
-            :delay="350"
-            :initial="{
-              scale: 0.8,
-              opacity: 0,
-            }"
-            :visible-once="{
-              scale: 1,
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
-          >
+          <div class="option-item">
             <div class="image-wrapper">
               <img src="@/shared/assets/images/options/3.jpg" alt="photo" />
             </div>
@@ -227,8 +167,8 @@
         ul {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          row-gap: 18px;
-          margin-top: 30px;
+          row-gap: 11px;
+          margin-top: 15px;
           li {
             font-weight: 400;
             font-size: 16px;

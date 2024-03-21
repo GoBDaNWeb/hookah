@@ -13,7 +13,7 @@ const modules = ref([Navigation]);
 const prev = ref(null);
 const next = ref(null);
 
-defineProps(["stampsList"]);
+defineProps(["partnerList"]);
 </script>
 
 <template>
@@ -37,13 +37,12 @@ defineProps(["stampsList"]);
         1400: { slidesPerView: 6, spaceBetween: 15 },
       }"
       :modules="modules"
-      class="stamp-swiper"
+      class="partner-swiper"
     >
-      <SwiperSlide v-for="stamp in stampsList" :key="stamp.id">
+      <SwiperSlide v-for="partner in partnerList" :key="partner.id">
         <div class="image-wrapper">
-          <img :src="stamp.img" alt="" />
+          <img :src="partner.img" alt="" />
         </div>
-        <span>{{ stamp.title }}</span>
       </SwiperSlide>
     </Swiper>
   </div>
@@ -61,7 +60,7 @@ defineProps(["stampsList"]);
     justify-content: flex-end;
     gap: 30px;
   }
-  .stamp-swiper {
+  .partner-swiper {
     width: 100%;
     .image-wrapper {
       height: 170px;
@@ -69,7 +68,7 @@ defineProps(["stampsList"]);
       display: flex;
       align-items: center;
       justify-content: center;
-      border-bottom: 1px solid var(--text-color);
+      border-left: 1px solid var(--text-color);
       overflow: hidden;
       @media (max-width: $mob) {
         height: 118px;

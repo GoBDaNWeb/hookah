@@ -1,4 +1,7 @@
 <script setup>
+import { watch, ref } from "vue";
+import { useRoute } from "vue-router";
+
 import { LogoIcon, CloseIcon } from "@/shared/icons";
 import { useMenuStore } from "@/entities/menu-store";
 import { useModalStore } from "@/entities/modal-store";
@@ -9,14 +12,23 @@ import { WhatsappIcon } from "@/shared/icons";
 import { Button } from "@/shared/ui/button";
 const menu = useMenuStore();
 const modal = useModalStore();
+const router = useRoute();
+
+watch(router, () => {
+  menu.isActive ? menu.handleOpenMenu() : null;
+});
 </script>
 
 <template>
-  <div :class="menu.isActive ? 'active' : ''" class="mobile-menu">
-    <button class="close-btn" @click.prevent="menu.handleOpenMenu">
+  <div
+    @click="menu.handleOpenMenu"
+    :class="menu.isActive ? 'active' : ''"
+    class="mobile-menu"
+  >
+    <button class="close-btn" @click="menu.handleOpenMenu">
       <CloseIcon />
     </button>
-    <div class="mobile-menu__content">
+    <div @click.stop class="mobile-menu__content">
       <div class="top">
         <RouterLink to="/">
           <LogoIcon />
@@ -35,10 +47,10 @@ const modal = useModalStore();
       <div class="bottom">
         <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
         <div class="socials">
-          <Button variable="social">
+          <Button variable="social tg">
             <TelegramIcon />
           </Button>
-          <Button variable="social">
+          <Button variable="social wa">
             <WhatsappIcon />
           </Button>
         </div>
@@ -79,6 +91,9 @@ const modal = useModalStore();
     top: 18px;
     right: 21px;
     opacity: 0;
+    svg {
+      stroke: var(--white-color);
+    }
   }
   .mobile-menu__content {
     background: var(--bg-color);
