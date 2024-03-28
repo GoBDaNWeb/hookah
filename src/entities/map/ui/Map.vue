@@ -1,10 +1,10 @@
 <script setup>
-let center = [55.84742656888428, 37.478171499999995];
+let center = [55.738819, 37.540686];
 
 function init() {
   let map = new ymaps.Map("map", {
     center: center,
-    zoom: 17,
+    zoom: 15,
   });
 
   // let placemark = new ymaps.Placemark(
