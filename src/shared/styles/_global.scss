@@ -26,8 +26,19 @@ body {
 .ymaps-2-1-79-gototaxi {
   display: none !important;
 }
+.input::placeholder {
+  opacity: 1;
+
+}
 .input:placeholder-shown {
   text-transform: uppercase;
+  color: rgba(69, 64, 61, .30);
+  opacity: 1;
+
+  @media(max-width: $tab) {
+    font-size: 16px;
+    line-height: 16px;
+  }
 }
 .input {
   outline: none;
@@ -40,4 +51,9 @@ body {
   padding-bottom: 20px;
   border-bottom: 1px solid var(--text-color);
   width: 100%;
+  @media (max-width: $tab) {
+    font-size: 16px;
+    line-height: 16px;
+    padding-bottom: 15px;
+  }
 }

@@ -480,7 +480,8 @@ const handleSetTab = (index) => {
               transition: var(--trs-300);
               @media (max-width: $desktop-sm) {
                 font-size: 22px;
-                padding-left: 25px;
+                padding-left: 20px;
+                letter-spacing:-0.5px;
               }
               @media (max-width: $tab-sm) {
                 font-size: 14px;

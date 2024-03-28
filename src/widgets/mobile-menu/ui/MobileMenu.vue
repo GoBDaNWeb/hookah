@@ -91,6 +91,7 @@ watch(router, () => {
     top: 18px;
     right: 21px;
     opacity: 0;
+    pointer-events: none;
     svg {
       stroke: var(--white-color);
     }
@@ -144,8 +145,8 @@ watch(router, () => {
       border-top: 1px solid var(--text-color);
       a {
         font-weight: 400;
-        font-size: 16px;
-        line-height: 16px;
+        font-size: 18px;
+        line-height: 18px;
         color: var(--text-color);
         font-family: "Golos", sans-serif;
       }

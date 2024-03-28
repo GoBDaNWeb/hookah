@@ -50,6 +50,9 @@ watch(
 .contacts-swiper {
   width: 100%;
   margin-top: 20px;
+  @media(max-width: $tab) {
+    margin-top: 0;
+  }
   .image-wrapper {
     img {
       width: 100%;

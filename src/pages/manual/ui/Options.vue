@@ -19,7 +19,7 @@
             <h5>Дополнительная чаша</h5>
             <span>от 600 ₽ </span>
             <p>
-              Понравилась забивка, закажи еще, доставим <br />в течении часа
+              Понравилась забивка, закажи еще, доставим в течении часа
               от 600 ₽ (без учета доставки)
             </p>
           </div>
@@ -64,6 +64,7 @@
       margin-bottom: 50px;
       text-transform: uppercase;
       padding-left: 30px;
+    letter-spacing: -2px;
       @media (max-width: $tab) {
         padding-left: 0;
         font-size: 35px;

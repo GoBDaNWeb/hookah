@@ -14,88 +14,22 @@ defineProps(["stampsList", "howWorkList"]);
           используем проверенные<br />
           марки табака
         </h3>
-        <!-- <h3
-          v-motion
-          :initial="{
-            x: -100,
-            opacity: 0,
-          }"
-          :visible-once="{
-            x: 0,
-            opacity: 1,
-            transition: {
-              duration: 500,
-            },
-          }"
-        >
-          используем проверенные<br />
-          марки табака
-        </h3> -->
+       
         <div class="description">
           <div class="left">
             <h5>Большой выбор вкусов</h5>
             <p>Подберём вкус и крепость по Вашему индивидуальному желанию!</p>
           </div>
-          <!-- <div
-            class="left"
-            v-motion
-            :delay="300"
-            :initial="{
-              y: 100,
-              opacity: 0,
-            }"
-            :visible-once="{
-              y: 0,
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
-          >
-            <h5>Большой выбор вкусов</h5>
-            <p>Подберём вкус и крепость по Вашему индивидуальному желанию!</p>
-          </div> -->
+          
           <div class="right">
             <h5>наш табак не горчит и дает вкусный, насыщенный дым</h5>
           </div>
-          <!-- <div
-            class="right"
-            v-motion
-            :delay="450"
-            :initial="{
-              y: 100,
-              opacity: 0,
-            }"
-            :visible-once="{
-              y: 0,
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
-          >
-            <h5>наш табак не горчит и дает вкусный, насыщенный дым</h5>
-          </div> -->
+        
         </div>
         <StampsSwiper :stampsList="stampsList" />
         <div class="how-work" v-if="howWorkList">
           <h3>как это работает</h3>
-          <!-- <h3
-            v-motion
-            :initial="{
-              x: -100,
-              opacity: 0,
-            }"
-            :visible-once="{
-              x: 0,
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
-          >
-            как это работает
-          </h3> -->
+        
           <div class="how-work__list">
             <div
               class="how-work__item"
@@ -111,31 +45,7 @@ defineProps(["stampsList", "howWorkList"]);
                 >инструкция
               </Button>
             </div>
-            <!-- <div
-              class="how-work__item"
-              v-for="(howWork, index) in howWorkList"
-              :key="howWork.id"
-              v-motion
-              :delay="index * 150"
-              :initial="{
-                opacity: 0,
-              }"
-              :visible-once="{
-                opacity: 1,
-                transition: {
-                  duration: 500,
-                },
-              }"
-            >
-              <span class="number"
-                >{{ howWork.id }}
-                <span v-if="howWork.hasArrow"><BigArrowIcon /></span
-              ></span>
-              <p>{{ howWork.text }}</p>
-              <Button v-if="howWork.hasBtn" variable="outline"
-                >инструкция
-              </Button>
-            </div> -->
+          
           </div>
         </div>
       </div>
@@ -157,6 +67,10 @@ defineProps(["stampsList", "howWorkList"]);
     display: flex;
     flex-direction: column;
     gap: 50px;
+    @media(max-width: $tab) {
+      margin-left: -20px;
+      margin-right: -20px;
+    }
     h3 {
       font-weight: 400;
       font-size: 64px;
@@ -165,10 +79,11 @@ defineProps(["stampsList", "howWorkList"]);
       text-transform: uppercase;
       position: relative;
       padding-left: 75px;
-      letter-spacing: -5px;
+      letter-spacing: -2px;
       @media (max-width: $tab) {
         font-size: 35px;
         line-height: 29px;
+        padding-left: 60px;
       }
       &:before {
         content: "";
@@ -183,6 +98,7 @@ defineProps(["stampsList", "howWorkList"]);
           width: 30px;
           height: 30px;
           bottom: auto;
+          left: 20px;
         }
       }
     }
@@ -193,6 +109,8 @@ defineProps(["stampsList", "howWorkList"]);
       @media (max-width: $tab) {
         flex-direction: column;
         gap: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
       }
       .left {
         width: 50%;
@@ -204,6 +122,7 @@ defineProps(["stampsList", "howWorkList"]);
         @media (max-width: $tab) {
           width: 100%;
           gap: 15px;
+          padding-left: 30px;
         }
       }
       .right {
@@ -244,7 +163,7 @@ defineProps(["stampsList", "howWorkList"]);
         padding-left: 70px;
         text-transform: uppercase;
         @media (max-width: $tab) {
-          padding-left: 44px;
+          padding-left: 64px;
         }
 
         &:before {
@@ -261,6 +180,7 @@ defineProps(["stampsList", "howWorkList"]);
             width: 30px;
             height: 30px;
             bottom: auto;
+            left: 20px;
           }
         }
       }
@@ -279,6 +199,10 @@ defineProps(["stampsList", "howWorkList"]);
           &::-webkit-scrollbar {
             height: 0px;
           }
+        }
+        @media (max-width: $tab) {
+          padding-left: 20px;
+          padding-right: 20px;
         }
         .how-work__item {
           display: flex;

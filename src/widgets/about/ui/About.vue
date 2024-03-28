@@ -6,80 +6,32 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
 
 <template>
   <div class="about">
-    <kinesis-container event="scroll">
+    <kinesis-container event="scroll" >
       <div class="coals">
-        <kinesis-element :strength="120" axis="x">
+        <kinesis-element :strength="120" axis="x" >
           <img
-            v-motion
-            :delay="100"
-            :initial="{
-              x: -100,
-              opacity: 0,
-            }"
-            :visible-once="{
-              x: 0,
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
+           
             src="@/shared/assets/images/coals/1.png"
             alt=""
           />
         </kinesis-element>
-        <kinesis-element :strength="70" axis="x">
+        <kinesis-element :strength="70" axis="x" >
           <img
-            v-motion
-            :delay="150"
-            :initial="{
-              x: -100,
-              opacity: 0,
-            }"
-            :visible-once="{
-              x: 0,
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
+          
             src="@/shared/assets/images/coals/2.png"
             alt=""
           />
         </kinesis-element>
         <kinesis-element :strength="100" axis="x">
           <img
-            v-motion
-            :delay="200"
-            :initial="{
-              x: -100,
-              opacity: 0,
-            }"
-            :visible-once="{
-              x: 0,
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
+           
             src="@/shared/assets/images/coals/3.png"
             alt=""
           />
         </kinesis-element>
         <kinesis-element :strength="60" axis="x">
           <img
-            v-motion
-            :delay="250"
-            :initial="{
-              x: -50,
-              opacity: 0,
-            }"
-            :visible-once="{
-              x: 0,
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
+           
             src="@/shared/assets/images/coals/4.png"
             alt=""
           />
@@ -191,6 +143,7 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
       width: 168px;
       height: 108px;
     }
+  
     & > div {
       width: 100%;
       height: 100%;
@@ -204,6 +157,12 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
           width: 53px;
           height: 46px;
         }
+        @media (max-width: $mob) {
+          width: 31px;
+          height: 29px;
+          left: 134px;
+          bottom: 56px;
+        }
       }
       &:nth-child(2) {
         width: 108px;
@@ -213,6 +172,11 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
         @media (max-width: $tab) {
           width: 88px;
           height: 73px;
+        }
+        @media (max-width: $mob) {
+          width: 50px;
+          height: 47px;
+          left: 60px;
         }
       }
       &:nth-child(3) {
@@ -224,6 +188,12 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
           width: 53px;
           height: 62px;
         }
+        @media (max-width: $mob) {
+          width: 33px;
+          height: 38px;
+          left: 80px;
+          bottom: 79px;
+        }
       }
       &:nth-child(4) {
         width: 102px;
@@ -233,6 +203,14 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
         @media (max-width: $tab) {
           width: 82px;
           height: 174px;
+        }
+        @media (max-width: $mob) {
+          width: 39px;
+          height: 92px;
+          left: 0;
+          img {
+            object-fit: contain;
+          }
         }
       }
     }
@@ -293,7 +271,7 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
         position: absolute;
         top: 0;
         left: 0;
-        max-width: 200px;
+        max-width: 210px;
         display: flex;
         flex-direction: column;
         gap: 25px;

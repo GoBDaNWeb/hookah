@@ -17,6 +17,7 @@ import img from "@/shared/assets/images/contacts1.jpg";
         'Агенты по организации культурных мероприятий и фестивалей',
       ]"
       :badge="'сотрудничество'"
+      btnText="отправить"
     />
   </div>
 </template>

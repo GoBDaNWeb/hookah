@@ -48,6 +48,7 @@ const list =
       :tabs="['на дом', 'в офис', 'на дачу', 'в лофт']"
       :title="'Закажите кальян'"
       :imgs="[contactsImg, contactsImg, contactsImg, contactsImg]"
+      btnText="заказать кальян"
     />
   </main>
 </template>

@@ -62,7 +62,6 @@ defineProps(["index", "hasTitle", "congrats", "option", "list", "img"]);
   }
   .left {
     width: 50%;
-    padding-top: 130px;
     @media (max-width: $tab) {
       width: 100%;
       padding-top: 0;

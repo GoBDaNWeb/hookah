@@ -53,6 +53,7 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
       :title="'сделать заказ'"
       :tabs="['на дом', 'в офис', 'на дачу', 'в лофт']"
       :imgs="[contactsImg, contactsImg, contactsImg, contactsImg]"
+      btnText="заказать доставку"
     />
   </div>
 </template>

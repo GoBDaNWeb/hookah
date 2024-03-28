@@ -382,7 +382,6 @@ const handleSetTab = (index) => {
                 align-items: center;
                 gap: 10px;
                 @media (max-width: $tab-sm) {
-                  justify-content: space-between;
                   width: 100%;
                 }
                 button {

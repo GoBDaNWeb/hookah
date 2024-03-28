@@ -56,6 +56,11 @@ defineProps(["stampsList"]);
   display: flex;
   flex-direction: column;
   gap: 15px;
+  @media(max-width: $tab) {
+      padding-left: 20px;
+      padding-right: 20px;
+      width: 94vw;
+    }
   .navigation {
     display: flex;
     justify-content: flex-end;
@@ -63,6 +68,9 @@ defineProps(["stampsList"]);
   }
   .stamp-swiper {
     width: 100%;
+    @media(max-width: $tab) {
+      overflow: visible;
+    }
     .image-wrapper {
       height: 170px;
       background: var(--white-color);

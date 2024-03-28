@@ -18,7 +18,7 @@ const list =
 </script>
 
 <template>
-  <main>
+  <main class="delivery-page">
     <Hero
       :title="'Доставка фруктовых чаш'"
       :isMain="false"
@@ -35,12 +35,25 @@ const list =
     <Contacts
       :title="'сделать заказ'"
       :tabs="['на дом', 'в офис', 'на дачу', 'в лофт']"
+      btnText="заказать доставку"
     />
   </main>
 </template>
 
-<style lang="scss" scoped>
-.features {
+<style lang="scss">
+@import "@/shared/styles/vars";
+.delivery-page {
+  .features {
   padding-bottom: 150px;
+  @media(max-width: $tab) {
+    padding-bottom: 80px;
+  }
+  .features-inner {
+    @media(max-width: $tab) {
+      padding-top: 30px !important;
+    }
+  }
 }
+}
+
 </style>

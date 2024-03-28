@@ -43,6 +43,6 @@ const list =
     <Partners />
     <Gallery />
     <Faq :img="hookahFaqImg" :hasInfo="true" />
-    <Contacts :title="'Закажите кальянный кейтеринг'" />
+    <Contacts :title="'Закажите кальянный кейтеринг'" btnText="заказать кейтеринг"/>
   </main>
 </template>

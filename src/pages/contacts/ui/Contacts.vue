@@ -9,6 +9,7 @@ import img from "@/shared/assets/images/contacts2.jpg";
       :img="img"
       :title="'по любым вопросам'"
       :badge="'свяжитесь с нами'"
+      btnText="отправить"
     />
   </div>
 </template>

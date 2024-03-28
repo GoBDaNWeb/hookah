@@ -13,10 +13,10 @@ const props = defineProps(["type", "placeholder", "value", "modelValue"]);
   />
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 @import "@/shared/styles/vars";
-.input:placeholder-shown {
-  text-transform: uppercase;
+.input::placeholder-shown {
+  color: red;
 }
 .input {
   outline: none;

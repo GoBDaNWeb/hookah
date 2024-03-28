@@ -18,6 +18,7 @@ export default {
     "subTitleForm",
     "badge",
     "imgs",
+    "btnText"
   ],
   setup() {
     const { useField, handleSubmit } = useForm({
@@ -69,112 +70,25 @@ export default {
                   {{ tab }}
                 </button>
               </li>
-              <!-- <li
-                v-for="(tab, index) in tabs"
-                :key="tab"
-                v-motion
-                :delay="index * 150"
-                :initial="{
-                  y: -50,
-                  opacity: 0,
-                }"
-                :visible-once="{
-                  y: 0,
-                  opacity: 1,
-                }"
-              >
-                <button
-                  :class="index === currentTab.tab ? 'active' : ''"
-                  @click="handleSetTab(index)"
-                >
-                  {{ tab }}
-                </button>
-              </li> -->
             </ul>
           </div>
           <span v-if="badge" class="badge">
             {{ badge }}
           </span>
-          <!-- <span
-            v-if="badge"
-            class="badge"
-            v-motion
-            :initial="{
-              y: -50,
-              opacity: 0,
-            }"
-            :visible-once="{
-              y: 0,
-              opacity: 1,
-              transition: {
-                duration: 500,
-              },
-            }"
-          >
-            {{ badge }}
-          </span> -->
 
           <div class="center">
             <h3>
               {{ title }}
             </h3>
-            <!-- <h3
-              v-motion
-              :initial="{
-                x: -100,
-                opacity: 0,
-              }"
-              :visible-once="{
-                x: 0,
-                opacity: 1,
-                transition: {
-                  duration: 500,
-                },
-              }"
-            >
-              {{ title }}
-            </h3> -->
+
             <h5 v-if="subTitle">
               {{ subTitle }}
             </h5>
-            <!-- <h5
-              v-if="subTitle"
-              v-motion
-              :delay="200"
-              :initial="{
-                x: -100,
-                opacity: 0,
-              }"
-              :visible-once="{
-                x: 0,
-                opacity: 1,
-                transition: {
-                  duration: 500,
-                },
-              }"
-            >
-              {{ subTitle }}
-            </h5> -->
+
             <ul v-if="list">
               <li v-for="item in list" :key="item">
                 {{ item }}
               </li>
-              <!-- <li
-                v-for="(item, index) in list"
-                :key="item"
-                v-motion
-                :delay="index * 150"
-                :initial="{
-                  x: -50,
-                  opacity: 0,
-                }"
-                :visible-once="{
-                  x: 0,
-                  opacity: 1,
-                }"
-              >
-                {{ item }}
-              </li> -->
             </ul>
             <h5 class="sub-title-form" v-if="subTitleForm">
               {{ subTitleForm }}
@@ -200,7 +114,7 @@ export default {
                 Нажимая кнопку «Заказать кальян» вы даёте свое согласие
                 <a href="#">с правилами обработки персональных данных.</a>
               </p>
-              <Button variable="primary">заказать кальян</Button>
+              <Button variable="primary">{{btnText}}</Button>
             </form>
           </div>
           <div class="bottom">
@@ -231,31 +145,6 @@ export default {
             />
           </div>
         </div>
-        <!-- <div
-          class="right"
-          v-motion
-          :delay="300"
-          :initial="{
-            opacity: 0,
-          }"
-          :visible-once="{
-            opacity: 1,
-          }"
-        >
-          <ContactsSwiper
-            v-if="tabs"
-            :imgs="imgs"
-            :currentTab="currentTab.tab"
-          />
-          <div v-else class="image-wrapper">
-            <img v-if="img" :src="img" alt="photo" />
-            <img
-              v-else
-              src="@/shared/assets/images/gallery/5.jpg"
-              alt="photo"
-            />
-          </div>
-        </div> -->
       </div>
       <div class="contacts-info">
         <div class="left">
@@ -298,6 +187,7 @@ export default {
     @media (max-width: $tab) {
       flex-direction: column;
       gap: 40px;
+      padding-bottom: 0;
     }
     .left {
       width: 50%;
@@ -335,7 +225,8 @@ export default {
               transition: var(--trs-300);
               @media (max-width: $desktop-sm) {
                 font-size: 22px;
-                padding-left: 25px;
+                padding-left: 20px;
+                letter-spacing:-0.5px;
               }
               @media (max-width: $tab-sm) {
                 font-size: 14px;
@@ -412,6 +303,7 @@ export default {
           @media (max-width: $tab) {
             font-size: 35px;
             line-height: 29px;
+            letter-spacing: -3px;
           }
         }
         h5 {
@@ -421,12 +313,19 @@ export default {
           color: var(--text-color);
           margin-top: 50px;
           margin-bottom: 30px;
+          letter-spacing: -1px;
           text-transform: uppercase;
           @media (max-width: $tab) {
             margin-top: 40px;
             margin-bottom: 20px;
             font-size: 24px;
             line-height: 26px;
+          }
+        }
+        .sub-title-form {
+          margin-top: 80px;
+          @media (max-width: $tab) {
+
           }
         }
         ul {
@@ -477,6 +376,7 @@ export default {
             font-weight: 400;
             font-size: 14px;
             line-height: 15px;
+            letter-spacing: -1px;
             color: var(--text-color);
             text-transform: uppercase;
             @media (max-width: $tab) {
@@ -491,6 +391,9 @@ export default {
               }
             }
           }
+          button {
+            padding: 0 28px;
+          }
         }
       }
       .bottom {
@@ -498,7 +401,7 @@ export default {
         align-items: center;
         gap: 30px;
         padding-left: 35px;
-        margin-top: 100px;
+        margin-top: 50px;
         @media (max-width: $tab) {
           margin-top: 40px;
           padding-left: 0;
@@ -539,15 +442,15 @@ export default {
         width: 100%;
       }
       .image-wrapper {
-        width: 100%;
-        height: calc(20vw * 2);
+        // width: 100%;
+        // height: calc(20vw * 2);
+        padding-bottom: 100%;;
         max-height: 615px;
-        @media (max-width: $tab) {
-          height: calc(30vw * 3);
-        }
+        position: relative;
         img {
           width: 100%;
           height: 100%;
+          position: absolute;
           object-fit: cover;
         }
       }
@@ -559,6 +462,9 @@ export default {
     border-top: 1px solid var(--text-color);
     margin-top: 50px;
     padding-bottom: 50px;
+    @media(max-width: $tab) {
+      margin-top: 20px;
+    }
     .left {
       padding-top: 100px;
       padding-left: 30px;
@@ -589,7 +495,7 @@ export default {
           align-items: flex-start;
         }
         @media (max-width: $tab) {
-          gap: 21px;
+          gap: 0px;
         }
         li {
           font-size: 14px;
@@ -598,11 +504,15 @@ export default {
           @media (max-width: $tab) {
             font-size: 12px;
             line-height: 13px;
+            letter-spacing: -.8px;
           }
           &:last-child {
             padding-left: 5px;
             @media (max-width: $desktop-md-2) {
               padding-left: 0;
+            }
+            @media (max-width: $tab) {
+              margin-top: 21px;
             }
           }
           a {
@@ -654,6 +564,8 @@ export default {
           gap: 21px;
           font-size: 12px;
           line-height: 13px;
+          letter-spacing: -.8px;
+
         }
         li {
           a {
@@ -661,6 +573,9 @@ export default {
             gap: 13px;
             align-items: center;
             transition: var(--trs-300);
+            @media (max-width: $tab) {
+              letter-spacing: -.8px;
+            }
             svg {
               fill: #45403d;
               transition: var(--trs-300);

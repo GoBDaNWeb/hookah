@@ -101,116 +101,44 @@ defineProps(["img", "hasInfo"]);
                   <img :src="img" alt="hookah" />
 
                   <div class="coals">
-                    <kinesis-element :strength="120" axis="x">
+                    <kinesis-element :strength="-120" axis="x">
                       <img
-                        v-motion
-                        :delay="100"
-                        :initial="{
-                          x: 100,
-                          opacity: 0,
-                        }"
-                        :visible-once="{
-                          x: 0,
-                          opacity: 1,
-                          transition: {
-                            duration: 500,
-                          },
-                        }"
+                      
                         src="@/shared/assets/images/coals-reverse/1.png"
                         alt=""
                       />
                     </kinesis-element>
-                    <kinesis-element :strength="70" axis="x">
+                    <kinesis-element :strength="-70" axis="x">
                       <img
-                        v-motion
-                        :delay="150"
-                        :initial="{
-                          x: 100,
-                          opacity: 0,
-                        }"
-                        :visible-once="{
-                          x: 0,
-                          opacity: 1,
-                          transition: {
-                            duration: 500,
-                          },
-                        }"
+                       
                         src="@/shared/assets/images/coals-reverse/2.png"
                         alt=""
                       />
                     </kinesis-element>
-                    <kinesis-element :strength="100" axis="x">
+                    <kinesis-element :strength="-100" axis="x">
                       <img
-                        v-motion
-                        :delay="200"
-                        :initial="{
-                          x: 100,
-                          opacity: 0,
-                        }"
-                        :visible-once="{
-                          x: 0,
-                          opacity: 1,
-                          transition: {
-                            duration: 500,
-                          },
-                        }"
+                       
                         src="@/shared/assets/images/coals-reverse/3.png"
                         alt=""
                       />
                     </kinesis-element>
-                    <kinesis-element :strength="40" axis="x">
+                    <kinesis-element :strength="-40" axis="x">
                       <img
-                        v-motion
-                        :delay="250"
-                        :initial="{
-                          x: 50,
-                          opacity: 0,
-                        }"
-                        :visible-once="{
-                          x: 0,
-                          opacity: 1,
-                          transition: {
-                            duration: 500,
-                          },
-                        }"
+                      
                         src="@/shared/assets/images/coals-reverse/4.png"
                         alt=""
                       />
                     </kinesis-element>
-                    <kinesis-element :strength="80" axis="x">
+                    <kinesis-element :strength="-80" axis="x">
                       <img
-                        v-motion
-                        :delay="250"
-                        :initial="{
-                          x: 50,
-                          opacity: 0,
-                        }"
-                        :visible-once="{
-                          x: 0,
-                          opacity: 1,
-                          transition: {
-                            duration: 500,
-                          },
-                        }"
+                       
                         src="@/shared/assets/images/coals-reverse/5.png"
                         alt=""
                       />
                     </kinesis-element>
-                    <kinesis-element :strength="60" axis="x">
+                    <kinesis-element :strength="-60" axis="x">
                       <img
-                        v-motion
-                        :delay="250"
-                        :initial="{
-                          x: 50,
-                          opacity: 0,
-                        }"
-                        :visible-once="{
-                          x: 0,
-                          opacity: 1,
-                          transition: {
-                            duration: 500,
-                          },
-                        }"
+                       
                         src="@/shared/assets/images/coals-reverse/6.png"
                         alt=""
                       />
@@ -350,6 +278,10 @@ defineProps(["img", "hasInfo"]);
           background: var(--bg-color);
           position: relative;
           max-height: 700px;
+          @media(max-width: $tab) {
+          padding: 10px 10px 30px 10px;
+
+          }
           &:after {
             content: "";
             position: absolute;
@@ -359,6 +291,12 @@ defineProps(["img", "hasInfo"]);
             border-radius: 999px;
             bottom: 20px;
             right: 20px;
+            @media(max-width: $tab) {
+              width: 12px;
+              height: 12px;
+              bottom: 10px;
+              right: 10px;
+            }
           }
           .image-wrapper-inner {
             width: 100%;
@@ -378,8 +316,12 @@ defineProps(["img", "hasInfo"]);
                 top: 36%;
               }
               @media (max-width: $pre-mob) {
+                top: 10%;
+              }
+              @media (max-width: $mob) {
                 width: 168px;
                 height: 108px;
+                top: 20%;
               }
               & > div {
                 width: 100%;
@@ -395,8 +337,11 @@ defineProps(["img", "hasInfo"]);
                     width: 53px;
                     height: 50px;
                   }
-                  @media (max-width: $pre-mob) {
-                    right: 190px;
+                  @media (max-width: $mob) {
+                    right: 107px;
+                    width: 34px;
+                  height: 28px;
+                  bottom: 50px;
                   }
                 }
                 &:nth-child(2) {
@@ -409,9 +354,9 @@ defineProps(["img", "hasInfo"]);
                     width: 20px;
                     height: 16px;
                   }
-                  @media (max-width: $pre-mob) {
-                    right: 140px;
-                    bottom: 140px;
+                  @media (max-width: $mob) {
+                    right: 82px;
+                    bottom: 86px;
                   }
                 }
                 &:nth-child(3) {
@@ -423,9 +368,9 @@ defineProps(["img", "hasInfo"]);
                     width: 15px;
                     height: 18px;
                   }
-                  @media (max-width: $pre-mob) {
-                    right: 103px;
-                    bottom: 100px;
+                  @media (max-width: $mob) {
+                    right: 63px;
+                    bottom: 64px;
                   }
                 }
                 &:nth-child(4) {
@@ -437,8 +382,11 @@ defineProps(["img", "hasInfo"]);
                     width: 96px;
                     height: 78px;
                   }
-                  @media (max-width: $pre-mob) {
-                    right: 80px;
+                  @media (max-width: $mob) {
+                    right: 45px;
+                    width: 51px;
+                    bottom: 13px;
+                    height: 47px;
                   }
                 }
                 &:nth-child(5) {
@@ -450,8 +398,11 @@ defineProps(["img", "hasInfo"]);
                     width: 48px;
                     height: 59px;
                   }
-                  @media (max-width: $pre-mob) {
+                  @media (max-width: $mob) {
                     right: 6px;
+                    width: 33px;
+                    height: 34px;
+                    bottom: 46px;
                   }
                 }
                 &:nth-child(6) {
@@ -463,6 +414,13 @@ defineProps(["img", "hasInfo"]);
                     width: 55px;
                     height: 92px;
                   }
+                  @media (max-width: $mob) {
+                    height: 48px;
+                    width: 50px;
+                    img {
+                      object-fit: contain;
+                    }
+                  } 
                 }
               }
               img {
@@ -507,6 +465,7 @@ defineProps(["img", "hasInfo"]);
         padding-right: 120px;
         @media (max-width: $tab) {
           padding-top: 50px;
+          padding-right: 0;
         }
         @media (max-width: $tab-sm) {
           width: 100%;
