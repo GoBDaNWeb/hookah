@@ -7,17 +7,7 @@ function init() {
     zoom: 15,
   });
 
-  // let placemark = new ymaps.Placemark(
-  //   center,
-  //   {},
-  //   {
-  //     iconLayout: "default#image",
-  //     iconImageHref:
-  //       "https://ucarecdn.com/af891ef7-9072-4123-bcf5-189d936ba631/",
-  //     iconImageSize: [40, 40],
-  //     iconImageOffset: [-19, -44],
-  //   }
-  // );
+  let placemark = new ymaps.Placemark(center, {}, {});
 
   map.controls.remove("geolocationControl"); // удаляем геолокацию
   map.controls.remove("searchControl"); // удаляем поиск
@@ -28,7 +18,7 @@ function init() {
   map.controls.remove("rulerControl"); // удаляем контрол правил
   map.behaviors.disable(["scrollZoom"]); // отключаем скролл карты (опционально)
 
-  // map.geoObjects.add(placemark);
+  map.geoObjects.add(placemark);
 }
 
 ymaps.ready(init);

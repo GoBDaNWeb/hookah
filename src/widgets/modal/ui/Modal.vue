@@ -4,6 +4,7 @@ import { CloseIcon, TelegramIcon, WhatsappIcon } from "@/shared/icons";
 import { Button } from "@/shared/ui/button";
 import { TheMask } from "vue-the-mask";
 import { useModalStore } from "@/entities/modal-store";
+import { RouterLink } from "vue-router";
 
 export default {
   props: ["title", "btnText", "isActive", "handleClose"],
@@ -81,7 +82,9 @@ export default {
 
           <p>
             Нажимая кнопку «Заказать кальян» вы даёте свое согласие
-            <a href="#">с правилами обработки персональных данных.</a>
+            <RouterLink to="/policy">
+              с правилами обработки персональных данных.
+            </RouterLink>
           </p>
           <Button variable="primary">{{ btnText }}</Button>
         </form>

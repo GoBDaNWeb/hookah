@@ -62,22 +62,7 @@ const rightGallery = [
     <div class="container">
       <div class="gallery-inner">
         <h3>кальяны в деле</h3>
-        <!-- <h3
-          v-motion
-          :initial="{
-            x: -100,
-            opacity: 0,
-          }"
-          :visible-once="{
-            x: 0,
-            opacity: 1,
-            transition: {
-              duration: 500,
-            },
-          }"
-        >
-          кальяны в деле
-        </h3> -->
+
         <Fancybox>
           <div class="gallery-content">
             <div class="left">
@@ -92,35 +77,6 @@ const rightGallery = [
                 </div>
               </a>
             </div>
-            <!-- <div class="left">
-              <a
-                v-for="img in leftGallery"
-                :key="img.id"
-                data-fancybox="gallery"
-                :href="img.img"
-                v-motion
-                :delay="150"
-                :initial="{
-                  scale: 0.8,
-                  opacity: 0,
-                }"
-                :visible-once="{
-                  scale: 1,
-                  opacity: 1,
-                  transition: {
-                    duration: 500,
-                  },
-                }"
-              >
-                <kinesis-container>
-                  <kinesis-element :strength="6" type="depth">
-                    <div class="image-wrapper">
-                      <img :src="img.img" alt="" />
-                    </div>
-                  </kinesis-element>
-                </kinesis-container>
-              </a>
-            </div> -->
 
             <div class="right">
               <a
@@ -134,35 +90,6 @@ const rightGallery = [
                 </div>
               </a>
             </div>
-            <!-- <div class="right">
-              <a
-                v-for="img in rightGallery"
-                :key="img.id"
-                data-fancybox="gallery"
-                :href="img.img"
-                v-motion
-                :delay="150"
-                :initial="{
-                  scale: 0.8,
-                  opacity: 0,
-                }"
-                :visible-once="{
-                  scale: 1,
-                  opacity: 1,
-                  transition: {
-                    duration: 500,
-                  },
-                }"
-              >
-                <kinesis-container>
-                  <kinesis-element :strength="6" type="depth">
-                    <div class="image-wrapper">
-                      <img :src="img.img" alt="" />
-                    </div>
-                  </kinesis-element>
-                </kinesis-container>
-              </a>
-            </div> -->
           </div>
         </Fancybox>
       </div>

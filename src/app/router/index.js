@@ -6,6 +6,7 @@ import { Delivery } from "@/pages/delivery";
 import { Manual } from "@/pages/manual";
 import { Partners } from "@/pages/partners";
 import { Contacts } from "@/pages/contacts";
+import { Policy } from "@/pages/policy";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -38,6 +39,11 @@ const router = createRouter({
       path: "/contacts",
       name: "contacts",
       component: Contacts,
+    },
+    {
+      path: "/policy",
+      name: "policy",
+      component: Policy,
     },
   ],
 });

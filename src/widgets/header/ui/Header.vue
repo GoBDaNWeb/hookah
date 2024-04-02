@@ -117,7 +117,7 @@ header {
       height: 85px;
       display: block;
 
-      @media (max-width: $tab-sm) {
+      @media (max-width: $tab) {
         width: 45px;
         height: 45px;
       }

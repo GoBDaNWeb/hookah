@@ -40,8 +40,6 @@ defineProps(["index", "hasTitle", "congrats", "option", "list", "img"]);
   display: flex;
   align-items: center;
   gap: 55px;
-  padding-top: 20px;
-  padding-bottom: 20px;
   border-top: 1px solid var(--text-color);
   @media (max-width: $tab) {
     flex-direction: column;
@@ -62,6 +60,7 @@ defineProps(["index", "hasTitle", "congrats", "option", "list", "img"]);
   }
   .left {
     width: 50%;
+
     @media (max-width: $tab) {
       width: 100%;
       padding-top: 0;
@@ -159,6 +158,8 @@ defineProps(["index", "hasTitle", "congrats", "option", "list", "img"]);
     }
   }
   .right {
+    padding-top: 20px;
+    padding-bottom: 20px;
     width: 50%;
     @media (max-width: $tab) {
       width: 100%;

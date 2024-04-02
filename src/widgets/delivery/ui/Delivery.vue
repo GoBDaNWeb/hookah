@@ -166,6 +166,12 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
                 display: none;
               }
             }
+            p {
+              font-size: 16px;
+              line-height: 20px;
+              font-weight: 400;
+              color: var(--text-color);
+            }
           }
           .contacts-left {
             /* width: 50%; */
@@ -240,9 +246,15 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
           padding-bottom: 50px;
           padding-top: 50px;
           margin-top: 50px;
+          padding-right: 30px;
+          padding-left: 30px;
           display: flex;
           flex-direction: column;
           gap: 30px;
+          @media (max-width: $tab) {
+            padding-left: 0;
+            padding-right: 0;
+          }
           .info-item {
             display: flex;
             align-items: baseline;

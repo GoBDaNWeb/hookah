@@ -56,7 +56,7 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
                 <WhatsappIcon />
               </Button>
             </div>
-            <Button variable="primary"> заказать кальян </Button>
+            <Button variable="primary"> заказать кейтеринг </Button>
           </div>
         </div>
       </div>

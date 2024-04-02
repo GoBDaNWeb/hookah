@@ -200,11 +200,15 @@ const handleSetTab = (index) => {
           flex-direction: column;
           gap: 30px;
           padding-bottom: 50px;
+          padding-right: 30px;
+          padding-left: 30px;
           border-bottom: 1px solid var(--text-color);
           @media (max-width: $tab) {
             gap: 20px;
             padding-top: 0;
             padding-bottom: 20px;
+            padding-right: 0;
+            padding-left: 0;
           }
           .cost-item.active {
             &:before {

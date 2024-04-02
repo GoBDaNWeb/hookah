@@ -3,6 +3,9 @@ import { TelegramIcon } from "@/shared/icons";
 import { WhatsappIcon } from "@/shared/icons";
 import { Button } from "@/shared/ui/button";
 import { KinesisContainer, KinesisElement } from "vue-kinesis";
+import { useModalStore } from "@/entities/modal-store";
+
+const modal = useModalStore();
 </script>
 
 <template>
@@ -64,7 +67,9 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
                 <WhatsappIcon />
               </Button>
             </div>
-            <Button variable="primary"> заказать кальян </Button>
+            <Button variable="primary" :click="modal.handleOpenOrderModal">
+              Заказать доставку
+            </Button>
           </div>
         </div>
       </div>

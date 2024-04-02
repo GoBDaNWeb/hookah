@@ -1,5 +1,6 @@
 <script>
 import { ref, reactive } from "vue";
+import { RouterLink } from "vue-router";
 
 import { useForm } from "vue-hooks-form";
 import { Button } from "@/shared/ui/button";
@@ -18,7 +19,7 @@ export default {
     "subTitleForm",
     "badge",
     "imgs",
-    "btnText"
+    "btnText",
   ],
   setup() {
     const { useField, handleSubmit } = useForm({
@@ -112,9 +113,11 @@ export default {
 
               <p>
                 Нажимая кнопку «Заказать кальян» вы даёте свое согласие
-                <a href="#">с правилами обработки персональных данных.</a>
+                <RouterLink to="/policy">
+                  с правилами обработки персональных данных.
+                </RouterLink>
               </p>
-              <Button variable="primary">{{btnText}}</Button>
+              <Button variable="primary">{{ btnText }}</Button>
             </form>
           </div>
           <div class="bottom">
@@ -226,7 +229,7 @@ export default {
               @media (max-width: $desktop-sm) {
                 font-size: 22px;
                 padding-left: 20px;
-                letter-spacing:-0.5px;
+                letter-spacing: -0.5px;
               }
               @media (max-width: $tab-sm) {
                 font-size: 14px;
@@ -325,7 +328,6 @@ export default {
         .sub-title-form {
           margin-top: 80px;
           @media (max-width: $tab) {
-
           }
         }
         ul {
@@ -444,7 +446,7 @@ export default {
       .image-wrapper {
         // width: 100%;
         // height: calc(20vw * 2);
-        padding-bottom: 100%;;
+        padding-bottom: 100%;
         max-height: 615px;
         position: relative;
         img {
@@ -462,7 +464,7 @@ export default {
     border-top: 1px solid var(--text-color);
     margin-top: 50px;
     padding-bottom: 50px;
-    @media(max-width: $tab) {
+    @media (max-width: $tab) {
       margin-top: 20px;
     }
     .left {
@@ -504,7 +506,7 @@ export default {
           @media (max-width: $tab) {
             font-size: 12px;
             line-height: 13px;
-            letter-spacing: -.8px;
+            letter-spacing: -0.8px;
           }
           &:last-child {
             padding-left: 5px;
@@ -564,8 +566,7 @@ export default {
           gap: 21px;
           font-size: 12px;
           line-height: 13px;
-          letter-spacing: -.8px;
-
+          letter-spacing: -0.8px;
         }
         li {
           a {
@@ -574,7 +575,7 @@ export default {
             align-items: center;
             transition: var(--trs-300);
             @media (max-width: $tab) {
-              letter-spacing: -.8px;
+              letter-spacing: -0.8px;
             }
             svg {
               fill: #45403d;

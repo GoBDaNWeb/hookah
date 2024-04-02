@@ -5,7 +5,16 @@ import { Button } from "@/shared/ui/button";
 import { useModalStore } from "@/entities/modal-store";
 import { HeroSwiper } from "@/entities/hero-swiper";
 import { KinesisContainer, KinesisElement } from "vue-kinesis";
-defineProps(["tabs", "title", "isMain", "cost", "costDescr", "list", "imgs"]);
+defineProps([
+  "tabs",
+  "title",
+  "isMain",
+  "cost",
+  "costDescr",
+  "list",
+  "imgs",
+  "btnText",
+]);
 
 const modal = useModalStore();
 
@@ -45,7 +54,7 @@ const handleSetTab = (index) => {
               </Button>
             </div>
             <Button variable="primary" :click="modal.handleOpenOrderModal">
-              заказать кальян
+              {{ btnText }}
             </Button>
           </div>
         </div>
@@ -441,10 +450,9 @@ const handleSetTab = (index) => {
       padding: 175px 0px 20px 20px;
       @media (max-width: $tab) {
         width: 100%;
-      }
-      @media (max-width: $tab-sm) {
         padding: 80px 0 0;
       }
+
       .top {
         position: relative;
         padding-bottom: 20px;
@@ -481,7 +489,7 @@ const handleSetTab = (index) => {
               @media (max-width: $desktop-sm) {
                 font-size: 22px;
                 padding-left: 20px;
-                letter-spacing:-0.5px;
+                letter-spacing: -0.5px;
               }
               @media (max-width: $tab-sm) {
                 font-size: 14px;

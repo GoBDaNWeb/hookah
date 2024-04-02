@@ -8,6 +8,7 @@ import { Delivery } from "@/widgets/delivery";
 import { Gallery } from "@/widgets/gallery";
 import { Faq } from "@/widgets/faq";
 import { Contacts } from "@/widgets/contacts";
+import { Reviews } from "@/widgets/reviews";
 
 import heroImg from "@/shared/assets/images/hero-photo.jpg";
 import contactsImg from "@/shared/assets/images/gallery/5.jpg";
@@ -30,6 +31,7 @@ const list =
       :costDescr="costDescr"
       :list="list"
       :imgs="[heroImg, heroImg, heroImg, heroImg]"
+      btnText="Заказать кальян"
     />
     <About
       :ordersInfo="ordersInfo"
@@ -42,6 +44,7 @@ const list =
     <Cost />
     <Stamps :stampsList="stampsList" :howWorkList="howWorkList" />
     <Delivery />
+    <Reviews />
     <Gallery />
     <Faq :img="hookahFaqImg" :hasInfo="true" />
     <Contacts

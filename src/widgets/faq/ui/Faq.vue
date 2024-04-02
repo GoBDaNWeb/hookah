@@ -103,42 +103,36 @@ defineProps(["img", "hasInfo"]);
                   <div class="coals">
                     <kinesis-element :strength="-120" axis="x">
                       <img
-                      
                         src="@/shared/assets/images/coals-reverse/1.png"
                         alt=""
                       />
                     </kinesis-element>
                     <kinesis-element :strength="-70" axis="x">
                       <img
-                       
                         src="@/shared/assets/images/coals-reverse/2.png"
                         alt=""
                       />
                     </kinesis-element>
                     <kinesis-element :strength="-100" axis="x">
                       <img
-                       
                         src="@/shared/assets/images/coals-reverse/3.png"
                         alt=""
                       />
                     </kinesis-element>
                     <kinesis-element :strength="-40" axis="x">
                       <img
-                      
                         src="@/shared/assets/images/coals-reverse/4.png"
                         alt=""
                       />
                     </kinesis-element>
                     <kinesis-element :strength="-80" axis="x">
                       <img
-                       
                         src="@/shared/assets/images/coals-reverse/5.png"
                         alt=""
                       />
                     </kinesis-element>
                     <kinesis-element :strength="-60" axis="x">
                       <img
-                       
                         src="@/shared/assets/images/coals-reverse/6.png"
                         alt=""
                       />
@@ -245,6 +239,7 @@ defineProps(["img", "hasInfo"]);
               color: var(--text-color);
               text-align: left;
               transition: var(--trs-300);
+              text-transform: uppercase;
             }
             span {
               svg {
@@ -278,9 +273,8 @@ defineProps(["img", "hasInfo"]);
           background: var(--bg-color);
           position: relative;
           max-height: 700px;
-          @media(max-width: $tab) {
-          padding: 10px 10px 30px 10px;
-
+          @media (max-width: $tab) {
+            padding: 10px 10px 30px 10px;
           }
           &:after {
             content: "";
@@ -291,7 +285,7 @@ defineProps(["img", "hasInfo"]);
             border-radius: 999px;
             bottom: 20px;
             right: 20px;
-            @media(max-width: $tab) {
+            @media (max-width: $tab) {
               width: 12px;
               height: 12px;
               bottom: 10px;
@@ -340,8 +334,8 @@ defineProps(["img", "hasInfo"]);
                   @media (max-width: $mob) {
                     right: 107px;
                     width: 34px;
-                  height: 28px;
-                  bottom: 50px;
+                    height: 28px;
+                    bottom: 50px;
                   }
                 }
                 &:nth-child(2) {
@@ -420,7 +414,7 @@ defineProps(["img", "hasInfo"]);
                     img {
                       object-fit: contain;
                     }
-                  } 
+                  }
                 }
               }
               img {

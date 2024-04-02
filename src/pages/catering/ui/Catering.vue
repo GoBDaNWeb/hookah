@@ -30,6 +30,7 @@ const list =
       :costDescr="costDescr"
       :list="list"
       :imgs="[heroImg]"
+      btnText="Заказать кейтеринг"
     />
     <About
       :ordersInfo="ordersInfo"
@@ -43,6 +44,9 @@ const list =
     <Partners />
     <Gallery />
     <Faq :img="hookahFaqImg" :hasInfo="true" />
-    <Contacts :title="'Закажите кальянный кейтеринг'" btnText="заказать кейтеринг"/>
+    <Contacts
+      :title="'Закажите кальянный кейтеринг'"
+      btnText="заказать кейтеринг"
+    />
   </main>
 </template>

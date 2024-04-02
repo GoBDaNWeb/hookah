@@ -26,6 +26,7 @@ const list =
       :costDescr="costDescr"
       :list="list"
       :imgs="[heroImg]"
+      btnText="Заказать доставку"
     />
 
     <Features :featureList="featureList" :isWhite="true" />
@@ -44,16 +45,15 @@ const list =
 @import "@/shared/styles/vars";
 .delivery-page {
   .features {
-  padding-bottom: 150px;
-  @media(max-width: $tab) {
-    padding-bottom: 80px;
-  }
-  .features-inner {
-    @media(max-width: $tab) {
-      padding-top: 30px !important;
+    padding-bottom: 150px;
+    @media (max-width: $tab) {
+      padding-bottom: 80px;
+    }
+    .features-inner {
+      @media (max-width: $tab) {
+        padding-top: 30px !important;
+      }
     }
   }
 }
-}
-
 </style>
