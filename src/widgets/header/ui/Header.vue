@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
 import { LogoIcon } from "@/shared/icons";
 import { TelegramIcon } from "@/shared/icons";
 import { WhatsappIcon } from "@/shared/icons";
@@ -12,6 +12,8 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
 const active = ref(false);
 const menu = useMenuStore();
 const modal = useModalStore();
+const router = useRoute();
+console.log(router);
 const controlNavbar = () => {
   if (typeof window !== "undefined") {
     if (window.scrollY > 0) {
@@ -37,6 +39,7 @@ window.addEventListener("scroll", controlNavbar);
             :to="link.url"
             v-for="(link, index) in links"
             :key="index"
+            :class="router.fullPath === link.url ? 'active' : ''"
           >
             {{ link.title }}
           </RouterLink>
@@ -140,6 +143,9 @@ header {
       gap: 25px;
       @media (max-width: $desktop-md-2) {
         display: none;
+      }
+      a.active {
+        color: var(--hover-color);
       }
       a {
         color: #45403d;

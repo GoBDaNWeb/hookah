@@ -10,6 +10,7 @@ import hookahFaqImg from "@/shared/assets/images/hookah-white.jpg";
 import Cost from "./Cost.vue";
 
 import { featureList, stampsList } from "../config";
+import contactsImg from "@/shared/assets/images/gallery/5.jpg";
 
 const costDescr =
   "<p> Стоимость по тарифу <br/> перевозчика — <br /> Яндекс достависта <br />  и других сервисов доставки </p>";
@@ -37,6 +38,7 @@ const list =
       :title="'сделать заказ'"
       :tabs="['на дом', 'в офис', 'на дачу', 'в лофт']"
       btnText="заказать доставку"
+      :imgs="[contactsImg, contactsImg, contactsImg, contactsImg]"
     />
   </main>
 </template>

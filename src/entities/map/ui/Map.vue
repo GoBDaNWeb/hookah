@@ -7,7 +7,14 @@ function init() {
     zoom: 15,
   });
 
-  let placemark = new ymaps.Placemark(center, {}, {});
+  let placemark = new ymaps.Placemark(
+    center,
+    {
+      balloonContentHeader: "Адрес",
+      balloonContentBody: "Офис, Студенческая, 35",
+    },
+    {}
+  );
 
   map.controls.remove("geolocationControl"); // удаляем геолокацию
   map.controls.remove("searchControl"); // удаляем поиск
@@ -19,6 +26,7 @@ function init() {
   map.behaviors.disable(["scrollZoom"]); // отключаем скролл карты (опционально)
 
   map.geoObjects.add(placemark);
+  // map.geoObjects.add(placemark2);
 }
 
 ymaps.ready(init);
