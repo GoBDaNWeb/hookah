@@ -2,6 +2,7 @@
 import { StampsSwiper } from "@/entities/stamps-swiper";
 import { BigArrowIcon } from "@/shared/icons";
 import { Button } from "@/shared/ui/button";
+import { RouterLink } from "vue-router";
 
 defineProps(["stampsList", "howWorkList"]);
 </script>
@@ -14,38 +15,36 @@ defineProps(["stampsList", "howWorkList"]);
           используем проверенные<br />
           марки табака
         </h3>
-       
+
         <div class="description">
           <div class="left">
             <h5>Большой выбор вкусов</h5>
             <p>Подберём вкус и крепость по Вашему индивидуальному желанию!</p>
           </div>
-          
+
           <div class="right">
             <h5>наш табак не горчит и дает вкусный, насыщенный дым</h5>
           </div>
-        
         </div>
         <StampsSwiper :stampsList="stampsList" />
         <div class="how-work" v-if="howWorkList">
           <h3>как это работает</h3>
-        
+
           <div class="how-work__list">
             <div
               class="how-work__item"
               v-for="howWork in howWorkList"
               :key="howWork.id"
             >
-              <span class="number"
-                >{{ howWork.id }}
-                <span v-if="howWork.hasArrow"><BigArrowIcon /></span
-              ></span>
+              <span class="number">
+                {{ howWork.id }}
+                <span v-if="howWork.hasArrow"><BigArrowIcon /></span>
+              </span>
               <p>{{ howWork.text }}</p>
-              <Button v-if="howWork.hasBtn" variable="outline"
-                >инструкция
-              </Button>
+              <RouterLink to="/manual" v-if="howWork.hasBtn">
+                инструкция
+              </RouterLink>
             </div>
-          
           </div>
         </div>
       </div>
@@ -67,7 +66,7 @@ defineProps(["stampsList", "howWorkList"]);
     display: flex;
     flex-direction: column;
     gap: 50px;
-    @media(max-width: $tab) {
+    @media (max-width: $tab) {
       margin-left: -20px;
       margin-right: -20px;
     }
@@ -251,8 +250,25 @@ defineProps(["stampsList", "howWorkList"]);
             line-height: 20px;
             color: var(--text-color);
           }
-          button {
+          a {
             width: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--text-color);
+            text-transform: uppercase;
+            transition: var(--trs-300);
+            border-radius: 99px;
+            height: 35px;
+            padding: 0 20px;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: -7%;
+            color: var(--text-color);
+            &:hover {
+              color: var(--hover-color);
+              border-color: var(--hover-color);
+            }
           }
         }
       }

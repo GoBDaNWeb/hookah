@@ -45,13 +45,20 @@ window.addEventListener("scroll", controlNavbar);
         <div class="info">
           <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
           <div class="socials">
-            <Button variable="social tg">
+            <a
+              href="https://t.me/hookahtohome"
+              target="_blank"
+              class="social tg"
+            >
               <TelegramIcon />
-            </Button>
-
-            <Button variable="social wa">
+            </a>
+            <a
+              href="https://wa.me/+79165993923"
+              target="_blank"
+              class="social wa"
+            >
               <WhatsappIcon />
-            </Button>
+            </a>
           </div>
 
           <Button variable="outline" :click="modal.handleOpenQuestionModal">

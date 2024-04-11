@@ -35,12 +35,20 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
           >
           <div class="contacts">
             <div class="socials">
-              <Button variable="social wa">
-                <WhatsappIcon />
-              </Button>
-              <Button variable="social tg">
+              <a
+                href="https://t.me/hookahtohome"
+                target="_blank"
+                class="social tg"
+              >
                 <TelegramIcon />
-              </Button>
+              </a>
+              <a
+                href="https://wa.me/+79165993923"
+                target="_blank"
+                class="social wa"
+              >
+                <WhatsappIcon />
+              </a>
             </div>
             <a href="tel:8 800 000-00-00">8 800 000-00-00</a>
           </div>
@@ -146,7 +154,7 @@ import { KinesisContainer, KinesisElement } from "vue-kinesis";
           display: flex;
           align-items: center;
           gap: 10px;
-          button {
+          a {
             width: 60px;
             height: 60px;
             @media (max-width: $tab) {

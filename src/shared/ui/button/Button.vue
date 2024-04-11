@@ -8,6 +8,33 @@ const props = defineProps(["title", "variable", "click", "type"]);
   </button>
 </template>
 
+<style lang="scss">
+a.social {
+  background: var(--white-color);
+  border-radius: 9999px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+a.social.wa {
+  background: #4dbd66;
+  transition: var(--trs-300);
+  &:hover {
+    background: #309b48;
+  }
+}
+a.social.tg {
+  background: #44b5c4;
+  transition: var(--trs-300);
+
+  &:hover {
+    background: #24a4b6;
+  }
+}
+</style>
 <style lang="scss" scoped>
 button {
   border-radius: 99px;
@@ -27,31 +54,7 @@ button.outline {
   text-transform: uppercase;
   transition: var(--trs-300);
 }
-button.social {
-  background: var(--white-color);
-  border-radius: 9999px;
-  width: 35px;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-}
-button.social.wa {
-  background: #4dbd66;
-  transition: var(--trs-300);
-  &:hover {
-    background: #309b48;
-  }
-}
-button.social.tg {
-  background: #44b5c4;
-  transition: var(--trs-300);
 
-  &:hover {
-    background: #24a4b6;
-  }
-}
 button.primary:hover {
   background: var(--hover-color);
 }

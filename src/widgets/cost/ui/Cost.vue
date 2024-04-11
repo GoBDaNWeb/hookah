@@ -65,12 +65,20 @@ const handleSetTab = (index) => {
                 </p>
                 <div class="contacts">
                   <div class="socials">
-                    <Button variable="social tg">
+                    <a
+                      href="https://t.me/hookahtohome"
+                      target="_blank"
+                      class="social tg"
+                    >
                       <TelegramIcon />
-                    </Button>
-                    <Button variable="social wa">
+                    </a>
+                    <a
+                      href="https://wa.me/+79165993923"
+                      target="_blank"
+                      class="social wa"
+                    >
                       <WhatsappIcon />
-                    </Button>
+                    </a>
                   </div>
                   <Button
                     variable="primary"
@@ -388,7 +396,7 @@ const handleSetTab = (index) => {
                 @media (max-width: $tab-sm) {
                   width: 100%;
                 }
-                button {
+                a {
                   width: 60px;
                   height: 60px;
                   @media (max-width: $tab-sm) {
